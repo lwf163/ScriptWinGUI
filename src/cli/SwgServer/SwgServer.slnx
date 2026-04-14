@@ -1,0 +1,13 @@
+<Solution>
+  <Project Path="Swg.Capture/Swg.Capture.csproj" Id="f353ca8b-7eab-4dca-91b8-773aa4ddddad" />
+  <Project Path="Swg.CV/Swg.CV.csproj" Id="188832c3-6ff6-44f1-a0ea-3356183665bf" />
+  <Project Path="Swg.FlaUI/Swg.FlaUI.csproj" />
+  <Project Path="Swg.Fs/Swg.Fs.csproj" Id="bd9dfc58-5bf5-453c-bc6c-9dbafe161280" />
+  <Project Path="Swg.Grpc/Swg.Grpc.csproj" Id="705fc3c5-6017-404f-baac-8c8828c056f2" />
+  <Project Path="Swg.Input/Swg.Input.csproj" Id="d4b96110-b10c-4bb3-9670-b9347960e21b" />
+  <Project Path="Swg.OCR/Swg.OCR.csproj" Id="0170b8db-ed41-46ba-bf56-491370882e08" />
+  <Project Path="Swg.Remote/Swg.Remote.csproj" Id="058e64b6-501a-426a-90c8-17b637c11a80" />
+  <Project Path="Swg.Win32/Swg.Win32.csproj" Id="ff114e19-c910-4030-b8c9-d5db7491f87f" />
+  <Project Path="SwgServer/SwgServer.csproj" />
+  <Project Path="../../../tests/Swg.Grpc.Tests/Swg.Grpc.Tests.csproj" />
+</Solution>

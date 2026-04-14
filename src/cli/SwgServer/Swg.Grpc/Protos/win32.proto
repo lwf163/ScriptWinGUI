@@ -1,0 +1,197 @@
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+
+package swg.win32;
+
+option csharp_namespace = "Swg.Grpc.Win32";
+
+service Win32Service {
+  rpc FindWindow(FindWindowRequest) returns (WindowHandleResponse);
+  rpc GetForegroundWindow(google.protobuf.Empty) returns (WindowHandleResponse);
+  rpc SetForegroundWindow(ForegroundWindowRequest) returns (OkResponse);
+  rpc GetWindowInfo(WindowInfoRequest) returns (WindowInfoResponse);
+  rpc SetWindowPositionResize(WindowPositionResizeRequest) returns (OkResponse);
+  rpc SetWindowState(WindowStateRequest) returns (OkResponse);
+  rpc CloseWindow(CloseWindowRequest) returns (OkResponse);
+  rpc GetWindowProcessId(WindowProcessIdRequest) returns (WindowProcessIdResponse);
+  rpc EnumChildWindows(EnumChildWindowsRequest) returns (ChildWindowHandlesResponse);
+  rpc FindChildWindow(FindChildWindowRequest) returns (WindowHandleResponse);
+  rpc StartProcess(ProcessStartRequest) returns (ProcessStartResponse);
+  rpc KillProcess(ProcessKillRequest) returns (OkResponse);
+  rpc GetCurrentProcessId(google.protobuf.Empty) returns (ProcessCurrentIdResponse);
+  rpc ProcessExists(ProcessExistsRequest) returns (ProcessExistsResponse);
+  rpc ProcessWaitExit(ProcessWaitExitRequest) returns (ProcessWaitExitResponse);
+  rpc GetClipboardText(google.protobuf.Empty) returns (ClipboardTextResponse);
+  rpc SetClipboardText(ClipboardTextSetRequest) returns (OkResponse);
+  rpc ClearClipboard(google.protobuf.Empty) returns (ClipboardClearResponse);
+  rpc GetMainScreen(google.protobuf.Empty) returns (MainScreenResponse);
+  rpc GetVirtualScreen(google.protobuf.Empty) returns (VirtualScreenResponse);
+  rpc GetSystemDpi(google.protobuf.Empty) returns (SystemDpiResponse);
+  rpc GetCursorPosition(google.protobuf.Empty) returns (CursorPositionResponse);
+  rpc GetForegroundWindowInfo(google.protobuf.Empty) returns (ForegroundWindowInfoResponse);
+  rpc SendMessage(WindowMessageRequest) returns (WindowMessageSendResponse);
+  rpc PostMessage(WindowMessageRequest) returns (WindowMessagePostResponse);
+  rpc WindowFromPoint(WindowFromPointRequest) returns (WindowHandleAtPointResponse);
+  rpc SendKeys(WindowKeysSendRequest) returns (WindowKeysSendResponse);
+  rpc GetControlText(ControlTextGetRequest) returns (ControlTextGetResponse);
+  rpc SendWmCommand(WmCommandSendRequest) returns (WmCommandSendResponse);
+}
+
+message OkResponse { bool ok = 1; }
+
+message WindowRectDto {
+  int32 left = 1;
+  int32 top = 2;
+  int32 right = 3;
+  int32 bottom = 4;
+  int32 width = 5;
+  int32 height = 6;
+}
+
+message WindowHandleResponse { string window_handle = 1; }
+
+message WindowInfoResponse {
+  string window_handle = 1;
+  string title = 2;
+  string class_name = 3;
+  uint32 process_id = 4;
+  WindowRectDto rect = 5;
+}
+
+message FindWindowRequest {
+  string title_contains = 1;
+  string class_name_equals = 2;
+  uint32 process_id = 3;
+  bool has_process_id = 4;
+  bool visible_only = 5;
+}
+
+message FindChildWindowRequest {
+  string parent_window_handle = 1;
+  string title_contains = 2;
+  string class_name_equals = 3;
+  bool visible_only = 4;
+}
+
+message WindowInfoRequest { string window_handle = 1; }
+
+message EnumChildWindowsRequest { string parent_window_handle = 1; }
+
+message ChildWindowHandlesResponse { repeated string window_handles = 1; }
+
+message ForegroundWindowRequest { string window_handle = 1; }
+
+message WindowPositionResizeRequest {
+  string window_handle = 1;
+  int32 left = 2;
+  int32 top = 3;
+  int32 width = 4;
+  int32 height = 5;
+}
+
+message WindowStateRequest {
+  string window_handle = 1;
+  string state = 2;
+}
+
+message CloseWindowRequest { string window_handle = 1; }
+
+message WindowProcessIdRequest { string window_handle = 1; }
+
+message WindowProcessIdResponse { uint32 process_id = 1; }
+
+message ProcessStartRequest {
+  string executable_path = 1;
+  string arguments = 2;
+}
+
+message ProcessStartResponse { uint32 process_id = 1; }
+
+message ProcessKillRequest { uint32 process_id = 1; }
+
+message ProcessCurrentIdResponse { uint32 process_id = 1; }
+
+message ProcessExistsRequest { uint32 process_id = 1; }
+
+message ProcessExistsResponse { bool exists = 1; }
+
+message ProcessWaitExitRequest {
+  uint32 process_id = 1;
+  int32 timeout_ms = 2;
+  bool has_timeout_ms = 3;
+}
+
+message ProcessWaitExitResponse { bool exited = 1; }
+
+message ClipboardTextResponse { string text = 1; }
+
+message ClipboardTextSetRequest { string text = 1; }
+
+message ClipboardClearResponse { bool ok = 1; }
+
+message MainScreenResponse {
+  int32 width = 1;
+  int32 height = 2;
+}
+
+message VirtualScreenResponse {
+  int32 x = 1;
+  int32 y = 2;
+  int32 width = 3;
+  int32 height = 4;
+}
+
+message SystemDpiResponse {
+  int32 dpi_x = 1;
+  int32 dpi_y = 2;
+}
+
+message CursorPositionResponse {
+  int32 x = 1;
+  int32 y = 2;
+}
+
+message ForegroundWindowInfoResponse { WindowInfoResponse window = 1; }
+
+message WindowFromPointRequest {
+  int32 x = 1;
+  int32 y = 2;
+}
+
+message WindowHandleAtPointResponse { string window_handle = 1; }
+
+message WindowMessageRequest {
+  string window_handle = 1;
+  uint32 msg = 2;
+  string w_param = 3;
+  string l_param = 4;
+}
+
+message WindowMessageSendResponse { int64 result = 1; }
+
+message WindowMessagePostResponse { bool ok = 1; }
+
+message WindowKeysSendRequest {
+  string window_handle = 1;
+  repeated string keys = 2;
+}
+
+message WindowKeysSendResponse { bool ok = 1; }
+
+message ControlTextGetRequest {
+  string control_handle = 1;
+  int32 max_length = 2;
+  bool has_max_length = 3;
+}
+
+message ControlTextGetResponse { string text = 1; }
+
+message WmCommandSendRequest {
+  string target_window_handle = 1;
+  uint32 command_id = 2;
+  uint32 notification_code = 3;
+  string sender_handle = 4;
+}
+
+message WmCommandSendResponse { int64 result = 1; }

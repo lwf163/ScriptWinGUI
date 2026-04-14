@@ -1,0 +1,13 @@
+<Project>
+  <PropertyGroup>
+    <!-- 统一目标框架与编译策略（可在后续按需要细化） -->
+    <TargetFramework>net8.0</TargetFramework>
+
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+  </PropertyGroup>
+</Project>
+

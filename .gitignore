@@ -48,6 +48,9 @@ bld/
 # Visual Studio 2017 auto generated files
 Generated\ Files/
 
+# Swg.Grpc：protoc / grpc_csharp_plugin 输出到项目内 Generated（本地构建生成，勿提交）
+src/cli/ScriptWinGUI/Swg.Grpc/Generated/
+
 # MSTest test Results
 [Tt]est[Rr]esult*/
 [Bb]uild[Ll]og.*
@@ -416,3 +419,6 @@ FodyWeavers.xsd
 *.msix
 *.msm
 *.msp
+
+docs/
+AGENTS.md

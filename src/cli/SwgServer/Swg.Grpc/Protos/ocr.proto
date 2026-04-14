@@ -1,0 +1,105 @@
+syntax = "proto3";
+
+package swg.ocr;
+
+option csharp_namespace = "Swg.Grpc.Ocr";
+
+message Roi {
+  int32 left = 1;
+  int32 top = 2;
+  int32 width = 3;
+  int32 height = 4;
+}
+
+message OcrScreenStringsRequest {
+  Roi roi = 1;
+  string engine = 2;
+  string language = 3;
+  string paddle_chinese_model = 4;
+}
+
+message OcrScreenMatchRequest {
+  Roi roi = 1;
+  string match_text = 2;
+  string engine = 3;
+  string language = 4;
+  string paddle_chinese_model = 5;
+}
+
+message OcrScreenTableRequest {
+  Roi roi = 1;
+  string engine = 2;
+  string language = 3;
+  string paddle_chinese_model = 4;
+}
+
+message OcrImageStringsRequest {
+  string image = 1;
+  string engine = 2;
+  string language = 3;
+  string paddle_chinese_model = 4;
+}
+
+message OcrImageTableRequest {
+  string image = 1;
+  string engine = 2;
+  string language = 3;
+  string paddle_chinese_model = 4;
+}
+
+message OcrScreenQuickTableRequest {
+  Roi roi = 1;
+  string language = 2;
+  bool debug = 3;
+  bool save_cell_debug_images = 4;
+  string debug_output_directory = 5;
+  string debug_image_base_name = 6;
+}
+
+message OcrImageQuickTableRequest {
+  string image = 1;
+  string language = 2;
+  bool debug = 3;
+  bool save_cell_debug_images = 4;
+  string debug_output_directory = 5;
+  string debug_image_base_name = 6;
+}
+
+message OcrStringLineItem {
+  string text = 1;
+  int32 left = 2;
+  int32 top = 3;
+  int32 width = 4;
+  int32 height = 5;
+  double center_x = 6;
+  double center_y = 7;
+  double confidence = 8;
+}
+
+message OcrStringsResponse {
+  repeated OcrStringLineItem items = 1;
+}
+
+message OcrTableCellItem {
+  string text = 1;
+  int32 left = 2;
+  int32 top = 3;
+  int32 width = 4;
+  int32 height = 5;
+  int32 row = 6;
+  int32 column = 7;
+}
+
+message OcrTableResponse {
+  repeated OcrTableCellItem cells = 1;
+}
+
+service OcrService {
+  rpc RecognizeScreenStrings(OcrScreenStringsRequest) returns (OcrStringsResponse);
+  rpc RecognizeScreenStringsMatch(OcrScreenMatchRequest) returns (OcrStringsResponse);
+  rpc RecognizeScreenTable(OcrScreenTableRequest) returns (OcrTableResponse);
+  rpc RecognizeImageStrings(OcrImageStringsRequest) returns (OcrStringsResponse);
+  rpc RecognizeImageTable(OcrImageTableRequest) returns (OcrTableResponse);
+  rpc RecognizeScreenQuickTable(OcrScreenQuickTableRequest) returns (OcrTableResponse);
+  rpc RecognizeImageQuickTable(OcrImageQuickTableRequest) returns (OcrTableResponse);
+}

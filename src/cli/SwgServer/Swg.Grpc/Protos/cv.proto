@@ -1,0 +1,170 @@
+syntax = "proto3";
+
+package swg.cv;
+
+option csharp_namespace = "Swg.Grpc.Cv";
+
+message Roi {
+  int32 left = 1;
+  int32 top = 2;
+  int32 width = 3;
+  int32 height = 4;
+}
+
+message Rgb {
+  int32 r = 1;
+  int32 g = 2;
+  int32 b = 3;
+}
+
+message Hsv {
+  double h = 1;
+  double s = 2;
+  double v = 3;
+}
+
+message ScreenshotOptions {
+  string output_kind = 1;
+  string target_file_path = 2;
+  string image_format = 3;
+  string base64_variant = 4;
+  int32 jpeg_quality = 5;
+}
+
+message FindSingleTemplateRequest {
+  Roi roi = 1;
+  string template = 2;
+  double threshold = 3;
+}
+
+message FindOneOfTemplatesRequest {
+  Roi roi = 1;
+  repeated string templates = 2;
+  double threshold = 3;
+  string preference = 4;
+}
+
+message FindAllTemplatesRequest {
+  Roi roi = 1;
+  repeated string templates = 2;
+  double threshold = 3;
+}
+
+message FindPixelsRgbRequest {
+  Roi roi = 1;
+  Rgb rgb = 2;
+}
+
+message FindPixelsRgbMultipleRequest {
+  Roi roi = 1;
+  repeated Rgb rgb_colors = 2;
+}
+
+message FindPixelsHsvRequest {
+  Roi roi = 1;
+  Hsv hsv = 2;
+}
+
+message CountPixelsRgbRequest {
+  Roi roi = 1;
+  Rgb rgb = 2;
+}
+
+message GetPixelRgbRequest {
+  int32 x = 1;
+  int32 y = 2;
+}
+
+message WindowRoiConsistencyRequest {
+  string window_handle = 1;
+}
+
+message CaptureFullScreenRequest {
+  ScreenshotOptions options = 1;
+}
+
+message CaptureRegionRequest {
+  Roi roi = 1;
+  ScreenshotOptions options = 2;
+}
+
+message FindSingleTemplateResponse {
+  bool found = 1;
+  double score = 2;
+  int32 left = 3;
+  int32 top = 4;
+  int32 width = 5;
+  int32 height = 6;
+}
+
+message FindOneOfTemplatesResponse {
+  bool found = 1;
+  int32 template_index = 2;
+  double score = 3;
+  int32 left = 4;
+  int32 top = 5;
+  int32 width = 6;
+  int32 height = 7;
+}
+
+message TemplateMatchItem {
+  int32 template_index = 1;
+  bool found = 2;
+  double score = 3;
+  int32 left = 4;
+  int32 top = 5;
+  int32 width = 6;
+  int32 height = 7;
+}
+
+message FindAllTemplatesResponse {
+  bool all_found = 1;
+  repeated TemplateMatchItem items = 2;
+}
+
+message ScreenPoint {
+  int32 x = 1;
+  int32 y = 2;
+}
+
+message ScreenPointsResponse {
+  repeated ScreenPoint points = 1;
+}
+
+message CountPixelsRgbResponse {
+  int32 count = 1;
+}
+
+message PixelRgbResponse {
+  bool success = 1;
+  int32 r = 2;
+  int32 g = 3;
+  int32 b = 4;
+}
+
+message WindowRoiConsistencyResponse {
+  bool success = 1;
+  Roi roi = 2;
+  int32 captured_width = 3;
+  int32 captured_height = 4;
+  uint32 window_dpi = 5;
+  bool is_pixel_size_matched = 6;
+}
+
+message CvTextPayloadResponse {
+  string output = 1;
+}
+
+service CvService {
+  rpc FindSingleTemplate(FindSingleTemplateRequest) returns (FindSingleTemplateResponse);
+  rpc FindOneOfTemplates(FindOneOfTemplatesRequest) returns (FindOneOfTemplatesResponse);
+  rpc FindEachTemplateAtLeastOnce(FindAllTemplatesRequest) returns (FindAllTemplatesResponse);
+  rpc FindPixelsRgb(FindPixelsRgbRequest) returns (ScreenPointsResponse);
+  rpc FindPixelsRgbMultiple(FindPixelsRgbMultipleRequest) returns (ScreenPointsResponse);
+  rpc FindPixelsHsv(FindPixelsHsvRequest) returns (ScreenPointsResponse);
+  rpc CountPixelsRgb(CountPixelsRgbRequest) returns (CountPixelsRgbResponse);
+  rpc GetPixelRgb(GetPixelRgbRequest) returns (PixelRgbResponse);
+  rpc CheckWindowRoiConsistency(WindowRoiConsistencyRequest) returns (WindowRoiConsistencyResponse);
+  rpc CaptureFullScreen(CaptureFullScreenRequest) returns (CvTextPayloadResponse);
+  rpc CaptureRegion(CaptureRegionRequest) returns (CvTextPayloadResponse);
+}

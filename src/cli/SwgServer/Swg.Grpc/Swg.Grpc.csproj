@@ -1,0 +1,43 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>Swg.Grpc</RootNamespace>
+    <NoWarn>$(NoWarn);CS8981</NoWarn>
+    <!-- 默认生成到 obj；改到项目内目录后可在解决方案资源管理器 / 资源树中直接展开查看（仍为 MSBuild 自动生成） -->
+    <Protobuf_OutputPath>$(MSBuildProjectDirectory)\Generated\Protobuf\</Protobuf_OutputPath>
+    <!-- SDK 默认会通配 **/*.cs；排除 Generated，由 Grpc.Tools 单独加入 Compile，避免 CS2002 重复 -->
+    <DefaultItemExcludes>$(DefaultItemExcludes);$(MSBuildProjectDirectory)\Generated\**\*</DefaultItemExcludes>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="Swg.Grpc.Tests" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Serilog" Version="4.3.1" />
+    <PackageReference Include="Grpc.Core" Version="2.46.6" />
+    <PackageReference Include="Google.Protobuf" Version="3.25.3" />
+    <PackageReference Include="Grpc.Tools" Version="2.46.6">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Protobuf Include="Protos\**\*.proto" GrpcServices="Server" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Swg.Capture\Swg.Capture.csproj" />
+    <ProjectReference Include="..\Swg.CV\Swg.CV.csproj" />
+    <ProjectReference Include="..\Swg.FlaUI\Swg.FlaUI.csproj" />
+    <ProjectReference Include="..\Swg.Fs\Swg.Fs.csproj" />
+    <ProjectReference Include="..\Swg.Input\Swg.Input.csproj" />
+    <ProjectReference Include="..\Swg.OCR\Swg.OCR.csproj" />
+    <ProjectReference Include="..\Swg.Win32\Swg.Win32.csproj" />
+  </ItemGroup>
+
+</Project>

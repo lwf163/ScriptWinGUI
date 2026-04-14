@@ -1,0 +1,157 @@
+syntax = "proto3";
+
+package swg.flaui;
+
+option csharp_namespace = "Swg.Grpc.Flaui";
+
+message FlaUiOkResponse {
+  bool ok = 1;
+}
+
+message SessionIdRequest {
+  string session_id = 1;
+}
+
+message SessionElementRequest {
+  string session_id = 1;
+  string element_id = 2;
+}
+
+message SessionCreateRequest {
+  string automation_type = 1;
+  string executable_path = 2;
+  string arguments = 3;
+  bool launch_if_not_running = 4;
+  int32 process_index = 5;
+}
+
+message SessionCreateResponse {
+  string session_id = 1;
+  int32 process_id = 2;
+  string automation_type = 3;
+}
+
+message SessionCloseApplicationRequest {
+  string session_id = 1;
+  bool kill_if_close_fails = 2;
+}
+
+message FlaUiCloseApplicationResponse {
+  bool ok = 1;
+  bool closed = 2;
+}
+
+message WaitTimeoutPayload {
+  bool has_timeout_ms = 1;
+  int32 timeout_ms = 2;
+}
+
+message SessionWaitRequest {
+  string session_id = 1;
+  WaitTimeoutPayload timeout = 2;
+}
+
+message FlaUiWaitBusyResponse {
+  bool ok = 1;
+  bool result = 2;
+}
+
+message FlaUiWaitHandleResponse {
+  bool ok = 1;
+  bool result = 2;
+}
+
+message FindElementPayload {
+  string root_kind = 1;
+  string root_element_id = 2;
+  string scope = 3;
+  string automation_id = 4;
+  string name = 5;
+  string class_name = 6;
+  string control_type = 7;
+  string xpath = 8;
+  bool has_main_window_wait_timeout_ms = 9;
+  int32 main_window_wait_timeout_ms = 10;
+}
+
+message FindByXPathPayload {
+  string root_kind = 1;
+  string root_element_id = 2;
+  string xpath = 3;
+  bool has_main_window_wait_timeout_ms = 4;
+  int32 main_window_wait_timeout_ms = 5;
+}
+
+message SessionFindElementRequest {
+  string session_id = 1;
+  FindElementPayload find = 2;
+}
+
+message SessionFindByXPathRequest {
+  string session_id = 1;
+  FindByXPathPayload find = 2;
+}
+
+message RectDto {
+  int32 x = 1;
+  int32 y = 2;
+  int32 width = 3;
+  int32 height = 4;
+}
+
+message ElementInfoResponse {
+  string element_id = 1;
+  string name = 2;
+  string automation_id = 3;
+  string class_name = 4;
+  string control_type = 5;
+  string framework_type = 6;
+  bool is_enabled = 7;
+  bool is_offscreen = 8;
+  bool is_available = 9;
+  RectDto bounds = 10;
+}
+
+message ElementRefResponse {
+  string element_id = 1;
+}
+
+message ElementRefListResponse {
+  repeated ElementRefResponse items = 1;
+}
+
+message ClickPayload {
+  bool has_move_mouse = 1;
+  bool move_mouse = 2;
+}
+
+message SessionElementClickRequest {
+  string session_id = 1;
+  string element_id = 2;
+  bool has_click = 3;
+  ClickPayload click = 4;
+}
+
+service AutomationService {
+  rpc CreateSession(SessionCreateRequest) returns (SessionCreateResponse);
+  rpc DeleteSession(SessionIdRequest) returns (FlaUiOkResponse);
+  rpc CloseApplication(SessionCloseApplicationRequest) returns (FlaUiCloseApplicationResponse);
+  rpc KillApplication(SessionIdRequest) returns (FlaUiOkResponse);
+  rpc WaitWhileBusy(SessionWaitRequest) returns (FlaUiWaitBusyResponse);
+  rpc WaitMainHandle(SessionWaitRequest) returns (FlaUiWaitHandleResponse);
+  rpc GetMainWindow(SessionWaitRequest) returns (ElementRefResponse);
+  rpc GetTopLevelWindows(SessionIdRequest) returns (ElementRefListResponse);
+  rpc GetElementInfo(SessionElementRequest) returns (ElementInfoResponse);
+  rpc FindElement(SessionFindElementRequest) returns (ElementRefResponse);
+  rpc FindAllElements(SessionFindElementRequest) returns (ElementRefListResponse);
+  rpc FindElementByXPath(SessionFindByXPathRequest) returns (ElementRefResponse);
+  rpc FindAllElementsByXPath(SessionFindByXPathRequest) returns (ElementRefListResponse);
+  rpc GetChildren(SessionElementRequest) returns (ElementRefListResponse);
+  rpc Focus(SessionElementRequest) returns (FlaUiOkResponse);
+  rpc FocusNative(SessionElementRequest) returns (FlaUiOkResponse);
+  rpc SetElementForeground(SessionElementRequest) returns (FlaUiOkResponse);
+  rpc Click(SessionElementClickRequest) returns (FlaUiOkResponse);
+  rpc DoubleClick(SessionElementClickRequest) returns (FlaUiOkResponse);
+  rpc RightClick(SessionElementClickRequest) returns (FlaUiOkResponse);
+  rpc RightDoubleClick(SessionElementClickRequest) returns (FlaUiOkResponse);
+}

@@ -1,0 +1,157 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+
+package swg.fs;
+
+option csharp_namespace = "Swg.Grpc.Fs";
+
+message ReadTextRequest {
+  string path = 1;
+  string encoding = 2;
+}
+
+message ReadTextResponse {
+  string text = 1;
+}
+
+message WriteTextRequest {
+  string path = 1;
+  string text = 2;
+  string encoding = 3;
+}
+
+message WriteTextResponse {
+  bool success = 1;
+}
+
+message AppendTextRequest {
+  string path = 1;
+  string text = 2;
+  string encoding = 3;
+}
+
+message AppendTextResponse {
+  bool success = 1;
+}
+
+message CopyFileRequest {
+  string source_path = 1;
+  string target_path = 2;
+  bool overwrite = 3;
+}
+
+message CopyFileResponse {
+  bool success = 1;
+}
+
+message MoveFileRequest {
+  string source_path = 1;
+  string target_path = 2;
+  bool overwrite = 3;
+}
+
+message MoveFileResponse {
+  bool success = 1;
+}
+
+message DeleteFileRequest {
+  string path = 1;
+}
+
+message DeleteFileResponse {
+  bool success = 1;
+}
+
+message ExistsRequest {
+  string path = 1;
+}
+
+message ExistsResponse {
+  bool exists = 1;
+}
+
+message GetItemInfoRequest {
+  string path = 1;
+}
+
+message GetItemInfoResponse {
+  string name = 1;
+  string full_path = 2;
+  bool is_directory = 3;
+  int64 size_bytes = 4;
+  bool has_size_bytes = 5;
+  google.protobuf.Timestamp creation_time_utc = 6;
+  google.protobuf.Timestamp last_write_time_utc = 7;
+  google.protobuf.Timestamp last_access_time_utc = 8;
+  string attributes = 9;
+}
+
+message CreateDirectoryRequest {
+  string path = 1;
+}
+
+message CreateDirectoryResponse {
+  bool success = 1;
+}
+
+message DeleteDirectoryRequest {
+  string path = 1;
+}
+
+message DeleteDirectoryResponse {
+  bool success = 1;
+}
+
+message ListDirectoryRequest {
+  string path = 1;
+  string pattern = 2;
+}
+
+message ListDirectoryResponse {
+  repeated string names = 1;
+}
+
+message MoveDirectoryRequest {
+  string source_path = 1;
+  string target_path = 2;
+  bool overwrite = 3;
+}
+
+message MoveDirectoryResponse {
+  bool success = 1;
+}
+
+message SearchFilesRequest {
+  string root_path = 1;
+  string pattern = 2;
+}
+
+message SearchFilesResponse {
+  repeated string paths = 1;
+}
+
+message FindExeShortcutsRequest {
+  string exe_name = 1;
+}
+
+message FindExeShortcutsResponse {
+  repeated string target_paths = 1;
+}
+
+service FsService {
+  rpc ReadText(ReadTextRequest) returns (ReadTextResponse);
+  rpc WriteText(WriteTextRequest) returns (WriteTextResponse);
+  rpc AppendText(AppendTextRequest) returns (AppendTextResponse);
+  rpc CopyFile(CopyFileRequest) returns (CopyFileResponse);
+  rpc MoveFile(MoveFileRequest) returns (MoveFileResponse);
+  rpc DeleteFile(DeleteFileRequest) returns (DeleteFileResponse);
+  rpc Exists(ExistsRequest) returns (ExistsResponse);
+  rpc GetItemInfo(GetItemInfoRequest) returns (GetItemInfoResponse);
+  rpc CreateDirectory(CreateDirectoryRequest) returns (CreateDirectoryResponse);
+  rpc DeleteDirectory(DeleteDirectoryRequest) returns (DeleteDirectoryResponse);
+  rpc ListDirectory(ListDirectoryRequest) returns (ListDirectoryResponse);
+  rpc MoveDirectory(MoveDirectoryRequest) returns (MoveDirectoryResponse);
+  rpc SearchFiles(SearchFilesRequest) returns (SearchFilesResponse);
+  rpc FindExeShortcuts(FindExeShortcutsRequest) returns (FindExeShortcutsResponse);
+}
