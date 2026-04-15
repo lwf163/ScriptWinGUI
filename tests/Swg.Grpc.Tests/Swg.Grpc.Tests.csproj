@@ -19,8 +19,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\cli\ScriptWinGUI\Swg.Grpc\Swg.Grpc.csproj" />
-    <ProjectReference Include="..\..\src\cli\ScriptWinGUI\SwgServer\SwgServer.csproj" />
+    <ProjectReference Include="..\..\src\cli\SwgServer\Swg.Grpc\Swg.Grpc.csproj" />
+    <ProjectReference Include="..\..\src\cli\SwgServer\SwgServer\SwgServer.csproj" />
   </ItemGroup>
 
 </Project>

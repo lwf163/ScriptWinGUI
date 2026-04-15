@@ -4,7 +4,9 @@ using Serilog;
 namespace Swg.Grpc;
 
 /// <summary>
-/// 将业务异常映射为 gRPC <see cref="Status"/>（<c>ArgumentException</c>→<see cref="StatusCode.InvalidArgument"/>，<c>InvalidOperationException</c>→<see cref="StatusCode.Unavailable"/>，其余→<see cref="StatusCode.Internal"/>）。
+/// 将业务异常映射为 gRPC <see cref="Status"/>（<c>ArgumentException</c>→<see cref="StatusCode.InvalidArgument"/>，<c>InvalidOperationException</c>→<see cref="StatusCode.Unavailable"/>，
+/// <c>OperationCanceledException</c>→<see cref="StatusCode.Cancelled"/>，<c>TimeoutException</c>→<see cref="StatusCode.DeadlineExceeded"/>，其余→<see cref="StatusCode.Internal"/>）。
+/// 已构造的 <see cref="RpcException"/> 以 Debug 级别记录后原样抛出。
 /// </summary>
 public static class GrpcRouteRunner
 {
@@ -16,8 +18,9 @@ public static class GrpcRouteRunner
         {
             return action();
         }
-        catch (RpcException)
+        catch (RpcException ex)
         {
+            Logger.Debug(ex, "gRPC 路由透传 RpcException：{GrpcStatusCode} {GrpcStatusDetail}", ex.Status.StatusCode, ex.Status.Detail);
             throw;
         }
         catch (ArgumentException ex)
@@ -29,6 +32,16 @@ public static class GrpcRouteRunner
         {
             Logger.Warning(ex, "gRPC 路由映射为 Unavailable");
             throw new RpcException(new Status(StatusCode.Unavailable, ex.Message));
+        }
+        catch (OperationCanceledException ex)
+        {
+            Logger.Debug(ex, "gRPC 路由映射为 Cancelled");
+            throw new RpcException(new Status(StatusCode.Cancelled, ex.Message));
+        }
+        catch (TimeoutException ex)
+        {
+            Logger.Debug(ex, "gRPC 路由映射为 DeadlineExceeded");
+            throw new RpcException(new Status(StatusCode.DeadlineExceeded, ex.Message));
         }
         catch (Exception ex)
         {
@@ -43,8 +56,9 @@ public static class GrpcRouteRunner
         {
             return await action().ConfigureAwait(false);
         }
-        catch (RpcException)
+        catch (RpcException ex)
         {
+            Logger.Debug(ex, "gRPC 路由透传 RpcException：{GrpcStatusCode} {GrpcStatusDetail}", ex.Status.StatusCode, ex.Status.Detail);
             throw;
         }
         catch (ArgumentException ex)
@@ -56,6 +70,16 @@ public static class GrpcRouteRunner
         {
             Logger.Warning(ex, "gRPC 路由映射为 Unavailable");
             throw new RpcException(new Status(StatusCode.Unavailable, ex.Message));
+        }
+        catch (OperationCanceledException ex)
+        {
+            Logger.Debug(ex, "gRPC 路由映射为 Cancelled");
+            throw new RpcException(new Status(StatusCode.Cancelled, ex.Message));
+        }
+        catch (TimeoutException ex)
+        {
+            Logger.Debug(ex, "gRPC 路由映射为 DeadlineExceeded");
+            throw new RpcException(new Status(StatusCode.DeadlineExceeded, ex.Message));
         }
         catch (Exception ex)
         {
@@ -70,8 +94,9 @@ public static class GrpcRouteRunner
         {
             await action().ConfigureAwait(false);
         }
-        catch (RpcException)
+        catch (RpcException ex)
         {
+            Logger.Debug(ex, "gRPC 路由透传 RpcException：{GrpcStatusCode} {GrpcStatusDetail}", ex.Status.StatusCode, ex.Status.Detail);
             throw;
         }
         catch (ArgumentException ex)
@@ -83,6 +108,16 @@ public static class GrpcRouteRunner
         {
             Logger.Warning(ex, "gRPC 路由映射为 Unavailable");
             throw new RpcException(new Status(StatusCode.Unavailable, ex.Message));
+        }
+        catch (OperationCanceledException ex)
+        {
+            Logger.Debug(ex, "gRPC 路由映射为 Cancelled");
+            throw new RpcException(new Status(StatusCode.Cancelled, ex.Message));
+        }
+        catch (TimeoutException ex)
+        {
+            Logger.Debug(ex, "gRPC 路由映射为 DeadlineExceeded");
+            throw new RpcException(new Status(StatusCode.DeadlineExceeded, ex.Message));
         }
         catch (Exception ex)
         {

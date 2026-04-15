@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json;
@@ -13,34 +14,84 @@ namespace SwgServer;
 
 internal static class Program
 {
-    private static async Task Main(string[] args)
+    private static async Task<int> Main(string[] args)
     {
         if (args.Length > 0 && args[0] is "--generate-token" or "-g")
         {
-            GenerateToken();
-            return;
+            try
+            {
+                GenerateToken();
+                return 0;
+            }
+            catch (Exception ex)
+            {
+                Console.Error.WriteLine($"Token generation failed: {ex.Message}");
+                return 1;
+            }
         }
 
-        // 必须在任何窗口/UIA/GDI 调用之前：与 app.manifest 的 PerMonitorV2 共同保证 Swg.FlaUI 与 Swg.CV 同一 DPI 语义与虚拟桌面原点
-        SwgScreenEnvironment.Initialize(log: static s => Console.WriteLine(s));
+        try
+        {
+            var settings = LoadSettings(args);
+            ConfigureSerilog(settings);
+            SelfLog.Enable(msg => Log.Debug("Serilog SelfLog: {Message}", msg));
 
-        var settings = LoadSettings(args);
-        ConfigureSerilog(settings);
-        SelfLog.Enable(msg => Console.Error.WriteLine($"[Serilog SelfLog] {msg}"));
+            RegisterGlobalExceptionHandlers();
 
-        var authInterceptor = CreateAuthInterceptor(settings);
-        var server = CreateServer(settings, authInterceptor);
-        server.Start();
+            // Must be called before any window/UIA/GDI calls: works with app.manifest PerMonitorV2 to ensure Swg.FlaUI and Swg.CV share the same DPI semantics and virtual desktop origin
+            SwgScreenEnvironment.Initialize(log: static s => Log.Information(s));
 
-        Log.Information("SwgServer 已启动，监听 {Host}:{Port}", settings.Server.Host, settings.Server.Port);
+            var authInterceptor = CreateAuthInterceptor(settings);
+            if (authInterceptor is null && settings.Auth.Enabled)
+                return 1;
 
-        await WaitForShutdownAsync();
+            var pidLock = AcquirePidLock();
 
-        Log.Information("正在关闭 SwgServer...");
-        await server.ShutdownAsync();
-        Log.Information("SwgServer 已关闭");
+            var server = CreateServer(settings, authInterceptor);
+            server.Start();
 
-        await Log.CloseAndFlushAsync();
+            Log.Information("SwgServer started, listening on {Host}:{Port}", settings.Server.Host, settings.Server.Port);
+
+            await WaitForShutdownAsync();
+
+            Log.Information("Shutting down SwgServer...");
+            try
+            {
+                await server.ShutdownAsync();
+                Log.Information("SwgServer shut down complete");
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, "Error during SwgServer shutdown");
+            }
+
+            return 0;
+        }
+        catch (JsonException ex)
+        {
+            Log.Fatal(ex, "Failed to parse configuration file, check appsettings.json format");
+            return 1;
+        }
+        catch (ArgumentException ex)
+        {
+            Log.Fatal(ex, "Invalid configuration");
+            return 1;
+        }
+        catch (IOException ex)
+        {
+            Log.Fatal(ex, "Network or file IO error (port may already be in use)");
+            return 1;
+        }
+        catch (Exception ex)
+        {
+            Log.Fatal(ex, "SwgServer startup failed");
+            return 1;
+        }
+        finally
+        {
+            ReleasePidLock();
+            await Log.CloseAndFlushAsync();
+        }
     }
 
     private static SwgServerConfig LoadSettings(string[] args)
@@ -79,20 +130,19 @@ internal static class Program
     {
         if (!settings.Auth.Enabled)
         {
-            Log.Warning("API Token 认证已禁用");
+            Log.Warning("API Token authentication is disabled");
             return null;
         }
 
         if (string.IsNullOrWhiteSpace(settings.Auth.Token.HmacSecret)
             || string.IsNullOrWhiteSpace(settings.Auth.Token.SignedToken))
         {
-            Log.Fatal("auth.enabled 已开启但 hmacSecret 或 signedToken 未配置，请先运行 --generate-token 生成 Token");
-            Environment.Exit(1);
+            Log.Fatal("auth.enabled is on but hmacSecret or signedToken is not configured, run --generate-token first");
             return null;
         }
 
         var validator = new TokenValidator(settings.Auth.Token);
-        Log.Information("API Token 认证已启用");
+        Log.Information("API Token authentication enabled");
         return new AuthInterceptor(validator);
     }
 
@@ -103,7 +153,12 @@ internal static class Program
             Ports = { new ServerPort(settings.Server.Host, settings.Server.Port, ServerCredentials.Insecure) }
         };
 
-        foreach (var definition in SwgGrpcServiceBinder.GetServiceDefinitions(authInterceptor))
+        var deadlineInterceptor = new RpcDeadlineInterceptor(settings.Server.DefaultRpcTimeoutMs);
+        Interceptor[] interceptors = authInterceptor is null
+            ? new Interceptor[] { deadlineInterceptor }
+            : new Interceptor[] { authInterceptor, deadlineInterceptor };
+
+        foreach (var definition in SwgGrpcServiceBinder.GetServiceDefinitions(interceptors))
             server.Services.Add(definition);
 
         return server;
@@ -120,6 +175,100 @@ internal static class Program
         await tcs.Task;
     }
 
+    private static void RegisterGlobalExceptionHandlers()
+    {
+        AppDomain.CurrentDomain.UnhandledException += (_, e) =>
+        {
+            if (e.ExceptionObject is Exception ex)
+                Log.Fatal(ex, "Unhandled AppDomain exception");
+            else
+                Log.Fatal("Unhandled non-CLI exception: {Object}", e.ExceptionObject);
+        };
+
+        TaskScheduler.UnobservedTaskException += (_, e) =>
+        {
+            Log.Error(e.Exception, "Unobserved task exception");
+            e.SetObserved();
+        };
+    }
+
+    private static FileStream? _pidStream;
+
+    private static FileStream AcquirePidLock()
+    {
+        var fullPath = Path.Combine(AppContext.BaseDirectory, "swgserver.pid");
+
+        if (File.Exists(fullPath))
+        {
+            var existingPid = File.ReadAllText(fullPath).Trim();
+            if (int.TryParse(existingPid, out var pid) && IsProcessRunning(pid))
+                throw new InvalidOperationException($"SwgServer is already running (PID: {pid}), duplicate startup is not allowed");
+
+            Log.Warning("Stale PID file found (PID: {Pid}, process no longer exists), overwriting", pid);
+        }
+
+        var dir = Path.GetDirectoryName(fullPath);
+        if (!string.IsNullOrEmpty(dir) && !Directory.Exists(dir))
+            Directory.CreateDirectory(dir);
+
+        var stream = new FileStream(
+            fullPath,
+            FileMode.Create,
+            FileAccess.Write,
+            FileShare.None);
+
+        _pidStream = stream;
+
+        var pidBytes = Encoding.UTF8.GetBytes(Environment.ProcessId.ToString());
+        stream.Write(pidBytes, 0, pidBytes.Length);
+        stream.Flush(true);
+
+        Log.Debug("PID file created: {Path} (PID: {Pid})", fullPath, Environment.ProcessId);
+        return stream;
+    }
+
+    private static void ReleasePidLock()
+    {
+        if (_pidStream is null)
+            return;
+
+        var fullPath = _pidStream.Name;
+        try
+        {
+            _pidStream.Dispose();
+        }
+        catch
+        {
+            // Ignore failure to release file handle
+        }
+
+        _pidStream = null;
+
+        try
+        {
+            if (File.Exists(fullPath))
+                File.Delete(fullPath);
+            Log.Debug("PID file deleted: {Path}", fullPath);
+        }
+        catch (Exception ex)
+        {
+            Log.Warning(ex, "Failed to delete PID file: {Path}", fullPath);
+        }
+    }
+
+    private static bool IsProcessRunning(int pid)
+    {
+        try
+        {
+            var process = Process.GetProcessById(pid);
+            return !process.HasExited;
+        }
+        catch
+        {
+            return false;
+        }
+    }
+
     private static Serilog.Events.LogEventLevel ParseLogLevel(string level) =>
         Enum.TryParse<Serilog.Events.LogEventLevel>(level, ignoreCase: true, out var result)
             ? result
@@ -127,6 +276,10 @@ internal static class Program
 
     private static void GenerateToken()
     {
+        Log.Logger = new LoggerConfiguration()
+            .WriteTo.Console(outputTemplate: "[{Timestamp:HH:mm:ss} {Level:u3}] {Message:lj}{NewLine}{Exception}")
+            .CreateLogger();
+
         var hmacKey = RandomNumberGenerator.GetBytes(32);
         var hmacSecret = Convert.ToBase64String(hmacKey);
 
@@ -136,7 +289,7 @@ internal static class Program
         var signedToken = Convert.ToBase64String(hmac.ComputeHash(Encoding.UTF8.GetBytes(plainToken)));
 
         var baseDir = AppContext.BaseDirectory;
-        // dotnet run 时 BaseDirectory 指向 bin/...，向上查找到包含 .csproj 的目录
+        // dotnet run sets BaseDirectory to bin/..., walk up to find the directory containing .csproj
         var projectDir = FindProjectDir(baseDir);
         var appSettingsPath = Path.Combine(projectDir, "appsettings.json");
         WriteServerConfig(appSettingsPath, hmacSecret, signedToken);
@@ -144,9 +297,11 @@ internal static class Program
         var clientConfigPath = Path.Combine(projectDir, "swgclient.json");
         WriteClientConfig(clientConfigPath, plainToken, appSettingsPath);
 
-        Console.WriteLine("Token 已生成并写入配置文件：");
-        Console.WriteLine($"  服务端：{appSettingsPath}");
-        Console.WriteLine($"  客户端：{clientConfigPath}");
+        Log.Information("Token generated and written to config files:");
+        Log.Information("  Server: {Path}", appSettingsPath);
+        Log.Information("  Client: {Path}", clientConfigPath);
+
+        Log.CloseAndFlush();
     }
 
     private static string FindProjectDir(string baseDir)
@@ -176,43 +331,35 @@ internal static class Program
             {
                 if (prop.NameEquals("auth"))
                 {
-                    writer.WritePropertyName("auth");
-                    writer.WriteStartObject();
-                    writer.WritePropertyName("enabled");
-                    writer.WriteBooleanValue(true);
-                    writer.WritePropertyName("token");
-                    writer.WriteStartObject();
-                    writer.WritePropertyName("hmacSecret");
-                    writer.WriteStringValue(hmacSecret);
-                    writer.WritePropertyName("signedToken");
-                    writer.WriteStringValue(signedToken);
-                    writer.WriteEndObject();
-                    writer.WriteEndObject();
+                    WriteAuthSection(writer, hmacSecret, signedToken);
                     continue;
                 }
                 prop.WriteTo(writer);
             }
 
             if (!root.TryGetProperty("auth", out _))
-            {
-                writer.WritePropertyName("auth");
-                writer.WriteStartObject();
-                writer.WritePropertyName("enabled");
-                writer.WriteBooleanValue(true);
-                writer.WritePropertyName("token");
-                writer.WriteStartObject();
-                writer.WritePropertyName("hmacSecret");
-                writer.WriteStringValue(hmacSecret);
-                writer.WritePropertyName("signedToken");
-                writer.WriteStringValue(signedToken);
-                writer.WriteEndObject();
-                writer.WriteEndObject();
-            }
+                WriteAuthSection(writer, hmacSecret, signedToken);
 
             writer.WriteEndObject();
         }
 
         File.WriteAllText(path, Encoding.UTF8.GetString(stream.ToArray()));
+
+        static void WriteAuthSection(Utf8JsonWriter w, string secret, string token)
+        {
+            w.WritePropertyName("auth");
+            w.WriteStartObject();
+            w.WritePropertyName("enabled");
+            w.WriteBooleanValue(true);
+            w.WritePropertyName("token");
+            w.WriteStartObject();
+            w.WritePropertyName("hmacSecret");
+            w.WriteStringValue(secret);
+            w.WritePropertyName("signedToken");
+            w.WriteStringValue(token);
+            w.WriteEndObject();
+            w.WriteEndObject();
+        }
     }
 
     private static void WriteClientConfig(string path, string plainToken, string appSettingsPath)
@@ -236,7 +383,7 @@ internal static class Program
             }
             catch
             {
-                // 解析失败时使用默认值
+                // Use defaults on parse failure
             }
         }
 

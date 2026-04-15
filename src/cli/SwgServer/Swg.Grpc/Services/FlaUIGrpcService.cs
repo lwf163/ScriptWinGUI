@@ -58,14 +58,14 @@ public sealed class FlaUIGrpcService : AutomationService.AutomationServiceBase
         GrpcRouteRunner.RunAsync(() => Task.FromResult(SwgGrpcFlaUiApi.SetElementForeground(request)));
 
     public override Task<FlaUiOkResponse> Click(SessionElementClickRequest request, ServerCallContext context) =>
-        GrpcRouteRunner.RunAsync(() => Task.FromResult(SwgGrpcFlaUiApi.Click(request)));
+        WindowsGlobalInputGate.RunAsync(context, () => GrpcRouteRunner.RunAsync(() => Task.FromResult(SwgGrpcFlaUiApi.Click(request))));
 
     public override Task<FlaUiOkResponse> DoubleClick(SessionElementClickRequest request, ServerCallContext context) =>
-        GrpcRouteRunner.RunAsync(() => Task.FromResult(SwgGrpcFlaUiApi.DoubleClick(request)));
+        WindowsGlobalInputGate.RunAsync(context, () => GrpcRouteRunner.RunAsync(() => Task.FromResult(SwgGrpcFlaUiApi.DoubleClick(request))));
 
     public override Task<FlaUiOkResponse> RightClick(SessionElementClickRequest request, ServerCallContext context) =>
-        GrpcRouteRunner.RunAsync(() => Task.FromResult(SwgGrpcFlaUiApi.RightClick(request)));
+        WindowsGlobalInputGate.RunAsync(context, () => GrpcRouteRunner.RunAsync(() => Task.FromResult(SwgGrpcFlaUiApi.RightClick(request))));
 
     public override Task<FlaUiOkResponse> RightDoubleClick(SessionElementClickRequest request, ServerCallContext context) =>
-        GrpcRouteRunner.RunAsync(() => Task.FromResult(SwgGrpcFlaUiApi.RightDoubleClick(request)));
+        WindowsGlobalInputGate.RunAsync(context, () => GrpcRouteRunner.RunAsync(() => Task.FromResult(SwgGrpcFlaUiApi.RightDoubleClick(request))));
 }

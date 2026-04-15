@@ -10,6 +10,11 @@ internal sealed class SwgServerConfig
     {
         public string Host { get; set; } = "localhost";
         public int Port { get; set; } = 50051;
+
+        /// <summary>
+        /// 当客户端未设置 gRPC deadline 且未提供 <c>x-swg-timeout-ms</c> 时，服务端为本次调用施加的默认期限（毫秒）。为 0 表示不施加服务端默认上限（仍可能受客户端 deadline 约束）。
+        /// </summary>
+        public int DefaultRpcTimeoutMs { get; set; } = 300_000;
     }
 
     internal sealed class SerilogConfig

@@ -17,19 +17,31 @@ namespace Swg.Grpc;
 public static class SwgGrpcServiceBinder
 {
     /// <summary>
-    /// 返回当前库内已实现的全部 gRPC 服务定义，可选注入全局拦截器。
+    /// 返回当前库内已实现的全部 gRPC 服务定义，可选按顺序注入多个全局拦截器。
     /// </summary>
-    public static IEnumerable<ServerServiceDefinition> GetServiceDefinitions(Interceptor? interceptor = null)
+    /// <remarks>
+    /// 绑定顺序：对数组依次执行 <c>definition.Intercept(i)</c>，后绑定的拦截器位于更外层（先入站）。
+    /// 典型顺序：<c>[认证, 期限]</c> → 外层为「期限」，对整个管道（含认证与业务）计时。
+    /// </remarks>
+    public static IEnumerable<ServerServiceDefinition> GetServiceDefinitions(params Interceptor[] interceptors)
     {
-        yield return Bind(Win32Service.BindService(new Win32GrpcService()), interceptor);
-        yield return Bind(CvService.BindService(new CvGrpcService()), interceptor);
-        yield return Bind(InputService.BindService(new InputGrpcService()), interceptor);
-        yield return Bind(OcrService.BindService(new OcrGrpcService()), interceptor);
-        yield return Bind(FsService.BindService(new FsGrpcService()), interceptor);
-        yield return Bind(CaptureService.BindService(new CaptureGrpcService()), interceptor);
-        yield return Bind(AutomationService.BindService(new FlaUIGrpcService()), interceptor);
+        yield return Bind(Win32Service.BindService(new Win32GrpcService()), interceptors);
+        yield return Bind(CvService.BindService(new CvGrpcService()), interceptors);
+        yield return Bind(InputService.BindService(new InputGrpcService()), interceptors);
+        yield return Bind(OcrService.BindService(new OcrGrpcService()), interceptors);
+        yield return Bind(FsService.BindService(new FsGrpcService()), interceptors);
+        yield return Bind(CaptureService.BindService(new CaptureGrpcService()), interceptors);
+        yield return Bind(AutomationService.BindService(new FlaUIGrpcService()), interceptors);
     }
 
-    private static ServerServiceDefinition Bind(ServerServiceDefinition definition, Interceptor? interceptor) =>
-        interceptor is not null ? definition.Intercept(interceptor) : definition;
+    private static ServerServiceDefinition Bind(ServerServiceDefinition definition, Interceptor[]? interceptors)
+    {
+        if (interceptors is null || interceptors.Length == 0)
+            return definition;
+
+        foreach (var interceptor in interceptors)
+            definition = definition.Intercept(interceptor);
+
+        return definition;
+    }
 }

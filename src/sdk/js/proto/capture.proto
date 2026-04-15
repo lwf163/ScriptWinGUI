@@ -1,0 +1,100 @@
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+
+package swg.capture;
+
+option csharp_namespace = "Swg.Grpc.Capture";
+
+message CaptureCreateListenWindowRequest {
+  string storage_directory = 1;
+  int32 proxy_listen_port = 2;
+  int32 max_body_bytes_per_part = 3;
+  int32 flush_interval_ms = 4;
+  int32 flush_batch_max_rows = 5;
+  int64 flush_batch_max_bytes = 6;
+  bool traffic_allow_all = 7;
+  repeated string traffic_host_contains = 8;
+  repeated string traffic_path_prefixes = 9;
+  bool mitm_user_trust_root = 10;
+  bool mitm_machine_trust_root = 11;
+  bool mitm_trust_root_as_administrator = 12;
+  bool enable_notifications = 13;
+  int32 notification_debounce_ms = 14;
+  repeated string notification_process_name_contains = 15;
+  string notification_title_contains = 16;
+  repeated string hook_window_event_types = 17;
+  bool enable_etw_probe = 18;
+  repeated string etw_provider_names = 19;
+  repeated string etw_window_provider_names = 20;
+  repeated string etw_window_event_types = 21;
+  uint64 etw_match_any_keyword = 22;
+  bool has_etw_match_any_keyword = 23;
+  uint32 etw_level = 24;
+  bool has_etw_level = 25;
+  int32 etw_queue_capacity = 26;
+  int32 etw_window_queue_capacity = 27;
+  int32 traffic_stats_interval_ms = 28;
+}
+
+message CaptureCreateListenWindowResponse {
+  string listen_window_id = 1;
+  string sqlite_path = 2;
+  int32 proxy_listen_port = 3;
+}
+
+message CaptureStopListenWindowRequest {
+  string listen_window_id = 1;
+}
+
+message CaptureStopListenWindowResponse {
+  bool stopped = 1;
+  string sqlite_path = 2;
+}
+
+message CaptureHistoryQueryRequest {
+  string listen_window_id = 1;
+  int32 limit = 2;
+  int32 offset = 3;
+  string before_captured_at_utc = 4;
+}
+
+message CaptureHttpExchangeItem {
+  int64 id = 1;
+  string captured_at = 2;
+  string method = 3;
+  string scheme = 4;
+  string host = 5;
+  int32 port = 6;
+  string path = 7;
+  string query_text = 8;
+  string url_display = 9;
+  int32 response_status = 10;
+  bool has_response_status = 11;
+  int32 duration_ms = 12;
+  bool has_duration_ms = 13;
+  string error_text = 14;
+  uint32 client_process_id = 15;
+  bool has_client_process_id = 16;
+  string client_process_name = 17;
+}
+
+message CaptureHistoryQueryResponse {
+  repeated CaptureHttpExchangeItem items = 1;
+}
+
+message CaptureNotificationEvent {
+  string json_payload = 1;
+}
+
+message TrafficChunk {
+  string json_payload = 1;
+}
+
+service CaptureService {
+  rpc CreateListenWindow(CaptureCreateListenWindowRequest) returns (CaptureCreateListenWindowResponse);
+  rpc StopListenWindow(CaptureStopListenWindowRequest) returns (CaptureStopListenWindowResponse);
+  rpc QueryHistory(CaptureHistoryQueryRequest) returns (CaptureHistoryQueryResponse);
+  rpc SubscribeNotifications(google.protobuf.Empty) returns (stream CaptureNotificationEvent);
+  rpc SubscribeTraffic(google.protobuf.Empty) returns (stream TrafficChunk);
+}

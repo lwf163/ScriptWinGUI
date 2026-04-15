@@ -86,7 +86,7 @@ public sealed class Win32GrpcService : Win32Service.Win32ServiceBase
         GrpcRouteRunner.RunAsync(() => Task.FromResult(SwgGrpcWin32Api.WindowFromPoint(request)));
 
     public override Task<WindowKeysSendResponse> SendKeys(WindowKeysSendRequest request, ServerCallContext context) =>
-        GrpcRouteRunner.RunAsync(() => Task.FromResult(SwgGrpcWin32Api.SendKeys(request)));
+        WindowsGlobalInputGate.RunAsync(context, () => GrpcRouteRunner.RunAsync(() => Task.FromResult(SwgGrpcWin32Api.SendKeys(request))));
 
     public override Task<ControlTextGetResponse> GetControlText(ControlTextGetRequest request, ServerCallContext context) =>
         GrpcRouteRunner.RunAsync(() => Task.FromResult(SwgGrpcWin32Api.GetControlText(request)));

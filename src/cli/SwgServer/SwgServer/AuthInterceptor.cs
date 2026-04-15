@@ -29,13 +29,31 @@ internal sealed class AuthInterceptor : Interceptor
         return continuation(request, responseStream, context);
     }
 
+    public override Task<TResponse> ClientStreamingServerHandler<TRequest, TResponse>(
+        IAsyncStreamReader<TRequest> requestStream, ServerCallContext context,
+        ClientStreamingServerMethod<TRequest, TResponse> continuation)
+    {
+        EnsureAuthenticated(context);
+        return continuation(requestStream, context);
+    }
+
+    public override Task DuplexStreamingServerHandler<TRequest, TResponse>(
+        IAsyncStreamReader<TRequest> requestStream,
+        IServerStreamWriter<TResponse> responseStream,
+        ServerCallContext context,
+        DuplexStreamingServerMethod<TRequest, TResponse> continuation)
+    {
+        EnsureAuthenticated(context);
+        return continuation(requestStream, responseStream, context);
+    }
+
     private void EnsureAuthenticated(ServerCallContext context)
     {
         var token = ExtractBearerToken(context.RequestHeaders);
         if (token is null || !_validator.Validate(token))
         {
-            Logger.Warning("认证失败，远程端点：{Peer}", context.Peer);
-            throw new RpcException(new Status(StatusCode.Unauthenticated, "无效或缺失的 API Token"));
+            Logger.Warning("Authentication failed, remote peer: {Peer}, method: {Method}", context.Peer, context.Method);
+            throw new RpcException(new Status(StatusCode.Unauthenticated, "Invalid or missing API Token"));
         }
     }
 

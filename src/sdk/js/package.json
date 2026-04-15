@@ -1,0 +1,65 @@
+{
+  "name": "@swg/grpc-client",
+  "version": "0.1.0",
+  "description": "gRPC client SDK for SwgServer (Windows automation)",
+  "license": "MIT",
+  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ScriptWinGUI/ScriptWinGUI.git",
+    "directory": "src/sdk/js"
+  },
+  "keywords": [
+    "swg",
+    "grpc",
+    "grpc-js",
+    "automation",
+    "windows"
+  ],
+  "type": "module",
+  "sideEffects": false,
+  "engines": {
+    "node": ">=18"
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "proto",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "eslint .",
+    "format": "prettier -w .",
+    "docs": "typedoc",
+    "prepack": "npm run build"
+  },
+  "dependencies": {
+    "@grpc/grpc-js": "^1.12.4",
+    "@grpc/proto-loader": "^0.7.13"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.16.0",
+    "@types/node": "^22.10.1",
+    "eslint": "^9.16.0",
+    "eslint-config-prettier": "^9.1.0",
+    "globals": "^15.13.0",
+    "prettier": "^3.4.2",
+    "typedoc": "^0.27.3",
+    "typescript": "^5.7.2",
+    "typescript-eslint": "^8.18.0",
+    "tsup": "^8.3.5",
+    "vitest": "^2.1.8"
+  }
+}
