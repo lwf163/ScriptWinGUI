@@ -1,170 +1,296 @@
+// Copyright ScriptWinGUI. All rights reserved.
+//
+// ──────────────────────────────────────────────────────────────────────────────
+// CV（计算机视觉）服务 Proto 定义
+//
+// 提供屏幕模板匹配、像素查找/计数、屏幕截图捕获、窗口 ROI 一致性检测等功能。
+//
+// 包名：swg.cv
+// C# 命名空间：Swg.Grpc.Cv
+// 服务名：CvService
+// ──────────────────────────────────────────────────────────────────────────────
+
 syntax = "proto3";
 
 package swg.cv;
 
 option csharp_namespace = "Swg.Grpc.Cv";
 
+// 屏幕矩形区域（绝对坐标）。
 message Roi {
+  // 左上角 X 坐标
   int32 left = 1;
+  // 左上角 Y 坐标
   int32 top = 2;
+  // 区域宽度（必须为正值）
   int32 width = 3;
+  // 区域高度（必须为正值）
   int32 height = 4;
 }
 
+// RGB 颜色值（各分量 0-255）。
 message Rgb {
+  // 红色分量
   int32 r = 1;
+  // 绿色分量
   int32 g = 2;
+  // 蓝色分量
   int32 b = 3;
 }
 
+// HSV 颜色值。
 message Hsv {
+  // 色调（Hue）
   double h = 1;
+  // 饱和度（Saturation）
   double s = 2;
+  // 明度（Value）
   double v = 3;
 }
 
+// 截图输出选项。
 message ScreenshotOptions {
+  // 输出方式：Base64（默认）或 FilePath
   string output_kind = 1;
+  // 目标文件路径（output_kind 为 FilePath 时必填）
   string target_file_path = 2;
+  // 图像格式：Png（默认）、Jpeg 或 Bmp
   string image_format = 3;
+  // Base64 编码变体：Raw（默认）或 DataUrl
   string base64_variant = 4;
+  // JPEG 质量（0-100，0 表示使用引擎默认值）
   int32 jpeg_quality = 5;
 }
 
+// 在指定 ROI 内查找单个模板的请求。
 message FindSingleTemplateRequest {
+  // 屏幕搜索区域
   Roi roi = 1;
+  // 模板图像（文件路径或 Base64 编码）
   string template = 2;
+  // 匹配阈值（0.0-1.0），低于此值视为未找到
   double threshold = 3;
 }
 
+// 从一组候选模板中查找最先/最优匹配的请求。
 message FindOneOfTemplatesRequest {
+  // 屏幕搜索区域
   Roi roi = 1;
+  // 候选模板图像列表（不可为空）
   repeated string templates = 2;
+  // 匹配阈值
   double threshold = 3;
+  // 匹配策略：FirstQualified（默认，返回首个超阈值的）或 BestScore（返回得分最高的）
   string preference = 4;
 }
 
+// 查找多个模板（每个至少匹配一次）的请求。
 message FindAllTemplatesRequest {
+  // 屏幕搜索区域
   Roi roi = 1;
+  // 模板图像列表
   repeated string templates = 2;
+  // 匹配阈值
   double threshold = 3;
 }
 
+// 按 RGB 颜色查找像素的请求。
 message FindPixelsRgbRequest {
+  // 屏幕搜索区域
   Roi roi = 1;
+  // 目标 RGB 颜色
   Rgb rgb = 2;
 }
 
+// 按多组 RGB 颜色查找像素的请求。
 message FindPixelsRgbMultipleRequest {
+  // 屏幕搜索区域
   Roi roi = 1;
+  // 目标 RGB 颜色列表（不可为空）
   repeated Rgb rgb_colors = 2;
 }
 
+// 按 HSV 颜色查找像素的请求。
 message FindPixelsHsvRequest {
+  // 屏幕搜索区域
   Roi roi = 1;
+  // 目标 HSV 颜色
   Hsv hsv = 2;
 }
 
+// 统计 RGB 像素数量的请求。
 message CountPixelsRgbRequest {
+  // 屏幕搜索区域
   Roi roi = 1;
+  // 目标 RGB 颜色
   Rgb rgb = 2;
 }
 
+// 获取指定坐标像素颜色的请求。
 message GetPixelRgbRequest {
+  // 像素 X 坐标（屏幕绝对坐标）
   int32 x = 1;
+  // 像素 Y 坐标（屏幕绝对坐标）
   int32 y = 2;
 }
 
+// 检查窗口 ROI 一致性的请求。
 message WindowRoiConsistencyRequest {
+  // 窗口句柄（HWND），支持十进制或 0x 十六进制格式
   string window_handle = 1;
 }
 
+// 截取全屏的请求。
 message CaptureFullScreenRequest {
+  // 截图选项（可选，为空使用默认值）
   ScreenshotOptions options = 1;
 }
 
+// 截取指定区域的请求。
 message CaptureRegionRequest {
+  // 截取区域
   Roi roi = 1;
+  // 截图选项
   ScreenshotOptions options = 2;
 }
 
+// 单模板匹配结果。
 message FindSingleTemplateResponse {
+  // 是否找到匹配
   bool found = 1;
+  // 匹配得分（0.0-1.0，越高越相似）
   double score = 2;
+  // 匹配区域左上角 X 坐标
   int32 left = 3;
+  // 匹配区域左上角 Y 坐标
   int32 top = 4;
+  // 匹配区域宽度
   int32 width = 5;
+  // 匹配区域高度
   int32 height = 6;
 }
 
+// 多候选模板匹配结果。
 message FindOneOfTemplatesResponse {
+  // 是否找到匹配
   bool found = 1;
+  // 匹配到的模板在列表中的索引
   int32 template_index = 2;
+  // 匹配得分
   double score = 3;
+  // 匹配区域左上角 X 坐标
   int32 left = 4;
+  // 匹配区域左上角 Y 坐标
   int32 top = 5;
+  // 匹配区域宽度
   int32 width = 6;
+  // 匹配区域高度
   int32 height = 7;
 }
 
+// 单个模板匹配项。
 message TemplateMatchItem {
+  // 模板在列表中的索引
   int32 template_index = 1;
+  // 是否匹配成功
   bool found = 2;
+  // 匹配得分
   double score = 3;
+  // 匹配区域左上角 X 坐标
   int32 left = 4;
+  // 匹配区域左上角 Y 坐标
   int32 top = 5;
+  // 匹配区域宽度
   int32 width = 6;
+  // 匹配区域高度
   int32 height = 7;
 }
 
+// 多模板匹配结果。
 message FindAllTemplatesResponse {
+  // 是否所有模板均匹配成功
   bool all_found = 1;
+  // 每个模板的匹配结果
   repeated TemplateMatchItem items = 2;
 }
 
+// 屏幕坐标点。
 message ScreenPoint {
+  // X 坐标
   int32 x = 1;
+  // Y 坐标
   int32 y = 2;
 }
 
+// 像素查找结果（坐标列表）。
 message ScreenPointsResponse {
+  // 匹配像素的绝对屏幕坐标列表
   repeated ScreenPoint points = 1;
 }
 
+// RGB 像素计数结果。
 message CountPixelsRgbResponse {
+  // 匹配像素数量
   int32 count = 1;
 }
 
+// 获取像素颜色结果。
 message PixelRgbResponse {
+  // 是否成功获取（坐标越界时为 false）
   bool success = 1;
+  // 红色分量
   int32 r = 2;
+  // 绿色分量
   int32 g = 3;
+  // 蓝色分量
   int32 b = 4;
 }
 
+// 窗口 ROI 一致性检测结果。
 message WindowRoiConsistencyResponse {
+  // 检测是否成功执行
   bool success = 1;
+  // 窗口的 ROI 信息
   Roi roi = 2;
+  // 实际截取的像素宽度
   int32 captured_width = 3;
+  // 实际截取的像素高度
   int32 captured_height = 4;
+  // 窗口 DPI 值
   uint32 window_dpi = 5;
+  // 像素尺寸是否匹配
   bool is_pixel_size_matched = 6;
 }
 
+// 文本载荷响应（Base64 编码或文件路径）。
 message CvTextPayloadResponse {
+  // 输出内容：Base64 编码字符串或保存的文件路径
   string output = 1;
 }
 
+// CV gRPC 服务。
+// 提供模板匹配、像素操作、屏幕截图等计算机视觉能力。
 service CvService {
+  // 在指定 ROI 内查找单个模板的最佳匹配位置。
   rpc FindSingleTemplate(FindSingleTemplateRequest) returns (FindSingleTemplateResponse);
+  // 从一组候选模板中查找最先/最优匹配。
   rpc FindOneOfTemplates(FindOneOfTemplatesRequest) returns (FindOneOfTemplatesResponse);
+  // 查找多个模板，确保每个模板至少匹配到一次。
   rpc FindEachTemplateAtLeastOnce(FindAllTemplatesRequest) returns (FindAllTemplatesResponse);
+  // 在指定 ROI 内查找与目标 RGB 颜色匹配的像素坐标。
   rpc FindPixelsRgb(FindPixelsRgbRequest) returns (ScreenPointsResponse);
+  // 在指定 ROI 内查找与任意一组 RGB 颜色匹配的像素坐标。
   rpc FindPixelsRgbMultiple(FindPixelsRgbMultipleRequest) returns (ScreenPointsResponse);
+  // 在指定 ROI 内查找与目标 HSV 颜色匹配的像素坐标。
   rpc FindPixelsHsv(FindPixelsHsvRequest) returns (ScreenPointsResponse);
+  // 统计指定 ROI 内与目标 RGB 颜色匹配的像素数量。
   rpc CountPixelsRgb(CountPixelsRgbRequest) returns (CountPixelsRgbResponse);
+  // 获取屏幕上指定坐标处的像素 RGB 颜色值。
   rpc GetPixelRgb(GetPixelRgbRequest) returns (PixelRgbResponse);
+  // 检查窗口实际尺寸与 ROI 截图的一致性（DPI 感知）。
   rpc CheckWindowRoiConsistency(WindowRoiConsistencyRequest) returns (WindowRoiConsistencyResponse);
+  // 截取全屏图像并按指定格式输出。
   rpc CaptureFullScreen(CaptureFullScreenRequest) returns (CvTextPayloadResponse);
+  // 截取屏幕指定区域的图像并按指定格式输出。
   rpc CaptureRegion(CaptureRegionRequest) returns (CvTextPayloadResponse);
 }

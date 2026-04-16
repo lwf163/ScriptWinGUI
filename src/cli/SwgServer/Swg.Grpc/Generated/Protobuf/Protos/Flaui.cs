@@ -140,6 +140,9 @@ namespace Swg.Grpc.Flaui {
 
   }
   #region Messages
+  /// <summary>
+  /// 通用操作结果响应。
+  /// </summary>
   public sealed partial class FlaUiOkResponse : pb::IMessage<FlaUiOkResponse>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -187,6 +190,9 @@ namespace Swg.Grpc.Flaui {
     /// <summary>Field number for the "ok" field.</summary>
     public const int OkFieldNumber = 1;
     private bool ok_;
+    /// <summary>
+    /// 操作是否成功
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool Ok {
@@ -329,6 +335,9 @@ namespace Swg.Grpc.Flaui {
 
   }
 
+  /// <summary>
+  /// 仅包含会话 ID 的请求。
+  /// </summary>
   public sealed partial class SessionIdRequest : pb::IMessage<SessionIdRequest>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -376,6 +385,9 @@ namespace Swg.Grpc.Flaui {
     /// <summary>Field number for the "session_id" field.</summary>
     public const int SessionIdFieldNumber = 1;
     private string sessionId_ = "";
+    /// <summary>
+    /// 由 CreateSession 返回的会话唯一标识
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string SessionId {
@@ -518,6 +530,9 @@ namespace Swg.Grpc.Flaui {
 
   }
 
+  /// <summary>
+  /// 包含会话 ID 和元素 ID 的请求。
+  /// </summary>
   public sealed partial class SessionElementRequest : pb::IMessage<SessionElementRequest>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -566,6 +581,9 @@ namespace Swg.Grpc.Flaui {
     /// <summary>Field number for the "session_id" field.</summary>
     public const int SessionIdFieldNumber = 1;
     private string sessionId_ = "";
+    /// <summary>
+    /// 会话 ID
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string SessionId {
@@ -578,6 +596,9 @@ namespace Swg.Grpc.Flaui {
     /// <summary>Field number for the "element_id" field.</summary>
     public const int ElementIdFieldNumber = 2;
     private string elementId_ = "";
+    /// <summary>
+    /// 目标 UI 元素 ID
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string ElementId {
@@ -744,6 +765,9 @@ namespace Swg.Grpc.Flaui {
 
   }
 
+  /// <summary>
+  /// 创建自动化会话的请求。
+  /// </summary>
   public sealed partial class SessionCreateRequest : pb::IMessage<SessionCreateRequest>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -795,6 +819,9 @@ namespace Swg.Grpc.Flaui {
     /// <summary>Field number for the "automation_type" field.</summary>
     public const int AutomationTypeFieldNumber = 1;
     private string automationType_ = "";
+    /// <summary>
+    /// 自动化框架类型（如 UIA3、UIA2），为空使用默认
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string AutomationType {
@@ -807,6 +834,9 @@ namespace Swg.Grpc.Flaui {
     /// <summary>Field number for the "executable_path" field.</summary>
     public const int ExecutablePathFieldNumber = 2;
     private string executablePath_ = "";
+    /// <summary>
+    /// 目标可执行文件路径（可选）
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string ExecutablePath {
@@ -819,6 +849,9 @@ namespace Swg.Grpc.Flaui {
     /// <summary>Field number for the "arguments" field.</summary>
     public const int ArgumentsFieldNumber = 3;
     private string arguments_ = "";
+    /// <summary>
+    /// 启动参数（可选）
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string Arguments {
@@ -831,6 +864,9 @@ namespace Swg.Grpc.Flaui {
     /// <summary>Field number for the "launch_if_not_running" field.</summary>
     public const int LaunchIfNotRunningFieldNumber = 4;
     private bool launchIfNotRunning_;
+    /// <summary>
+    /// 进程未运行时是否自动启动
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool LaunchIfNotRunning {
@@ -843,6 +879,9 @@ namespace Swg.Grpc.Flaui {
     /// <summary>Field number for the "process_index" field.</summary>
     public const int ProcessIndexFieldNumber = 5;
     private int processIndex_;
+    /// <summary>
+    /// 同名多实例时的进程索引（0 起始，可选）
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int ProcessIndex {
@@ -1081,6 +1120,9 @@ namespace Swg.Grpc.Flaui {
 
   }
 
+  /// <summary>
+  /// 创建会话的响应。
+  /// </summary>
   public sealed partial class SessionCreateResponse : pb::IMessage<SessionCreateResponse>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -1130,6 +1172,9 @@ namespace Swg.Grpc.Flaui {
     /// <summary>Field number for the "session_id" field.</summary>
     public const int SessionIdFieldNumber = 1;
     private string sessionId_ = "";
+    /// <summary>
+    /// 会话唯一标识，后续所有操作需使用此 ID
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string SessionId {
@@ -1142,6 +1187,9 @@ namespace Swg.Grpc.Flaui {
     /// <summary>Field number for the "process_id" field.</summary>
     public const int ProcessIdFieldNumber = 2;
     private int processId_;
+    /// <summary>
+    /// 关联的进程 ID
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int ProcessId {
@@ -1154,6 +1202,9 @@ namespace Swg.Grpc.Flaui {
     /// <summary>Field number for the "automation_type" field.</summary>
     public const int AutomationTypeFieldNumber = 3;
     private string automationType_ = "";
+    /// <summary>
+    /// 实际使用的自动化框架类型
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string AutomationType {
@@ -1344,6 +1395,9 @@ namespace Swg.Grpc.Flaui {
 
   }
 
+  /// <summary>
+  /// 优雅关闭应用程序的请求。
+  /// </summary>
   public sealed partial class SessionCloseApplicationRequest : pb::IMessage<SessionCloseApplicationRequest>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -1392,6 +1446,9 @@ namespace Swg.Grpc.Flaui {
     /// <summary>Field number for the "session_id" field.</summary>
     public const int SessionIdFieldNumber = 1;
     private string sessionId_ = "";
+    /// <summary>
+    /// 会话 ID
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string SessionId {
@@ -1404,6 +1461,9 @@ namespace Swg.Grpc.Flaui {
     /// <summary>Field number for the "kill_if_close_fails" field.</summary>
     public const int KillIfCloseFailsFieldNumber = 2;
     private bool killIfCloseFails_;
+    /// <summary>
+    /// 优雅关闭失败时是否强制终止进程
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool KillIfCloseFails {
@@ -1570,6 +1630,9 @@ namespace Swg.Grpc.Flaui {
 
   }
 
+  /// <summary>
+  /// 关闭应用程序的响应。
+  /// </summary>
   public sealed partial class FlaUiCloseApplicationResponse : pb::IMessage<FlaUiCloseApplicationResponse>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -1618,6 +1681,9 @@ namespace Swg.Grpc.Flaui {
     /// <summary>Field number for the "ok" field.</summary>
     public const int OkFieldNumber = 1;
     private bool ok_;
+    /// <summary>
+    /// 操作是否成功执行
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool Ok {
@@ -1630,6 +1696,9 @@ namespace Swg.Grpc.Flaui {
     /// <summary>Field number for the "closed" field.</summary>
     public const int ClosedFieldNumber = 2;
     private bool closed_;
+    /// <summary>
+    /// 应用程序是否已被关闭（优雅关闭失败且未启用 Kill 时为 false）
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool Closed {
@@ -1796,6 +1865,9 @@ namespace Swg.Grpc.Flaui {
 
   }
 
+  /// <summary>
+  /// 等待超时配置。
+  /// </summary>
   public sealed partial class WaitTimeoutPayload : pb::IMessage<WaitTimeoutPayload>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -1844,6 +1916,9 @@ namespace Swg.Grpc.Flaui {
     /// <summary>Field number for the "has_timeout_ms" field.</summary>
     public const int HasTimeoutMsFieldNumber = 1;
     private bool hasTimeoutMs_;
+    /// <summary>
+    /// 是否显式设置超时时间
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool HasTimeoutMs {
@@ -1856,6 +1931,9 @@ namespace Swg.Grpc.Flaui {
     /// <summary>Field number for the "timeout_ms" field.</summary>
     public const int TimeoutMsFieldNumber = 2;
     private int timeoutMs_;
+    /// <summary>
+    /// 超时时间（毫秒）
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int TimeoutMs {
@@ -2022,6 +2100,9 @@ namespace Swg.Grpc.Flaui {
 
   }
 
+  /// <summary>
+  /// 带超时的会话等待请求。
+  /// </summary>
   public sealed partial class SessionWaitRequest : pb::IMessage<SessionWaitRequest>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -2070,6 +2151,9 @@ namespace Swg.Grpc.Flaui {
     /// <summary>Field number for the "session_id" field.</summary>
     public const int SessionIdFieldNumber = 1;
     private string sessionId_ = "";
+    /// <summary>
+    /// 会话 ID
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string SessionId {
@@ -2082,6 +2166,9 @@ namespace Swg.Grpc.Flaui {
     /// <summary>Field number for the "timeout" field.</summary>
     public const int TimeoutFieldNumber = 2;
     private global::Swg.Grpc.Flaui.WaitTimeoutPayload timeout_;
+    /// <summary>
+    /// 超时配置（可选）
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public global::Swg.Grpc.Flaui.WaitTimeoutPayload Timeout {
@@ -2257,6 +2344,9 @@ namespace Swg.Grpc.Flaui {
 
   }
 
+  /// <summary>
+  /// 等待空闲状态的响应。
+  /// </summary>
   public sealed partial class FlaUiWaitBusyResponse : pb::IMessage<FlaUiWaitBusyResponse>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -2305,6 +2395,9 @@ namespace Swg.Grpc.Flaui {
     /// <summary>Field number for the "ok" field.</summary>
     public const int OkFieldNumber = 1;
     private bool ok_;
+    /// <summary>
+    /// 操作是否成功执行
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool Ok {
@@ -2317,6 +2410,9 @@ namespace Swg.Grpc.Flaui {
     /// <summary>Field number for the "result" field.</summary>
     public const int ResultFieldNumber = 2;
     private bool result_;
+    /// <summary>
+    /// 是否在超时前进入空闲状态
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool Result {
@@ -2483,6 +2579,9 @@ namespace Swg.Grpc.Flaui {
 
   }
 
+  /// <summary>
+  /// 等待窗口句柄的响应。
+  /// </summary>
   public sealed partial class FlaUiWaitHandleResponse : pb::IMessage<FlaUiWaitHandleResponse>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -2531,6 +2630,9 @@ namespace Swg.Grpc.Flaui {
     /// <summary>Field number for the "ok" field.</summary>
     public const int OkFieldNumber = 1;
     private bool ok_;
+    /// <summary>
+    /// 操作是否成功执行
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool Ok {
@@ -2543,6 +2645,9 @@ namespace Swg.Grpc.Flaui {
     /// <summary>Field number for the "result" field.</summary>
     public const int ResultFieldNumber = 2;
     private bool result_;
+    /// <summary>
+    /// 是否在超时前获取到主窗口句柄
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool Result {
@@ -2709,6 +2814,9 @@ namespace Swg.Grpc.Flaui {
 
   }
 
+  /// <summary>
+  /// 元素查找条件。
+  /// </summary>
   public sealed partial class FindElementPayload : pb::IMessage<FindElementPayload>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -2765,6 +2873,9 @@ namespace Swg.Grpc.Flaui {
     /// <summary>Field number for the "root_kind" field.</summary>
     public const int RootKindFieldNumber = 1;
     private string rootKind_ = "";
+    /// <summary>
+    /// 查找根节点类型（如 MainWindow、Desktop 等）
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string RootKind {
@@ -2777,6 +2888,9 @@ namespace Swg.Grpc.Flaui {
     /// <summary>Field number for the "root_element_id" field.</summary>
     public const int RootElementIdFieldNumber = 2;
     private string rootElementId_ = "";
+    /// <summary>
+    /// 查找根节点元素 ID（与 root_kind 配合使用）
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string RootElementId {
@@ -2789,6 +2903,9 @@ namespace Swg.Grpc.Flaui {
     /// <summary>Field number for the "scope" field.</summary>
     public const int ScopeFieldNumber = 3;
     private string scope_ = "";
+    /// <summary>
+    /// 查找范围（如 Children、Descendants 等）
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string Scope {
@@ -2801,6 +2918,9 @@ namespace Swg.Grpc.Flaui {
     /// <summary>Field number for the "automation_id" field.</summary>
     public const int AutomationIdFieldNumber = 4;
     private string automationId_ = "";
+    /// <summary>
+    /// 按 AutomationId 查找
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string AutomationId {
@@ -2813,6 +2933,9 @@ namespace Swg.Grpc.Flaui {
     /// <summary>Field number for the "name" field.</summary>
     public const int NameFieldNumber = 5;
     private string name_ = "";
+    /// <summary>
+    /// 按名称查找
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string Name {
@@ -2825,6 +2948,9 @@ namespace Swg.Grpc.Flaui {
     /// <summary>Field number for the "class_name" field.</summary>
     public const int ClassNameFieldNumber = 6;
     private string className_ = "";
+    /// <summary>
+    /// 按类名查找
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string ClassName {
@@ -2837,6 +2963,9 @@ namespace Swg.Grpc.Flaui {
     /// <summary>Field number for the "control_type" field.</summary>
     public const int ControlTypeFieldNumber = 7;
     private string controlType_ = "";
+    /// <summary>
+    /// 按控件类型查找（如 Button、Edit 等）
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string ControlType {
@@ -2849,6 +2978,9 @@ namespace Swg.Grpc.Flaui {
     /// <summary>Field number for the "xpath" field.</summary>
     public const int XpathFieldNumber = 8;
     private string xpath_ = "";
+    /// <summary>
+    /// XPath 表达式查找
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string Xpath {
@@ -2861,6 +2993,9 @@ namespace Swg.Grpc.Flaui {
     /// <summary>Field number for the "has_main_window_wait_timeout_ms" field.</summary>
     public const int HasMainWindowWaitTimeoutMsFieldNumber = 9;
     private bool hasMainWindowWaitTimeoutMs_;
+    /// <summary>
+    /// 是否显式设置主窗口等待超时
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool HasMainWindowWaitTimeoutMs {
@@ -2873,6 +3008,9 @@ namespace Swg.Grpc.Flaui {
     /// <summary>Field number for the "main_window_wait_timeout_ms" field.</summary>
     public const int MainWindowWaitTimeoutMsFieldNumber = 10;
     private int mainWindowWaitTimeoutMs_;
+    /// <summary>
+    /// 主窗口等待超时（毫秒）
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int MainWindowWaitTimeoutMs {
@@ -3231,6 +3369,9 @@ namespace Swg.Grpc.Flaui {
 
   }
 
+  /// <summary>
+  /// XPath 查找条件。
+  /// </summary>
   public sealed partial class FindByXPathPayload : pb::IMessage<FindByXPathPayload>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -3282,6 +3423,9 @@ namespace Swg.Grpc.Flaui {
     /// <summary>Field number for the "root_kind" field.</summary>
     public const int RootKindFieldNumber = 1;
     private string rootKind_ = "";
+    /// <summary>
+    /// 查找根节点类型
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string RootKind {
@@ -3294,6 +3438,9 @@ namespace Swg.Grpc.Flaui {
     /// <summary>Field number for the "root_element_id" field.</summary>
     public const int RootElementIdFieldNumber = 2;
     private string rootElementId_ = "";
+    /// <summary>
+    /// 查找根节点元素 ID
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string RootElementId {
@@ -3306,6 +3453,9 @@ namespace Swg.Grpc.Flaui {
     /// <summary>Field number for the "xpath" field.</summary>
     public const int XpathFieldNumber = 3;
     private string xpath_ = "";
+    /// <summary>
+    /// XPath 表达式
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string Xpath {
@@ -3318,6 +3468,9 @@ namespace Swg.Grpc.Flaui {
     /// <summary>Field number for the "has_main_window_wait_timeout_ms" field.</summary>
     public const int HasMainWindowWaitTimeoutMsFieldNumber = 4;
     private bool hasMainWindowWaitTimeoutMs_;
+    /// <summary>
+    /// 是否显式设置主窗口等待超时
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool HasMainWindowWaitTimeoutMs {
@@ -3330,6 +3483,9 @@ namespace Swg.Grpc.Flaui {
     /// <summary>Field number for the "main_window_wait_timeout_ms" field.</summary>
     public const int MainWindowWaitTimeoutMsFieldNumber = 5;
     private int mainWindowWaitTimeoutMs_;
+    /// <summary>
+    /// 主窗口等待超时（毫秒）
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int MainWindowWaitTimeoutMs {
@@ -3568,6 +3724,9 @@ namespace Swg.Grpc.Flaui {
 
   }
 
+  /// <summary>
+  /// 带查找条件的会话元素请求。
+  /// </summary>
   public sealed partial class SessionFindElementRequest : pb::IMessage<SessionFindElementRequest>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -3616,6 +3775,9 @@ namespace Swg.Grpc.Flaui {
     /// <summary>Field number for the "session_id" field.</summary>
     public const int SessionIdFieldNumber = 1;
     private string sessionId_ = "";
+    /// <summary>
+    /// 会话 ID
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string SessionId {
@@ -3628,6 +3790,9 @@ namespace Swg.Grpc.Flaui {
     /// <summary>Field number for the "find" field.</summary>
     public const int FindFieldNumber = 2;
     private global::Swg.Grpc.Flaui.FindElementPayload find_;
+    /// <summary>
+    /// 查找条件
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public global::Swg.Grpc.Flaui.FindElementPayload Find {
@@ -3803,6 +3968,9 @@ namespace Swg.Grpc.Flaui {
 
   }
 
+  /// <summary>
+  /// 带 XPath 查找条件的会话请求。
+  /// </summary>
   public sealed partial class SessionFindByXPathRequest : pb::IMessage<SessionFindByXPathRequest>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -3851,6 +4019,9 @@ namespace Swg.Grpc.Flaui {
     /// <summary>Field number for the "session_id" field.</summary>
     public const int SessionIdFieldNumber = 1;
     private string sessionId_ = "";
+    /// <summary>
+    /// 会话 ID
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string SessionId {
@@ -3863,6 +4034,9 @@ namespace Swg.Grpc.Flaui {
     /// <summary>Field number for the "find" field.</summary>
     public const int FindFieldNumber = 2;
     private global::Swg.Grpc.Flaui.FindByXPathPayload find_;
+    /// <summary>
+    /// XPath 查找条件
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public global::Swg.Grpc.Flaui.FindByXPathPayload Find {
@@ -4038,6 +4212,9 @@ namespace Swg.Grpc.Flaui {
 
   }
 
+  /// <summary>
+  /// 矩形区域。
+  /// </summary>
   public sealed partial class RectDto : pb::IMessage<RectDto>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -4088,6 +4265,9 @@ namespace Swg.Grpc.Flaui {
     /// <summary>Field number for the "x" field.</summary>
     public const int XFieldNumber = 1;
     private int x_;
+    /// <summary>
+    /// 左上角 X 坐标
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int X {
@@ -4100,6 +4280,9 @@ namespace Swg.Grpc.Flaui {
     /// <summary>Field number for the "y" field.</summary>
     public const int YFieldNumber = 2;
     private int y_;
+    /// <summary>
+    /// 左上角 Y 坐标
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int Y {
@@ -4112,6 +4295,9 @@ namespace Swg.Grpc.Flaui {
     /// <summary>Field number for the "width" field.</summary>
     public const int WidthFieldNumber = 3;
     private int width_;
+    /// <summary>
+    /// 宽度
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int Width {
@@ -4124,6 +4310,9 @@ namespace Swg.Grpc.Flaui {
     /// <summary>Field number for the "height" field.</summary>
     public const int HeightFieldNumber = 4;
     private int height_;
+    /// <summary>
+    /// 高度
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int Height {
@@ -4338,6 +4527,9 @@ namespace Swg.Grpc.Flaui {
 
   }
 
+  /// <summary>
+  /// UI 元素详细信息。
+  /// </summary>
   public sealed partial class ElementInfoResponse : pb::IMessage<ElementInfoResponse>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -4394,6 +4586,9 @@ namespace Swg.Grpc.Flaui {
     /// <summary>Field number for the "element_id" field.</summary>
     public const int ElementIdFieldNumber = 1;
     private string elementId_ = "";
+    /// <summary>
+    /// 元素唯一标识
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string ElementId {
@@ -4406,6 +4601,9 @@ namespace Swg.Grpc.Flaui {
     /// <summary>Field number for the "name" field.</summary>
     public const int NameFieldNumber = 2;
     private string name_ = "";
+    /// <summary>
+    /// 元素名称
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string Name {
@@ -4418,6 +4616,9 @@ namespace Swg.Grpc.Flaui {
     /// <summary>Field number for the "automation_id" field.</summary>
     public const int AutomationIdFieldNumber = 3;
     private string automationId_ = "";
+    /// <summary>
+    /// 自动化 ID
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string AutomationId {
@@ -4430,6 +4631,9 @@ namespace Swg.Grpc.Flaui {
     /// <summary>Field number for the "class_name" field.</summary>
     public const int ClassNameFieldNumber = 4;
     private string className_ = "";
+    /// <summary>
+    /// 类名
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string ClassName {
@@ -4442,6 +4646,9 @@ namespace Swg.Grpc.Flaui {
     /// <summary>Field number for the "control_type" field.</summary>
     public const int ControlTypeFieldNumber = 5;
     private string controlType_ = "";
+    /// <summary>
+    /// 控件类型（如 Button、Edit 等）
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string ControlType {
@@ -4454,6 +4661,9 @@ namespace Swg.Grpc.Flaui {
     /// <summary>Field number for the "framework_type" field.</summary>
     public const int FrameworkTypeFieldNumber = 6;
     private string frameworkType_ = "";
+    /// <summary>
+    /// UI 框架类型
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string FrameworkType {
@@ -4466,6 +4676,9 @@ namespace Swg.Grpc.Flaui {
     /// <summary>Field number for the "is_enabled" field.</summary>
     public const int IsEnabledFieldNumber = 7;
     private bool isEnabled_;
+    /// <summary>
+    /// 是否启用
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool IsEnabled {
@@ -4478,6 +4691,9 @@ namespace Swg.Grpc.Flaui {
     /// <summary>Field number for the "is_offscreen" field.</summary>
     public const int IsOffscreenFieldNumber = 8;
     private bool isOffscreen_;
+    /// <summary>
+    /// 是否在屏幕外
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool IsOffscreen {
@@ -4490,6 +4706,9 @@ namespace Swg.Grpc.Flaui {
     /// <summary>Field number for the "is_available" field.</summary>
     public const int IsAvailableFieldNumber = 9;
     private bool isAvailable_;
+    /// <summary>
+    /// 是否可用
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool IsAvailable {
@@ -4502,6 +4721,9 @@ namespace Swg.Grpc.Flaui {
     /// <summary>Field number for the "bounds" field.</summary>
     public const int BoundsFieldNumber = 10;
     private global::Swg.Grpc.Flaui.RectDto bounds_;
+    /// <summary>
+    /// 元素边界矩形
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public global::Swg.Grpc.Flaui.RectDto Bounds {
@@ -4869,6 +5091,9 @@ namespace Swg.Grpc.Flaui {
 
   }
 
+  /// <summary>
+  /// 元素引用响应。
+  /// </summary>
   public sealed partial class ElementRefResponse : pb::IMessage<ElementRefResponse>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -4916,6 +5141,9 @@ namespace Swg.Grpc.Flaui {
     /// <summary>Field number for the "element_id" field.</summary>
     public const int ElementIdFieldNumber = 1;
     private string elementId_ = "";
+    /// <summary>
+    /// 元素唯一标识
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string ElementId {
@@ -5058,6 +5286,9 @@ namespace Swg.Grpc.Flaui {
 
   }
 
+  /// <summary>
+  /// 元素引用列表响应。
+  /// </summary>
   public sealed partial class ElementRefListResponse : pb::IMessage<ElementRefListResponse>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -5107,6 +5338,9 @@ namespace Swg.Grpc.Flaui {
     private static readonly pb::FieldCodec<global::Swg.Grpc.Flaui.ElementRefResponse> _repeated_items_codec
         = pb::FieldCodec.ForMessage(10, global::Swg.Grpc.Flaui.ElementRefResponse.Parser);
     private readonly pbc::RepeatedField<global::Swg.Grpc.Flaui.ElementRefResponse> items_ = new pbc::RepeatedField<global::Swg.Grpc.Flaui.ElementRefResponse>();
+    /// <summary>
+    /// 元素引用列表
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public pbc::RepeatedField<global::Swg.Grpc.Flaui.ElementRefResponse> Items {
@@ -5236,6 +5470,9 @@ namespace Swg.Grpc.Flaui {
 
   }
 
+  /// <summary>
+  /// 点击选项。
+  /// </summary>
   public sealed partial class ClickPayload : pb::IMessage<ClickPayload>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -5284,6 +5521,9 @@ namespace Swg.Grpc.Flaui {
     /// <summary>Field number for the "has_move_mouse" field.</summary>
     public const int HasMoveMouseFieldNumber = 1;
     private bool hasMoveMouse_;
+    /// <summary>
+    /// 是否显式设置移动鼠标选项
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool HasMoveMouse {
@@ -5296,6 +5536,9 @@ namespace Swg.Grpc.Flaui {
     /// <summary>Field number for the "move_mouse" field.</summary>
     public const int MoveMouseFieldNumber = 2;
     private bool moveMouse_;
+    /// <summary>
+    /// 是否先移动鼠标到元素位置再点击
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool MoveMouse {
@@ -5462,6 +5705,9 @@ namespace Swg.Grpc.Flaui {
 
   }
 
+  /// <summary>
+  /// 元素点击请求。
+  /// </summary>
   public sealed partial class SessionElementClickRequest : pb::IMessage<SessionElementClickRequest>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -5512,6 +5758,9 @@ namespace Swg.Grpc.Flaui {
     /// <summary>Field number for the "session_id" field.</summary>
     public const int SessionIdFieldNumber = 1;
     private string sessionId_ = "";
+    /// <summary>
+    /// 会话 ID
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string SessionId {
@@ -5524,6 +5773,9 @@ namespace Swg.Grpc.Flaui {
     /// <summary>Field number for the "element_id" field.</summary>
     public const int ElementIdFieldNumber = 2;
     private string elementId_ = "";
+    /// <summary>
+    /// 目标元素 ID
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string ElementId {
@@ -5536,6 +5788,9 @@ namespace Swg.Grpc.Flaui {
     /// <summary>Field number for the "has_click" field.</summary>
     public const int HasClickFieldNumber = 3;
     private bool hasClick_;
+    /// <summary>
+    /// 是否包含点击选项
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool HasClick {
@@ -5548,6 +5803,9 @@ namespace Swg.Grpc.Flaui {
     /// <summary>Field number for the "click" field.</summary>
     public const int ClickFieldNumber = 4;
     private global::Swg.Grpc.Flaui.ClickPayload click_;
+    /// <summary>
+    /// 点击选项
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public global::Swg.Grpc.Flaui.ClickPayload Click {

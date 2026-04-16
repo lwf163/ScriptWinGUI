@@ -133,6 +133,9 @@ namespace Swg.Grpc.Input {
 
   }
   #region Messages
+  /// <summary>
+  /// 通用操作结果响应。
+  /// </summary>
   public sealed partial class InputOkResponse : pb::IMessage<InputOkResponse>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -180,6 +183,9 @@ namespace Swg.Grpc.Input {
     /// <summary>Field number for the "ok" field.</summary>
     public const int OkFieldNumber = 1;
     private bool ok_;
+    /// <summary>
+    /// 操作是否成功
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool Ok {
@@ -322,6 +328,9 @@ namespace Swg.Grpc.Input {
 
   }
 
+  /// <summary>
+  /// 鼠标光标位置响应。
+  /// </summary>
   public sealed partial class InputMouseGetPositionResponse : pb::IMessage<InputMouseGetPositionResponse>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -370,6 +379,9 @@ namespace Swg.Grpc.Input {
     /// <summary>Field number for the "x" field.</summary>
     public const int XFieldNumber = 1;
     private int x_;
+    /// <summary>
+    /// 光标 X 坐标
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int X {
@@ -382,6 +394,9 @@ namespace Swg.Grpc.Input {
     /// <summary>Field number for the "y" field.</summary>
     public const int YFieldNumber = 2;
     private int y_;
+    /// <summary>
+    /// 光标 Y 坐标
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int Y {
@@ -548,6 +563,9 @@ namespace Swg.Grpc.Input {
 
   }
 
+  /// <summary>
+  /// 鼠标移动到指定位置请求。
+  /// </summary>
   public sealed partial class InputMouseMoveToRequest : pb::IMessage<InputMouseMoveToRequest>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -596,6 +614,9 @@ namespace Swg.Grpc.Input {
     /// <summary>Field number for the "x" field.</summary>
     public const int XFieldNumber = 1;
     private int x_;
+    /// <summary>
+    /// 目标 X 坐标
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int X {
@@ -608,6 +629,9 @@ namespace Swg.Grpc.Input {
     /// <summary>Field number for the "y" field.</summary>
     public const int YFieldNumber = 2;
     private int y_;
+    /// <summary>
+    /// 目标 Y 坐标
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int Y {
@@ -774,6 +798,9 @@ namespace Swg.Grpc.Input {
 
   }
 
+  /// <summary>
+  /// 鼠标偏移移动请求。
+  /// </summary>
   public sealed partial class InputMouseMoveByRequest : pb::IMessage<InputMouseMoveByRequest>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -822,6 +849,9 @@ namespace Swg.Grpc.Input {
     /// <summary>Field number for the "delta_x" field.</summary>
     public const int DeltaXFieldNumber = 1;
     private int deltaX_;
+    /// <summary>
+    /// X 方向偏移量（正值向右）
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int DeltaX {
@@ -834,6 +864,9 @@ namespace Swg.Grpc.Input {
     /// <summary>Field number for the "delta_y" field.</summary>
     public const int DeltaYFieldNumber = 2;
     private int deltaY_;
+    /// <summary>
+    /// Y 方向偏移量（正值向下）
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int DeltaY {
@@ -1000,6 +1033,9 @@ namespace Swg.Grpc.Input {
 
   }
 
+  /// <summary>
+  /// 鼠标点击请求。
+  /// </summary>
   public sealed partial class InputMouseClickRequest : pb::IMessage<InputMouseClickRequest>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -1052,6 +1088,9 @@ namespace Swg.Grpc.Input {
     /// <summary>Field number for the "has_x" field.</summary>
     public const int HasXFieldNumber = 1;
     private bool hasX_;
+    /// <summary>
+    /// 是否指定 X 坐标
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool HasX {
@@ -1064,6 +1103,9 @@ namespace Swg.Grpc.Input {
     /// <summary>Field number for the "x" field.</summary>
     public const int XFieldNumber = 2;
     private int x_;
+    /// <summary>
+    /// 点击 X 坐标
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int X {
@@ -1076,6 +1118,9 @@ namespace Swg.Grpc.Input {
     /// <summary>Field number for the "has_y" field.</summary>
     public const int HasYFieldNumber = 3;
     private bool hasY_;
+    /// <summary>
+    /// 是否指定 Y 坐标
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool HasY {
@@ -1088,6 +1133,9 @@ namespace Swg.Grpc.Input {
     /// <summary>Field number for the "y" field.</summary>
     public const int YFieldNumber = 4;
     private int y_;
+    /// <summary>
+    /// 点击 Y 坐标
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int Y {
@@ -1100,6 +1148,9 @@ namespace Swg.Grpc.Input {
     /// <summary>Field number for the "button" field.</summary>
     public const int ButtonFieldNumber = 5;
     private string button_ = "";
+    /// <summary>
+    /// 鼠标按钮名称：Left / Right / Middle
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string Button {
@@ -1112,6 +1163,9 @@ namespace Swg.Grpc.Input {
     /// <summary>Field number for the "click_count" field.</summary>
     public const int ClickCountFieldNumber = 6;
     private int clickCount_;
+    /// <summary>
+    /// 点击次数（1=单击，2=双击）
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int ClickCount {
@@ -1374,6 +1428,9 @@ namespace Swg.Grpc.Input {
 
   }
 
+  /// <summary>
+  /// 鼠标按下请求。
+  /// </summary>
   public sealed partial class InputMouseDownRequest : pb::IMessage<InputMouseDownRequest>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -1426,6 +1483,9 @@ namespace Swg.Grpc.Input {
     /// <summary>Field number for the "has_x" field.</summary>
     public const int HasXFieldNumber = 1;
     private bool hasX_;
+    /// <summary>
+    /// 是否指定 X 坐标
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool HasX {
@@ -1438,6 +1498,9 @@ namespace Swg.Grpc.Input {
     /// <summary>Field number for the "x" field.</summary>
     public const int XFieldNumber = 2;
     private int x_;
+    /// <summary>
+    /// 按下位置 X 坐标
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int X {
@@ -1450,6 +1513,9 @@ namespace Swg.Grpc.Input {
     /// <summary>Field number for the "has_y" field.</summary>
     public const int HasYFieldNumber = 3;
     private bool hasY_;
+    /// <summary>
+    /// 是否指定 Y 坐标
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool HasY {
@@ -1462,6 +1528,9 @@ namespace Swg.Grpc.Input {
     /// <summary>Field number for the "y" field.</summary>
     public const int YFieldNumber = 4;
     private int y_;
+    /// <summary>
+    /// 按下位置 Y 坐标
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int Y {
@@ -1474,6 +1543,9 @@ namespace Swg.Grpc.Input {
     /// <summary>Field number for the "button" field.</summary>
     public const int ButtonFieldNumber = 5;
     private string button_ = "";
+    /// <summary>
+    /// 鼠标按钮名称
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string Button {
@@ -1488,6 +1560,9 @@ namespace Swg.Grpc.Input {
     private static readonly pb::FieldCodec<string> _repeated_modifiers_codec
         = pb::FieldCodec.ForString(50);
     private readonly pbc::RepeatedField<string> modifiers_ = new pbc::RepeatedField<string>();
+    /// <summary>
+    /// 修饰键列表（如 Ctrl、Shift、Alt）
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public pbc::RepeatedField<string> Modifiers {
@@ -1737,6 +1812,9 @@ namespace Swg.Grpc.Input {
 
   }
 
+  /// <summary>
+  /// 鼠标释放请求。
+  /// </summary>
   public sealed partial class InputMouseUpRequest : pb::IMessage<InputMouseUpRequest>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -1785,6 +1863,9 @@ namespace Swg.Grpc.Input {
     /// <summary>Field number for the "button" field.</summary>
     public const int ButtonFieldNumber = 1;
     private string button_ = "";
+    /// <summary>
+    /// 鼠标按钮名称
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string Button {
@@ -1799,6 +1880,9 @@ namespace Swg.Grpc.Input {
     private static readonly pb::FieldCodec<string> _repeated_modifiers_codec
         = pb::FieldCodec.ForString(18);
     private readonly pbc::RepeatedField<string> modifiers_ = new pbc::RepeatedField<string>();
+    /// <summary>
+    /// 修饰键列表
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public pbc::RepeatedField<string> Modifiers {
@@ -1952,6 +2036,9 @@ namespace Swg.Grpc.Input {
 
   }
 
+  /// <summary>
+  /// 鼠标拖拽到目标坐标请求。
+  /// </summary>
   public sealed partial class InputMouseDragToRequest : pb::IMessage<InputMouseDragToRequest>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -2004,6 +2091,9 @@ namespace Swg.Grpc.Input {
     /// <summary>Field number for the "start_x" field.</summary>
     public const int StartXFieldNumber = 1;
     private int startX_;
+    /// <summary>
+    /// 拖拽起始 X 坐标
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int StartX {
@@ -2016,6 +2106,9 @@ namespace Swg.Grpc.Input {
     /// <summary>Field number for the "start_y" field.</summary>
     public const int StartYFieldNumber = 2;
     private int startY_;
+    /// <summary>
+    /// 拖拽起始 Y 坐标
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int StartY {
@@ -2028,6 +2121,9 @@ namespace Swg.Grpc.Input {
     /// <summary>Field number for the "end_x" field.</summary>
     public const int EndXFieldNumber = 3;
     private int endX_;
+    /// <summary>
+    /// 拖拽目标 X 坐标
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int EndX {
@@ -2040,6 +2136,9 @@ namespace Swg.Grpc.Input {
     /// <summary>Field number for the "end_y" field.</summary>
     public const int EndYFieldNumber = 4;
     private int endY_;
+    /// <summary>
+    /// 拖拽目标 Y 坐标
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int EndY {
@@ -2052,6 +2151,9 @@ namespace Swg.Grpc.Input {
     /// <summary>Field number for the "button" field.</summary>
     public const int ButtonFieldNumber = 5;
     private string button_ = "";
+    /// <summary>
+    /// 鼠标按钮名称
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string Button {
@@ -2066,6 +2168,9 @@ namespace Swg.Grpc.Input {
     private static readonly pb::FieldCodec<string> _repeated_modifiers_codec
         = pb::FieldCodec.ForString(50);
     private readonly pbc::RepeatedField<string> modifiers_ = new pbc::RepeatedField<string>();
+    /// <summary>
+    /// 修饰键列表
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public pbc::RepeatedField<string> Modifiers {
@@ -2315,6 +2420,9 @@ namespace Swg.Grpc.Input {
 
   }
 
+  /// <summary>
+  /// 鼠标拖拽指定距离请求。
+  /// </summary>
   public sealed partial class InputMouseDragByDistanceRequest : pb::IMessage<InputMouseDragByDistanceRequest>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -2367,6 +2475,9 @@ namespace Swg.Grpc.Input {
     /// <summary>Field number for the "start_x" field.</summary>
     public const int StartXFieldNumber = 1;
     private int startX_;
+    /// <summary>
+    /// 拖拽起始 X 坐标
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int StartX {
@@ -2379,6 +2490,9 @@ namespace Swg.Grpc.Input {
     /// <summary>Field number for the "start_y" field.</summary>
     public const int StartYFieldNumber = 2;
     private int startY_;
+    /// <summary>
+    /// 拖拽起始 Y 坐标
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int StartY {
@@ -2391,6 +2505,9 @@ namespace Swg.Grpc.Input {
     /// <summary>Field number for the "distance_x" field.</summary>
     public const int DistanceXFieldNumber = 3;
     private int distanceX_;
+    /// <summary>
+    /// X 方向拖拽距离
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int DistanceX {
@@ -2403,6 +2520,9 @@ namespace Swg.Grpc.Input {
     /// <summary>Field number for the "distance_y" field.</summary>
     public const int DistanceYFieldNumber = 4;
     private int distanceY_;
+    /// <summary>
+    /// Y 方向拖拽距离
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int DistanceY {
@@ -2415,6 +2535,9 @@ namespace Swg.Grpc.Input {
     /// <summary>Field number for the "button" field.</summary>
     public const int ButtonFieldNumber = 5;
     private string button_ = "";
+    /// <summary>
+    /// 鼠标按钮名称
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string Button {
@@ -2429,6 +2552,9 @@ namespace Swg.Grpc.Input {
     private static readonly pb::FieldCodec<string> _repeated_modifiers_codec
         = pb::FieldCodec.ForString(50);
     private readonly pbc::RepeatedField<string> modifiers_ = new pbc::RepeatedField<string>();
+    /// <summary>
+    /// 修饰键列表
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public pbc::RepeatedField<string> Modifiers {
@@ -2678,6 +2804,9 @@ namespace Swg.Grpc.Input {
 
   }
 
+  /// <summary>
+  /// 鼠标垂直滚轮请求。
+  /// </summary>
   public sealed partial class InputMouseScrollRequest : pb::IMessage<InputMouseScrollRequest>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -2727,6 +2856,9 @@ namespace Swg.Grpc.Input {
     /// <summary>Field number for the "x" field.</summary>
     public const int XFieldNumber = 1;
     private int x_;
+    /// <summary>
+    /// 滚动位置 X 坐标
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int X {
@@ -2739,6 +2871,9 @@ namespace Swg.Grpc.Input {
     /// <summary>Field number for the "y" field.</summary>
     public const int YFieldNumber = 2;
     private int y_;
+    /// <summary>
+    /// 滚动位置 Y 坐标
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int Y {
@@ -2751,6 +2886,9 @@ namespace Swg.Grpc.Input {
     /// <summary>Field number for the "wheel_lines" field.</summary>
     public const int WheelLinesFieldNumber = 3;
     private int wheelLines_;
+    /// <summary>
+    /// 滚轮行数（正值向上滚，负值向下滚）
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int WheelLines {
@@ -2941,6 +3079,9 @@ namespace Swg.Grpc.Input {
 
   }
 
+  /// <summary>
+  /// 鼠标水平滚轮请求。
+  /// </summary>
   public sealed partial class InputMouseHorizontalScrollRequest : pb::IMessage<InputMouseHorizontalScrollRequest>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -2990,6 +3131,9 @@ namespace Swg.Grpc.Input {
     /// <summary>Field number for the "x" field.</summary>
     public const int XFieldNumber = 1;
     private int x_;
+    /// <summary>
+    /// 滚动位置 X 坐标
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int X {
@@ -3002,6 +3146,9 @@ namespace Swg.Grpc.Input {
     /// <summary>Field number for the "y" field.</summary>
     public const int YFieldNumber = 2;
     private int y_;
+    /// <summary>
+    /// 滚动位置 Y 坐标
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int Y {
@@ -3014,6 +3161,9 @@ namespace Swg.Grpc.Input {
     /// <summary>Field number for the "wheel_lines" field.</summary>
     public const int WheelLinesFieldNumber = 3;
     private int wheelLines_;
+    /// <summary>
+    /// 水平滚轮行数（正值向右，负值向左）
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int WheelLines {
@@ -3204,6 +3354,9 @@ namespace Swg.Grpc.Input {
 
   }
 
+  /// <summary>
+  /// 鼠标移动动画配置响应。
+  /// </summary>
   public sealed partial class InputMouseMoveSettingsResponse : pb::IMessage<InputMouseMoveSettingsResponse>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -3252,6 +3405,9 @@ namespace Swg.Grpc.Input {
     /// <summary>Field number for the "move_pixels_per_millisecond" field.</summary>
     public const int MovePixelsPerMillisecondFieldNumber = 1;
     private double movePixelsPerMillisecond_;
+    /// <summary>
+    /// 每毫秒移动的像素数
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public double MovePixelsPerMillisecond {
@@ -3264,6 +3420,9 @@ namespace Swg.Grpc.Input {
     /// <summary>Field number for the "move_pixels_per_step" field.</summary>
     public const int MovePixelsPerStepFieldNumber = 2;
     private double movePixelsPerStep_;
+    /// <summary>
+    /// 每步移动的像素数
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public double MovePixelsPerStep {
@@ -3430,6 +3589,9 @@ namespace Swg.Grpc.Input {
 
   }
 
+  /// <summary>
+  /// 鼠标移动动画配置更新请求。
+  /// </summary>
   public sealed partial class InputMouseMoveSettingsRequest : pb::IMessage<InputMouseMoveSettingsRequest>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -3480,6 +3642,9 @@ namespace Swg.Grpc.Input {
     /// <summary>Field number for the "has_move_pixels_per_millisecond" field.</summary>
     public const int HasMovePixelsPerMillisecondFieldNumber = 1;
     private bool hasMovePixelsPerMillisecond_;
+    /// <summary>
+    /// 是否更新 move_pixels_per_millisecond
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool HasMovePixelsPerMillisecond {
@@ -3492,6 +3657,9 @@ namespace Swg.Grpc.Input {
     /// <summary>Field number for the "move_pixels_per_millisecond" field.</summary>
     public const int MovePixelsPerMillisecondFieldNumber = 2;
     private double movePixelsPerMillisecond_;
+    /// <summary>
+    /// 每毫秒移动的像素数
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public double MovePixelsPerMillisecond {
@@ -3504,6 +3672,9 @@ namespace Swg.Grpc.Input {
     /// <summary>Field number for the "has_move_pixels_per_step" field.</summary>
     public const int HasMovePixelsPerStepFieldNumber = 3;
     private bool hasMovePixelsPerStep_;
+    /// <summary>
+    /// 是否更新 move_pixels_per_step
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool HasMovePixelsPerStep {
@@ -3516,6 +3687,9 @@ namespace Swg.Grpc.Input {
     /// <summary>Field number for the "move_pixels_per_step" field.</summary>
     public const int MovePixelsPerStepFieldNumber = 4;
     private double movePixelsPerStep_;
+    /// <summary>
+    /// 每步移动的像素数
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public double MovePixelsPerStep {
@@ -3730,6 +3904,9 @@ namespace Swg.Grpc.Input {
 
   }
 
+  /// <summary>
+  /// 键盘输入文本请求。
+  /// </summary>
   public sealed partial class InputKeyboardTypeTextRequest : pb::IMessage<InputKeyboardTypeTextRequest>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -3777,6 +3954,9 @@ namespace Swg.Grpc.Input {
     /// <summary>Field number for the "text" field.</summary>
     public const int TextFieldNumber = 1;
     private string text_ = "";
+    /// <summary>
+    /// 要输入的文本
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string Text {
@@ -3919,6 +4099,9 @@ namespace Swg.Grpc.Input {
 
   }
 
+  /// <summary>
+  /// 键盘输入单个字符请求。
+  /// </summary>
   public sealed partial class InputKeyboardTypeCharRequest : pb::IMessage<InputKeyboardTypeCharRequest>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -3966,6 +4149,9 @@ namespace Swg.Grpc.Input {
     /// <summary>Field number for the "character" field.</summary>
     public const int CharacterFieldNumber = 1;
     private string character_ = "";
+    /// <summary>
+    /// 恰好为 1 个字符
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string Character {
@@ -4108,6 +4294,9 @@ namespace Swg.Grpc.Input {
 
   }
 
+  /// <summary>
+  /// 键盘依次按键请求。
+  /// </summary>
   public sealed partial class InputKeyboardTypeKeysRequest : pb::IMessage<InputKeyboardTypeKeysRequest>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -4157,6 +4346,9 @@ namespace Swg.Grpc.Input {
     private static readonly pb::FieldCodec<string> _repeated_keys_codec
         = pb::FieldCodec.ForString(10);
     private readonly pbc::RepeatedField<string> keys_ = new pbc::RepeatedField<string>();
+    /// <summary>
+    /// 按键名称列表（如 ["Ctrl", "C"]）
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public pbc::RepeatedField<string> Keys {
@@ -4286,6 +4478,9 @@ namespace Swg.Grpc.Input {
 
   }
 
+  /// <summary>
+  /// 键盘同时按键请求（组合键）。
+  /// </summary>
   public sealed partial class InputKeyboardTypeSimultaneouslyRequest : pb::IMessage<InputKeyboardTypeSimultaneouslyRequest>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -4335,6 +4530,9 @@ namespace Swg.Grpc.Input {
     private static readonly pb::FieldCodec<string> _repeated_keys_codec
         = pb::FieldCodec.ForString(10);
     private readonly pbc::RepeatedField<string> keys_ = new pbc::RepeatedField<string>();
+    /// <summary>
+    /// 组合键名称列表
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public pbc::RepeatedField<string> Keys {
@@ -4464,6 +4662,9 @@ namespace Swg.Grpc.Input {
 
   }
 
+  /// <summary>
+  /// 键盘单按键请求。
+  /// </summary>
   public sealed partial class InputKeyboardTypeKeyRequest : pb::IMessage<InputKeyboardTypeKeyRequest>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -4511,6 +4712,9 @@ namespace Swg.Grpc.Input {
     /// <summary>Field number for the "key" field.</summary>
     public const int KeyFieldNumber = 1;
     private string key_ = "";
+    /// <summary>
+    /// 按键名称（如 Enter、Escape）
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string Key {
@@ -4653,6 +4857,9 @@ namespace Swg.Grpc.Input {
 
   }
 
+  /// <summary>
+  /// 键盘按下请求（不释放）。
+  /// </summary>
   public sealed partial class InputKeyboardPressRequest : pb::IMessage<InputKeyboardPressRequest>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -4700,6 +4907,9 @@ namespace Swg.Grpc.Input {
     /// <summary>Field number for the "key" field.</summary>
     public const int KeyFieldNumber = 1;
     private string key_ = "";
+    /// <summary>
+    /// 按键名称
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string Key {
@@ -4842,6 +5052,9 @@ namespace Swg.Grpc.Input {
 
   }
 
+  /// <summary>
+  /// 键盘释放请求。
+  /// </summary>
   public sealed partial class InputKeyboardReleaseRequest : pb::IMessage<InputKeyboardReleaseRequest>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -4889,6 +5102,9 @@ namespace Swg.Grpc.Input {
     /// <summary>Field number for the "key" field.</summary>
     public const int KeyFieldNumber = 1;
     private string key_ = "";
+    /// <summary>
+    /// 按键名称
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string Key {
@@ -5031,6 +5247,9 @@ namespace Swg.Grpc.Input {
 
   }
 
+  /// <summary>
+  /// 键盘按键序列请求（支持修饰符表示法，如 "Ctrl+C"）。
+  /// </summary>
   public sealed partial class InputKeyboardTypeSequenceRequest : pb::IMessage<InputKeyboardTypeSequenceRequest>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -5078,6 +5297,9 @@ namespace Swg.Grpc.Input {
     /// <summary>Field number for the "sequence" field.</summary>
     public const int SequenceFieldNumber = 1;
     private string sequence_ = "";
+    /// <summary>
+    /// 按键序列字符串
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string Sequence {
@@ -5220,6 +5442,9 @@ namespace Swg.Grpc.Input {
 
   }
 
+  /// <summary>
+  /// 等待请求。
+  /// </summary>
   public sealed partial class InputWaitRequest : pb::IMessage<InputWaitRequest>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -5267,6 +5492,9 @@ namespace Swg.Grpc.Input {
     /// <summary>Field number for the "milliseconds" field.</summary>
     public const int MillisecondsFieldNumber = 1;
     private int milliseconds_;
+    /// <summary>
+    /// 等待时间（毫秒），必须 >= 0
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int Milliseconds {

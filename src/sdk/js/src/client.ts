@@ -42,6 +42,15 @@ export type ResolvedSwgClientConfig = ReturnType<typeof resolveConfig>;
 
 /**
  * 聚合 7 个 gRPC 服务的客户端；默认使用不安全连接（与 SwgServer 一致）。
+ *
+ * 服务属性说明：
+ * - `win32`：Win32 系统操作（窗口管理、进程管理、剪贴板、系统信息、消息发送）
+ * - `cv`：计算机视觉（模板匹配、像素查找/计数、屏幕截图、ROI 一致性检测）
+ * - `input`：输入模拟（键盘输入、鼠标操作、光标位置查询）
+ * - `ocr`：光学字符识别（文字识别、表格识别、QuickTable 快速表格）
+ * - `fs`：文件系统操作（文件读写、复制/移动/删除、目录操作、文件搜索）
+ * - `capture`：流量捕获（监听窗口管理、HTTP 交换记录查询、通知/流量流订阅）
+ * - `flaui`：FlaUI UI 自动化（会话管理、元素查找/遍历、鼠标点击、焦点控制）
  */
 export class SwgClient {
   readonly win32: Win32ServiceClient;
@@ -50,7 +59,6 @@ export class SwgClient {
   readonly ocr: OcrServiceClient;
   readonly fs: FsServiceClient;
   readonly capture: CaptureServiceClient;
-  /** FlaUI `AutomationService` */
   readonly flaui: FlaUiServiceClient;
 
   private readonly channels: grpc.Client[] = [];

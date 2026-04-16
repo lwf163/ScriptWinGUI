@@ -1,105 +1,192 @@
+// Copyright ScriptWinGUI. All rights reserved.
+//
+// ──────────────────────────────────────────────────────────────────────────────
+// OCR（光学字符识别）服务 Proto 定义
+//
+// 提供屏幕/图像文字识别、表格识别、带匹配的文本识别等功能。
+// 支持 PaddleSharp 和 Tesseract 两种识别引擎。
+//
+// 包名：swg.ocr
+// C# 命名空间：Swg.Grpc.Ocr
+// 服务名：OcrService
+// ──────────────────────────────────────────────────────────────────────────────
+
 syntax = "proto3";
 
 package swg.ocr;
 
 option csharp_namespace = "Swg.Grpc.Ocr";
 
+// 屏幕矩形区域（绝对坐标）。
 message Roi {
+  // 左上角 X 坐标
   int32 left = 1;
+  // 左上角 Y 坐标
   int32 top = 2;
+  // 区域宽度（必须为正值）
   int32 width = 3;
+  // 区域高度（必须为正值）
   int32 height = 4;
 }
 
+// 屏幕 OCR 文字识别请求。
 message OcrScreenStringsRequest {
+  // 屏幕识别区域
   Roi roi = 1;
+  // 识别引擎：PaddleSharp（默认）或 Tesseract
   string engine = 2;
+  // 识别语言：Chinese（默认）或 English
   string language = 3;
+  // PaddleSharp 中文模型版本：ChineseV3（默认）/ ChineseV4 / ChineseV5（或简写 V3/V4/V5）
   string paddle_chinese_model = 4;
 }
 
+// 屏幕 OCR 带文本匹配的识别请求。
 message OcrScreenMatchRequest {
+  // 屏幕识别区域
   Roi roi = 1;
+  // 要匹配的文本（不能为空字符串，服务端不 Trim）
   string match_text = 2;
+  // 识别引擎
   string engine = 3;
+  // 识别语言
   string language = 4;
+  // PaddleSharp 中文模型版本
   string paddle_chinese_model = 5;
 }
 
+// 屏幕 OCR 表格识别请求（仅支持 PaddleSharp 引擎）。
 message OcrScreenTableRequest {
+  // 屏幕识别区域
   Roi roi = 1;
+  // 识别引擎（必须为 PaddleSharp）
   string engine = 2;
+  // 识别语言
   string language = 3;
+  // PaddleSharp 中文模型版本
   string paddle_chinese_model = 4;
 }
 
+// 图像文件 OCR 文字识别请求。
 message OcrImageStringsRequest {
+  // 图像路径或 Base64 / Data URL 编码
   string image = 1;
+  // 识别引擎
   string engine = 2;
+  // 识别语言
   string language = 3;
+  // PaddleSharp 中文模型版本
   string paddle_chinese_model = 4;
 }
 
+// 图像文件 OCR 表格识别请求（仅支持 PaddleSharp 引擎）。
 message OcrImageTableRequest {
+  // 图像路径或 Base64 / Data URL 编码
   string image = 1;
+  // 识别引擎（必须为 PaddleSharp）
   string engine = 2;
+  // 识别语言
   string language = 3;
+  // PaddleSharp 中文模型版本
   string paddle_chinese_model = 4;
 }
 
+// 屏幕 QuickTable 快速表格检测请求。
 message OcrScreenQuickTableRequest {
+  // 屏幕识别区域
   Roi roi = 1;
+  // 识别语言：Chinese（默认）或 English
   string language = 2;
+  // 是否启用调试输出
   bool debug = 3;
+  // 是否保存单元格调试图像
   bool save_cell_debug_images = 4;
+  // 调试图像输出目录
   string debug_output_directory = 5;
+  // 调试图像文件名前缀（默认 quicktable）
   string debug_image_base_name = 6;
 }
 
+// 图像文件 QuickTable 快速表格检测请求。
 message OcrImageQuickTableRequest {
+  // 图像路径或 Base64 / Data URL 编码
   string image = 1;
+  // 识别语言
   string language = 2;
+  // 是否启用调试输出
   bool debug = 3;
+  // 是否保存单元格调试图像
   bool save_cell_debug_images = 4;
+  // 调试图像输出目录
   string debug_output_directory = 5;
+  // 调试图像文件名前缀
   string debug_image_base_name = 6;
 }
 
+// OCR 识别到的文本行。
 message OcrStringLineItem {
+  // 识别到的文本内容
   string text = 1;
+  // 文本行区域左上角 X 坐标
   int32 left = 2;
+  // 文本行区域左上角 Y 坐标
   int32 top = 3;
+  // 文本行区域宽度
   int32 width = 4;
+  // 文本行区域高度
   int32 height = 5;
+  // 文本行中心点 X 坐标
   double center_x = 6;
+  // 文本行中心点 Y 坐标
   double center_y = 7;
+  // 识别置信度（0.0-1.0）
   double confidence = 8;
 }
 
+// OCR 文字识别结果。
 message OcrStringsResponse {
+  // 识别到的文本行列表
   repeated OcrStringLineItem items = 1;
 }
 
+// OCR 表格单元格。
 message OcrTableCellItem {
+  // 单元格文本
   string text = 1;
+  // 单元格区域左上角 X 坐标
   int32 left = 2;
+  // 单元格区域左上角 Y 坐标
   int32 top = 3;
+  // 单元格区域宽度
   int32 width = 4;
+  // 单元格区域高度
   int32 height = 5;
+  // 单元格行索引
   int32 row = 6;
+  // 单元格列索引
   int32 column = 7;
 }
 
+// OCR 表格识别结果。
 message OcrTableResponse {
+  // 表格单元格列表
   repeated OcrTableCellItem cells = 1;
 }
 
+// OCR gRPC 服务。
 service OcrService {
+  // 对屏幕指定区域进行 OCR 文字识别。
   rpc RecognizeScreenStrings(OcrScreenStringsRequest) returns (OcrStringsResponse);
+  // 对屏幕指定区域进行 OCR 识别，仅返回包含匹配文本的行。
   rpc RecognizeScreenStringsMatch(OcrScreenMatchRequest) returns (OcrStringsResponse);
+  // 对屏幕指定区域进行表格结构识别（仅 PaddleSharp）。
   rpc RecognizeScreenTable(OcrScreenTableRequest) returns (OcrTableResponse);
+  // 对图像文件进行 OCR 文字识别。
   rpc RecognizeImageStrings(OcrImageStringsRequest) returns (OcrStringsResponse);
+  // 对图像文件进行表格结构识别（仅 PaddleSharp）。
   rpc RecognizeImageTable(OcrImageTableRequest) returns (OcrTableResponse);
+  // 对屏幕指定区域使用 QuickTable 算法进行快速表格检测。
   rpc RecognizeScreenQuickTable(OcrScreenQuickTableRequest) returns (OcrTableResponse);
+  // 对图像文件使用 QuickTable 算法进行快速表格检测。
   rpc RecognizeImageQuickTable(OcrImageQuickTableRequest) returns (OcrTableResponse);
 }

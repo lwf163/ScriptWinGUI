@@ -1,3 +1,15 @@
+// Copyright ScriptWinGUI. All rights reserved.
+//
+// ──────────────────────────────────────────────────────────────────────────────
+// 文件系统服务 Proto 定义
+//
+// 提供文件读写、复制/移动/删除、目录操作、文件搜索等文件系统操作。
+//
+// 包名：swg.fs
+// C# 命名空间：Swg.Grpc.Fs
+// 服务名：FsService
+// ──────────────────────────────────────────────────────────────────────────────
+
 syntax = "proto3";
 
 import "google/protobuf/timestamp.proto";
@@ -6,152 +18,244 @@ package swg.fs;
 
 option csharp_namespace = "Swg.Grpc.Fs";
 
+// 读取文本文件请求。
 message ReadTextRequest {
+  // 文件路径
   string path = 1;
+  // 文本编码名称（如 utf-8、gb2312），为空使用默认编码
   string encoding = 2;
 }
 
+// 读取文本文件响应。
 message ReadTextResponse {
+  // 文件文本内容
   string text = 1;
 }
 
+// 写入文本文件请求（覆盖已有内容）。
 message WriteTextRequest {
+  // 文件路径
   string path = 1;
+  // 要写入的文本内容
   string text = 2;
+  // 文本编码名称
   string encoding = 3;
 }
 
+// 写入文本文件响应。
 message WriteTextResponse {
+  // 是否写入成功
   bool success = 1;
 }
 
+// 追加文本到文件请求。
 message AppendTextRequest {
+  // 文件路径
   string path = 1;
+  // 要追加的文本内容
   string text = 2;
+  // 文本编码名称
   string encoding = 3;
 }
 
+// 追加文本响应。
 message AppendTextResponse {
+  // 是否追加成功
   bool success = 1;
 }
 
+// 复制文件请求。
 message CopyFileRequest {
+  // 源文件路径
   string source_path = 1;
+  // 目标文件路径
   string target_path = 2;
+  // 是否覆盖已存在的目标文件
   bool overwrite = 3;
 }
 
+// 复制文件响应。
 message CopyFileResponse {
+  // 是否复制成功
   bool success = 1;
 }
 
+// 移动文件请求。
 message MoveFileRequest {
+  // 源文件路径
   string source_path = 1;
+  // 目标文件路径
   string target_path = 2;
+  // 是否覆盖已存在的目标文件
   bool overwrite = 3;
 }
 
+// 移动文件响应。
 message MoveFileResponse {
+  // 是否移动成功
   bool success = 1;
 }
 
+// 删除文件请求。
 message DeleteFileRequest {
+  // 要删除的文件路径
   string path = 1;
 }
 
+// 删除文件响应。
 message DeleteFileResponse {
+  // 是否删除成功
   bool success = 1;
 }
 
+// 检查路径是否存在请求。
 message ExistsRequest {
+  // 要检查的路径
   string path = 1;
 }
 
+// 检查路径是否存在响应。
 message ExistsResponse {
+  // 路径是否存在
   bool exists = 1;
 }
 
+// 获取文件/目录信息请求。
 message GetItemInfoRequest {
+  // 目标路径
   string path = 1;
 }
 
+// 文件/目录详细信息。
 message GetItemInfoResponse {
+  // 文件/目录名称
   string name = 1;
+  // 完整路径
   string full_path = 2;
+  // 是否为目录
   bool is_directory = 3;
+  // 文件大小字节数（has_size_bytes 为 true 时有效，目录无此字段）
   int64 size_bytes = 4;
+  // 标记是否包含文件大小
   bool has_size_bytes = 5;
+  // 创建时间（UTC）
   google.protobuf.Timestamp creation_time_utc = 6;
+  // 最后修改时间（UTC）
   google.protobuf.Timestamp last_write_time_utc = 7;
+  // 最后访问时间（UTC）
   google.protobuf.Timestamp last_access_time_utc = 8;
+  // 文件属性字符串
   string attributes = 9;
 }
 
+// 创建目录请求（递归创建）。
 message CreateDirectoryRequest {
+  // 要创建的目录路径
   string path = 1;
 }
 
+// 创建目录响应。
 message CreateDirectoryResponse {
+  // 是否创建成功
   bool success = 1;
 }
 
+// 删除目录请求（递归删除）。
 message DeleteDirectoryRequest {
+  // 要删除的目录路径
   string path = 1;
 }
 
+// 删除目录响应。
 message DeleteDirectoryResponse {
+  // 是否删除成功
   bool success = 1;
 }
 
+// 列出目录内容请求。
 message ListDirectoryRequest {
+  // 目录路径
   string path = 1;
+  // 搜索模式（如 *.txt），为空则返回所有
   string pattern = 2;
 }
 
+// 列出目录内容响应。
 message ListDirectoryResponse {
+  // 文件和目录名称列表
   repeated string names = 1;
 }
 
+// 移动目录请求。
 message MoveDirectoryRequest {
+  // 源目录路径
   string source_path = 1;
+  // 目标目录路径
   string target_path = 2;
+  // 是否覆盖已存在的目标目录
   bool overwrite = 3;
 }
 
+// 移动目录响应。
 message MoveDirectoryResponse {
+  // 是否移动成功
   bool success = 1;
 }
 
+// 递归搜索文件请求。
 message SearchFilesRequest {
+  // 搜索根目录
   string root_path = 1;
+  // 搜索模式（如 *.txt），为空则匹配所有文件
   string pattern = 2;
 }
 
+// 搜索文件响应。
 message SearchFilesResponse {
+  // 匹配文件的完整路径列表
   repeated string paths = 1;
 }
 
+// 查找可执行文件快捷方式请求。
 message FindExeShortcutsRequest {
+  // 可执行文件名（如 chrome.exe）
   string exe_name = 1;
 }
 
+// 查找快捷方式响应。
 message FindExeShortcutsResponse {
+  // 找到的快捷方式目标路径列表
   repeated string target_paths = 1;
 }
 
+// 文件系统 gRPC 服务。
 service FsService {
+  // 读取文本文件的完整内容。
   rpc ReadText(ReadTextRequest) returns (ReadTextResponse);
+  // 将文本写入文件（覆盖已有内容）。
   rpc WriteText(WriteTextRequest) returns (WriteTextResponse);
+  // 将文本追加到文件末尾。
   rpc AppendText(AppendTextRequest) returns (AppendTextResponse);
+  // 复制文件到目标路径。
   rpc CopyFile(CopyFileRequest) returns (CopyFileResponse);
+  // 移动文件到目标路径。
   rpc MoveFile(MoveFileRequest) returns (MoveFileResponse);
+  // 删除指定文件。
   rpc DeleteFile(DeleteFileRequest) returns (DeleteFileResponse);
+  // 检查文件或目录是否存在。
   rpc Exists(ExistsRequest) returns (ExistsResponse);
+  // 获取文件或目录的详细信息。
   rpc GetItemInfo(GetItemInfoRequest) returns (GetItemInfoResponse);
+  // 创建目录（递归创建所有不存在的父目录）。
   rpc CreateDirectory(CreateDirectoryRequest) returns (CreateDirectoryResponse);
+  // 删除目录（递归删除所有子目录和文件）。
   rpc DeleteDirectory(DeleteDirectoryRequest) returns (DeleteDirectoryResponse);
+  // 列出目录下的文件和子目录名称。
   rpc ListDirectory(ListDirectoryRequest) returns (ListDirectoryResponse);
+  // 移动目录到目标路径。
   rpc MoveDirectory(MoveDirectoryRequest) returns (MoveDirectoryResponse);
+  // 在指定根目录下递归搜索匹配模式的文件。
   rpc SearchFiles(SearchFilesRequest) returns (SearchFilesResponse);
+  // 在系统常见位置查找指定可执行文件的快捷方式。
   rpc FindExeShortcuts(FindExeShortcutsRequest) returns (FindExeShortcutsResponse);
 }

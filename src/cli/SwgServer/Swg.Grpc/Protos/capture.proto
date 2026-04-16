@@ -1,3 +1,16 @@
+// Copyright ScriptWinGUI. All rights reserved.
+//
+// ──────────────────────────────────────────────────────────────────────────────
+// Capture 服务 Proto 定义
+//
+// 提供网络流量监听窗口管理、HTTP 交换记录查询、
+// Windows 通知事件流和流量数据流的实时订阅能力。
+//
+// 包名：swg.capture
+// C# 命名空间：Swg.Grpc.Capture
+// 服务名：CaptureService
+// ──────────────────────────────────────────────────────────────────────────────
+
 syntax = "proto3";
 
 import "google/protobuf/empty.proto";
@@ -6,95 +19,171 @@ package swg.capture;
 
 option csharp_namespace = "Swg.Grpc.Capture";
 
+// 创建监听窗口的请求参数。
+// 监听窗口会启动本地代理服务器，拦截匹配规则的 HTTP/HTTPS 流量，
+// 并将数据持久化到 SQLite 数据库；同时可选启用通知捕获和 ETW 探针。
 message CaptureCreateListenWindowRequest {
+  // SQLite 数据库存储目录，为空则使用默认临时目录
   string storage_directory = 1;
+  // 代理监听端口，0 或不填则自动分配
   int32 proxy_listen_port = 2;
+  // 单个请求/响应体的最大字节数
   int32 max_body_bytes_per_part = 3;
+  // 批量写入数据库的刷新间隔（毫秒）
   int32 flush_interval_ms = 4;
+  // 单批次最大行数
   int32 flush_batch_max_rows = 5;
+  // 单批次最大字节数
   int64 flush_batch_max_bytes = 6;
+  // 是否允许捕获所有流量（不过滤）
   bool traffic_allow_all = 7;
+  // 流量过滤规则 - 主机名包含关键词列表
   repeated string traffic_host_contains = 8;
+  // 流量过滤规则 - 路径前缀列表
   repeated string traffic_path_prefixes = 9;
+  // 是否在当前用户存储安装 MITM 根证书
   bool mitm_user_trust_root = 10;
+  // 是否在计算机存储安装 MITM 根证书
   bool mitm_machine_trust_root = 11;
+  // 是否以管理员权限安装根证书
   bool mitm_trust_root_as_administrator = 12;
+  // 是否启用 Windows 通知捕获
   bool enable_notifications = 13;
+  // 通知事件去抖间隔（毫秒）
   int32 notification_debounce_ms = 14;
+  // 通知过滤 - 进程名包含关键词
   repeated string notification_process_name_contains = 15;
+  // 通知过滤 - 标题包含关键词
   string notification_title_contains = 16;
+  // 窗口事件钩子类型列表（如 LOCATION_CHANGE、NAME_CHANGE 等）
   repeated string hook_window_event_types = 17;
+  // 是否启用 ETW 探针
   bool enable_etw_probe = 18;
+  // ETW 音频轨提供者名称列表
   repeated string etw_provider_names = 19;
+  // ETW 窗口轨提供者名称列表（须与 etw_window_event_types 同时提供）
   repeated string etw_window_provider_names = 20;
+  // ETW 窗口事件类型列表（须与 etw_window_provider_names 同时提供）
   repeated string etw_window_event_types = 21;
+  // ETW 关键字掩码（仅 has_etw_match_any_keyword 为 true 时有效）
   uint64 etw_match_any_keyword = 22;
+  // 标记是否显式设置 etw_match_any_keyword
   bool has_etw_match_any_keyword = 23;
+  // ETW 事件级别（仅 has_etw_level 为 true 时有效）
   uint32 etw_level = 24;
+  // 标记是否显式设置 etw_level
   bool has_etw_level = 25;
+  // ETW 音频轨队列容量
   int32 etw_queue_capacity = 26;
+  // ETW 窗口轨队列容量
   int32 etw_window_queue_capacity = 27;
+  // 流量统计上报间隔（毫秒）
   int32 traffic_stats_interval_ms = 28;
 }
 
+// 创建监听窗口的响应。
 message CaptureCreateListenWindowResponse {
+  // 监听窗口的唯一标识（GUID 格式），后续操作需使用此 ID
   string listen_window_id = 1;
+  // SQLite 数据库文件完整路径
   string sqlite_path = 2;
+  // 代理实际监听的端口号
   int32 proxy_listen_port = 3;
 }
 
+// 停止监听窗口的请求参数。
 message CaptureStopListenWindowRequest {
+  // 由 CreateListenWindow 返回的监听窗口 ID
   string listen_window_id = 1;
 }
 
+// 停止监听窗口的响应。
 message CaptureStopListenWindowResponse {
+  // 是否成功停止（若 ID 不存在则为 false）
   bool stopped = 1;
+  // 已关闭窗口对应的 SQLite 数据库路径，未停止时为空字符串
   string sqlite_path = 2;
 }
 
+// 分页查询历史记录的请求参数。
 message CaptureHistoryQueryRequest {
+  // 监听窗口 ID
   string listen_window_id = 1;
+  // 单页最大返回条数
   int32 limit = 2;
+  // 偏移量
   int32 offset = 3;
+  // ISO 8601 时间戳，仅返回此时间之前捕获的记录（可选）
   string before_captured_at_utc = 4;
 }
 
+// 单条 HTTP 交换记录。
 message CaptureHttpExchangeItem {
+  // 记录唯一 ID
   int64 id = 1;
+  // 捕获时间（ISO 8601 格式）
   string captured_at = 2;
+  // HTTP 方法（GET/POST 等）
   string method = 3;
+  // 协议（http/https）
   string scheme = 4;
+  // 目标主机名
   string host = 5;
+  // 目标端口
   int32 port = 6;
+  // 请求路径
   string path = 7;
+  // 查询字符串
   string query_text = 8;
+  // 用于展示的完整 URL
   string url_display = 9;
+  // HTTP 响应状态码（has_response_status 为 true 时有效）
   int32 response_status = 10;
+  // 标记是否包含响应状态码
   bool has_response_status = 11;
+  // 请求耗时毫秒数（has_duration_ms 为 true 时有效）
   int32 duration_ms = 12;
+  // 标记是否包含耗时信息
   bool has_duration_ms = 13;
+  // 错误信息（无错误时为空）
   string error_text = 14;
+  // 发起请求的客户端进程 ID（has_client_process_id 为 true 时有效）
   uint32 client_process_id = 15;
+  // 标记是否包含客户端进程 ID
   bool has_client_process_id = 16;
+  // 发起请求的客户端进程名称
   string client_process_name = 17;
 }
 
+// 历史记录查询响应。
 message CaptureHistoryQueryResponse {
+  // HTTP 交换记录列表
   repeated CaptureHttpExchangeItem items = 1;
 }
 
+// Windows 通知事件（服务端流推送）。
 message CaptureNotificationEvent {
+  // JSON 格式的通知事件载荷
   string json_payload = 1;
 }
 
+// 流量数据块（服务端流推送）。
 message TrafficChunk {
+  // JSON 格式的流量事件载荷
   string json_payload = 1;
 }
 
+// Capture gRPC 服务。
+// 提供监听窗口管理、历史记录查询和实时事件流订阅。
 service CaptureService {
+  // 创建一个监听窗口实例，启动代理服务器和数据捕获。
   rpc CreateListenWindow(CaptureCreateListenWindowRequest) returns (CaptureCreateListenWindowResponse);
+  // 停止并销毁指定监听窗口，释放代理端口和所有关联资源。
   rpc StopListenWindow(CaptureStopListenWindowRequest) returns (CaptureStopListenWindowResponse);
+  // 分页查询指定监听窗口捕获的 HTTP 交换记录。
   rpc QueryHistory(CaptureHistoryQueryRequest) returns (CaptureHistoryQueryResponse);
+  // 订阅 Windows 通知事件流（服务端流式 RPC）。
   rpc SubscribeNotifications(google.protobuf.Empty) returns (stream CaptureNotificationEvent);
+  // 订阅流量数据事件流（服务端流式 RPC）。
   rpc SubscribeTraffic(google.protobuf.Empty) returns (stream TrafficChunk);
 }

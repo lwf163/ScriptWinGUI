@@ -1,3 +1,16 @@
+// Copyright ScriptWinGUI. All rights reserved.
+//
+// ──────────────────────────────────────────────────────────────────────────────
+// Win32 系统服务 Proto 定义
+//
+// 提供窗口管理、进程管理、剪贴板操作、系统信息查询、
+// Win32 消息发送、控件文本获取等底层 Windows API 能力。
+//
+// 包名：swg.win32
+// C# 命名空间：Swg.Grpc.Win32
+// 服务名：Win32Service
+// ──────────────────────────────────────────────────────────────────────────────
+
 syntax = "proto3";
 
 import "google/protobuf/empty.proto";
@@ -6,192 +19,397 @@ package swg.win32;
 
 option csharp_namespace = "Swg.Grpc.Win32";
 
+// Win32 gRPC 服务。
+// 提供窗口、进程、剪贴板、系统信息等 Windows 底层操作。
 service Win32Service {
+  // 根据标题或类名查找顶层窗口句柄。
   rpc FindWindow(FindWindowRequest) returns (WindowHandleResponse);
+  // 获取当前前台窗口句柄。
   rpc GetForegroundWindow(google.protobuf.Empty) returns (WindowHandleResponse);
+  // 将指定窗口设为前台窗口。
   rpc SetForegroundWindow(ForegroundWindowRequest) returns (OkResponse);
+  // 获取窗口详细信息（标题、类名、进程 ID、位置等）。
   rpc GetWindowInfo(WindowInfoRequest) returns (WindowInfoResponse);
+  // 设置窗口位置和大小。
   rpc SetWindowPositionResize(WindowPositionResizeRequest) returns (OkResponse);
+  // 设置窗口状态（最大化、最小化、还原等）。
   rpc SetWindowState(WindowStateRequest) returns (OkResponse);
+  // 关闭指定窗口（发送 WM_CLOSE）。
   rpc CloseWindow(CloseWindowRequest) returns (OkResponse);
+  // 获取窗口所属进程 ID。
   rpc GetWindowProcessId(WindowProcessIdRequest) returns (WindowProcessIdResponse);
+  // 枚举父窗口的所有子窗口句柄。
   rpc EnumChildWindows(EnumChildWindowsRequest) returns (ChildWindowHandlesResponse);
+  // 在父窗口的子窗口中查找匹配条件的子窗口。
   rpc FindChildWindow(FindChildWindowRequest) returns (WindowHandleResponse);
+  // 启动新进程。
   rpc StartProcess(ProcessStartRequest) returns (ProcessStartResponse);
+  // 强制终止指定进程。
   rpc KillProcess(ProcessKillRequest) returns (OkResponse);
+  // 获取当前（服务端）进程 ID。
   rpc GetCurrentProcessId(google.protobuf.Empty) returns (ProcessCurrentIdResponse);
+  // 检查指定进程是否仍在运行。
   rpc ProcessExists(ProcessExistsRequest) returns (ProcessExistsResponse);
+  // 等待指定进程退出。
   rpc ProcessWaitExit(ProcessWaitExitRequest) returns (ProcessWaitExitResponse);
+  // 获取系统剪贴板文本内容。
   rpc GetClipboardText(google.protobuf.Empty) returns (ClipboardTextResponse);
+  // 设置系统剪贴板文本内容。
   rpc SetClipboardText(ClipboardTextSetRequest) returns (OkResponse);
+  // 清空系统剪贴板。
   rpc ClearClipboard(google.protobuf.Empty) returns (ClipboardClearResponse);
+  // 获取主显示器分辨率。
   rpc GetMainScreen(google.protobuf.Empty) returns (MainScreenResponse);
+  // 获取虚拟屏幕（多显示器合并区域）的范围和尺寸。
   rpc GetVirtualScreen(google.protobuf.Empty) returns (VirtualScreenResponse);
+  // 获取系统 DPI 设置。
   rpc GetSystemDpi(google.protobuf.Empty) returns (SystemDpiResponse);
+  // 获取当前鼠标光标位置。
   rpc GetCursorPosition(google.protobuf.Empty) returns (CursorPositionResponse);
+  // 获取当前前台窗口的详细信息。
   rpc GetForegroundWindowInfo(google.protobuf.Empty) returns (ForegroundWindowInfoResponse);
+  // 向窗口发送消息（SendMessage，同步等待处理完成）。
   rpc SendMessage(WindowMessageRequest) returns (WindowMessageSendResponse);
+  // 向窗口投递消息（PostMessage，异步投递到消息队列）。
   rpc PostMessage(WindowMessageRequest) returns (WindowMessagePostResponse);
+  // 获取屏幕指定坐标处的窗口句柄。
   rpc WindowFromPoint(WindowFromPointRequest) returns (WindowHandleAtPointResponse);
+  // 向窗口发送按键消息（SendKeys 方式）。
   rpc SendKeys(WindowKeysSendRequest) returns (WindowKeysSendResponse);
+  // 获取 Win32 控件文本内容。
   rpc GetControlText(ControlTextGetRequest) returns (ControlTextGetResponse);
+  // 向目标窗口发送 WM_COMMAND 消息。
   rpc SendWmCommand(WmCommandSendRequest) returns (WmCommandSendResponse);
 }
 
-message OkResponse { bool ok = 1; }
+// 通用操作结果响应。
+message OkResponse {
+  // 操作是否成功
+  bool ok = 1;
+}
 
+// 窗口矩形区域。
 message WindowRectDto {
+  // 左边界
   int32 left = 1;
+  // 上边界
   int32 top = 2;
+  // 右边界
   int32 right = 3;
+  // 下边界
   int32 bottom = 4;
+  // 宽度
   int32 width = 5;
+  // 高度
   int32 height = 6;
 }
 
-message WindowHandleResponse { string window_handle = 1; }
-
-message WindowInfoResponse {
+// 窗口句柄响应。
+message WindowHandleResponse {
+  // 窗口句柄字符串（十进制数值）
   string window_handle = 1;
+}
+
+// 窗口详细信息响应。
+message WindowInfoResponse {
+  // 窗口句柄
+  string window_handle = 1;
+  // 窗口标题
   string title = 2;
+  // 窗口类名
   string class_name = 3;
+  // 所属进程 ID
   uint32 process_id = 4;
+  // 窗口矩形区域
   WindowRectDto rect = 5;
 }
 
+// 查找窗口请求。
 message FindWindowRequest {
+  // 窗口标题包含的文本（与 class_name_equals 至少一个必填）
   string title_contains = 1;
+  // 窗口类名精确匹配
   string class_name_equals = 2;
+  // 进程 ID 过滤（has_process_id 为 true 时有效）
   uint32 process_id = 3;
+  // 标记是否指定进程 ID
   bool has_process_id = 4;
+  // 是否只查找可见窗口
   bool visible_only = 5;
 }
 
+// 查找子窗口请求。
 message FindChildWindowRequest {
+  // 父窗口句柄
   string parent_window_handle = 1;
+  // 子窗口标题包含的文本
   string title_contains = 2;
+  // 子窗口类名精确匹配
   string class_name_equals = 3;
+  // 是否只查找可见子窗口
   bool visible_only = 4;
 }
 
-message WindowInfoRequest { string window_handle = 1; }
-
-message EnumChildWindowsRequest { string parent_window_handle = 1; }
-
-message ChildWindowHandlesResponse { repeated string window_handles = 1; }
-
-message ForegroundWindowRequest { string window_handle = 1; }
-
-message WindowPositionResizeRequest {
+// 窗口信息查询请求。
+message WindowInfoRequest {
+  // 目标窗口句柄
   string window_handle = 1;
+}
+
+// 枚举子窗口请求。
+message EnumChildWindowsRequest {
+  // 父窗口句柄
+  string parent_window_handle = 1;
+}
+
+// 子窗口句柄列表响应。
+message ChildWindowHandlesResponse {
+  // 子窗口句柄列表
+  repeated string window_handles = 1;
+}
+
+// 设置前台窗口请求。
+message ForegroundWindowRequest {
+  // 目标窗口句柄
+  string window_handle = 1;
+}
+
+// 设置窗口位置和大小请求。
+message WindowPositionResizeRequest {
+  // 目标窗口句柄
+  string window_handle = 1;
+  // 窗口左上角 X 坐标
   int32 left = 2;
+  // 窗口左上角 Y 坐标
   int32 top = 3;
+  // 窗口宽度
   int32 width = 4;
+  // 窗口高度
   int32 height = 5;
 }
 
+// 设置窗口状态请求。
 message WindowStateRequest {
+  // 目标窗口句柄
   string window_handle = 1;
+  // 窗口状态（如 Maximize、Minimize、Restore）
   string state = 2;
 }
 
-message CloseWindowRequest { string window_handle = 1; }
+// 关闭窗口请求。
+message CloseWindowRequest {
+  // 目标窗口句柄
+  string window_handle = 1;
+}
 
-message WindowProcessIdRequest { string window_handle = 1; }
+// 获取窗口进程 ID 请求。
+message WindowProcessIdRequest {
+  // 目标窗口句柄
+  string window_handle = 1;
+}
 
-message WindowProcessIdResponse { uint32 process_id = 1; }
+// 窗口进程 ID 响应。
+message WindowProcessIdResponse {
+  // 进程 ID
+  uint32 process_id = 1;
+}
 
+// 启动进程请求。
 message ProcessStartRequest {
+  // 可执行文件路径
   string executable_path = 1;
+  // 启动参数
   string arguments = 2;
 }
 
-message ProcessStartResponse { uint32 process_id = 1; }
-
-message ProcessKillRequest { uint32 process_id = 1; }
-
-message ProcessCurrentIdResponse { uint32 process_id = 1; }
-
-message ProcessExistsRequest { uint32 process_id = 1; }
-
-message ProcessExistsResponse { bool exists = 1; }
-
-message ProcessWaitExitRequest {
+// 启动进程响应。
+message ProcessStartResponse {
+  // 新进程 ID
   uint32 process_id = 1;
+}
+
+// 终止进程请求。
+message ProcessKillRequest {
+  // 要终止的进程 ID
+  uint32 process_id = 1;
+}
+
+// 当前进程 ID 响应。
+message ProcessCurrentIdResponse {
+  // 当前进程 ID
+  uint32 process_id = 1;
+}
+
+// 检查进程是否存在请求。
+message ProcessExistsRequest {
+  // 进程 ID
+  uint32 process_id = 1;
+}
+
+// 进程是否存在响应。
+message ProcessExistsResponse {
+  // 进程是否存在
+  bool exists = 1;
+}
+
+// 等待进程退出请求。
+message ProcessWaitExitRequest {
+  // 进程 ID
+  uint32 process_id = 1;
+  // 超时时间（毫秒，has_timeout_ms 为 true 时有效）
   int32 timeout_ms = 2;
+  // 标记是否指定超时时间
   bool has_timeout_ms = 3;
 }
 
-message ProcessWaitExitResponse { bool exited = 1; }
+// 等待进程退出响应。
+message ProcessWaitExitResponse {
+  // 进程是否在超时前退出
+  bool exited = 1;
+}
 
-message ClipboardTextResponse { string text = 1; }
+// 剪贴板文本响应。
+message ClipboardTextResponse {
+  // 剪贴板文本内容
+  string text = 1;
+}
 
-message ClipboardTextSetRequest { string text = 1; }
+// 设置剪贴板文本请求。
+message ClipboardTextSetRequest {
+  // 要设置的文本
+  string text = 1;
+}
 
-message ClipboardClearResponse { bool ok = 1; }
+// 清空剪贴板响应。
+message ClipboardClearResponse {
+  // 是否清空成功
+  bool ok = 1;
+}
 
+// 主显示器分辨率响应。
 message MainScreenResponse {
+  // 屏幕宽度（像素）
   int32 width = 1;
+  // 屏幕高度（像素）
   int32 height = 2;
 }
 
+// 虚拟屏幕响应。
 message VirtualScreenResponse {
+  // 虚拟屏幕左上角 X 坐标
   int32 x = 1;
+  // 虚拟屏幕左上角 Y 坐标
   int32 y = 2;
+  // 虚拟屏幕宽度
   int32 width = 3;
+  // 虚拟屏幕高度
   int32 height = 4;
 }
 
+// 系统 DPI 响应。
 message SystemDpiResponse {
+  // 水平 DPI
   int32 dpi_x = 1;
+  // 垂直 DPI
   int32 dpi_y = 2;
 }
 
+// 光标位置响应。
 message CursorPositionResponse {
+  // X 坐标
   int32 x = 1;
+  // Y 坐标
   int32 y = 2;
 }
 
-message ForegroundWindowInfoResponse { WindowInfoResponse window = 1; }
+// 前台窗口详细信息响应。
+message ForegroundWindowInfoResponse {
+  // 前台窗口信息
+  WindowInfoResponse window = 1;
+}
 
+// 指定坐标窗口查询请求。
 message WindowFromPointRequest {
+  // 屏幕 X 坐标
   int32 x = 1;
+  // 屏幕 Y 坐标
   int32 y = 2;
 }
 
-message WindowHandleAtPointResponse { string window_handle = 1; }
-
-message WindowMessageRequest {
+// 指定坐标窗口句柄响应。
+message WindowHandleAtPointResponse {
+  // 该坐标处的窗口句柄
   string window_handle = 1;
+}
+
+// Win32 消息请求（SendMessage / PostMessage 共用）。
+message WindowMessageRequest {
+  // 目标窗口句柄
+  string window_handle = 1;
+  // 消息 ID
   uint32 msg = 2;
+  // WParam 值（字符串形式的数值）
   string w_param = 3;
+  // LParam 值（字符串形式的数值）
   string l_param = 4;
 }
 
-message WindowMessageSendResponse { int64 result = 1; }
+// SendMessage 结果响应。
+message WindowMessageSendResponse {
+  // 消息处理结果
+  int64 result = 1;
+}
 
-message WindowMessagePostResponse { bool ok = 1; }
+// PostMessage 结果响应。
+message WindowMessagePostResponse {
+  // 是否投递成功
+  bool ok = 1;
+}
 
+// SendKeys 请求。
 message WindowKeysSendRequest {
+  // 目标窗口句柄
   string window_handle = 1;
+  // 按键名称列表
   repeated string keys = 2;
 }
 
-message WindowKeysSendResponse { bool ok = 1; }
+// SendKeys 结果响应。
+message WindowKeysSendResponse {
+  // 是否发送成功
+  bool ok = 1;
+}
 
+// 获取控件文本请求。
 message ControlTextGetRequest {
+  // 控件句柄
   string control_handle = 1;
+  // 最大获取长度（has_max_length 为 true 时有效）
   int32 max_length = 2;
+  // 标记是否指定最大长度
   bool has_max_length = 3;
 }
 
-message ControlTextGetResponse { string text = 1; }
+// 控件文本响应。
+message ControlTextGetResponse {
+  // 控件文本内容
+  string text = 1;
+}
 
+// WM_COMMAND 消息发送请求。
 message WmCommandSendRequest {
+  // 目标窗口句柄
   string target_window_handle = 1;
+  // 命令 ID
   uint32 command_id = 2;
+  // 通知代码
   uint32 notification_code = 3;
+  // 发送者控件句柄
   string sender_handle = 4;
 }
 
-message WmCommandSendResponse { int64 result = 1; }
+// WM_COMMAND 结果响应。
+message WmCommandSendResponse {
+  // 消息处理结果
+  int64 result = 1;
+}

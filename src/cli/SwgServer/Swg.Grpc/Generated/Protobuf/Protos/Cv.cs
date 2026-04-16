@@ -127,6 +127,9 @@ namespace Swg.Grpc.Cv {
 
   }
   #region Messages
+  /// <summary>
+  /// 屏幕矩形区域（绝对坐标）。
+  /// </summary>
   public sealed partial class Roi : pb::IMessage<Roi>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -177,6 +180,9 @@ namespace Swg.Grpc.Cv {
     /// <summary>Field number for the "left" field.</summary>
     public const int LeftFieldNumber = 1;
     private int left_;
+    /// <summary>
+    /// 左上角 X 坐标
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int Left {
@@ -189,6 +195,9 @@ namespace Swg.Grpc.Cv {
     /// <summary>Field number for the "top" field.</summary>
     public const int TopFieldNumber = 2;
     private int top_;
+    /// <summary>
+    /// 左上角 Y 坐标
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int Top {
@@ -201,6 +210,9 @@ namespace Swg.Grpc.Cv {
     /// <summary>Field number for the "width" field.</summary>
     public const int WidthFieldNumber = 3;
     private int width_;
+    /// <summary>
+    /// 区域宽度（必须为正值）
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int Width {
@@ -213,6 +225,9 @@ namespace Swg.Grpc.Cv {
     /// <summary>Field number for the "height" field.</summary>
     public const int HeightFieldNumber = 4;
     private int height_;
+    /// <summary>
+    /// 区域高度（必须为正值）
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int Height {
@@ -427,6 +442,9 @@ namespace Swg.Grpc.Cv {
 
   }
 
+  /// <summary>
+  /// RGB 颜色值（各分量 0-255）。
+  /// </summary>
   public sealed partial class Rgb : pb::IMessage<Rgb>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -476,6 +494,9 @@ namespace Swg.Grpc.Cv {
     /// <summary>Field number for the "r" field.</summary>
     public const int RFieldNumber = 1;
     private int r_;
+    /// <summary>
+    /// 红色分量
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int R {
@@ -488,6 +509,9 @@ namespace Swg.Grpc.Cv {
     /// <summary>Field number for the "g" field.</summary>
     public const int GFieldNumber = 2;
     private int g_;
+    /// <summary>
+    /// 绿色分量
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int G {
@@ -500,6 +524,9 @@ namespace Swg.Grpc.Cv {
     /// <summary>Field number for the "b" field.</summary>
     public const int BFieldNumber = 3;
     private int b_;
+    /// <summary>
+    /// 蓝色分量
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int B {
@@ -690,6 +717,9 @@ namespace Swg.Grpc.Cv {
 
   }
 
+  /// <summary>
+  /// HSV 颜色值。
+  /// </summary>
   public sealed partial class Hsv : pb::IMessage<Hsv>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -739,6 +769,9 @@ namespace Swg.Grpc.Cv {
     /// <summary>Field number for the "h" field.</summary>
     public const int HFieldNumber = 1;
     private double h_;
+    /// <summary>
+    /// 色调（Hue）
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public double H {
@@ -751,6 +784,9 @@ namespace Swg.Grpc.Cv {
     /// <summary>Field number for the "s" field.</summary>
     public const int SFieldNumber = 2;
     private double s_;
+    /// <summary>
+    /// 饱和度（Saturation）
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public double S {
@@ -763,6 +799,9 @@ namespace Swg.Grpc.Cv {
     /// <summary>Field number for the "v" field.</summary>
     public const int VFieldNumber = 3;
     private double v_;
+    /// <summary>
+    /// 明度（Value）
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public double V {
@@ -953,6 +992,9 @@ namespace Swg.Grpc.Cv {
 
   }
 
+  /// <summary>
+  /// 截图输出选项。
+  /// </summary>
   public sealed partial class ScreenshotOptions : pb::IMessage<ScreenshotOptions>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -1004,6 +1046,9 @@ namespace Swg.Grpc.Cv {
     /// <summary>Field number for the "output_kind" field.</summary>
     public const int OutputKindFieldNumber = 1;
     private string outputKind_ = "";
+    /// <summary>
+    /// 输出方式：Base64（默认）或 FilePath
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string OutputKind {
@@ -1016,6 +1061,9 @@ namespace Swg.Grpc.Cv {
     /// <summary>Field number for the "target_file_path" field.</summary>
     public const int TargetFilePathFieldNumber = 2;
     private string targetFilePath_ = "";
+    /// <summary>
+    /// 目标文件路径（output_kind 为 FilePath 时必填）
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string TargetFilePath {
@@ -1028,6 +1076,9 @@ namespace Swg.Grpc.Cv {
     /// <summary>Field number for the "image_format" field.</summary>
     public const int ImageFormatFieldNumber = 3;
     private string imageFormat_ = "";
+    /// <summary>
+    /// 图像格式：Png（默认）、Jpeg 或 Bmp
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string ImageFormat {
@@ -1040,6 +1091,9 @@ namespace Swg.Grpc.Cv {
     /// <summary>Field number for the "base64_variant" field.</summary>
     public const int Base64VariantFieldNumber = 4;
     private string base64Variant_ = "";
+    /// <summary>
+    /// Base64 编码变体：Raw（默认）或 DataUrl
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string Base64Variant {
@@ -1052,6 +1106,9 @@ namespace Swg.Grpc.Cv {
     /// <summary>Field number for the "jpeg_quality" field.</summary>
     public const int JpegQualityFieldNumber = 5;
     private int jpegQuality_;
+    /// <summary>
+    /// JPEG 质量（0-100，0 表示使用引擎默认值）
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int JpegQuality {
@@ -1290,6 +1347,9 @@ namespace Swg.Grpc.Cv {
 
   }
 
+  /// <summary>
+  /// 在指定 ROI 内查找单个模板的请求。
+  /// </summary>
   public sealed partial class FindSingleTemplateRequest : pb::IMessage<FindSingleTemplateRequest>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -1339,6 +1399,9 @@ namespace Swg.Grpc.Cv {
     /// <summary>Field number for the "roi" field.</summary>
     public const int RoiFieldNumber = 1;
     private global::Swg.Grpc.Cv.Roi roi_;
+    /// <summary>
+    /// 屏幕搜索区域
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public global::Swg.Grpc.Cv.Roi Roi {
@@ -1351,6 +1414,9 @@ namespace Swg.Grpc.Cv {
     /// <summary>Field number for the "template" field.</summary>
     public const int TemplateFieldNumber = 2;
     private string template_ = "";
+    /// <summary>
+    /// 模板图像（文件路径或 Base64 编码）
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string Template {
@@ -1363,6 +1429,9 @@ namespace Swg.Grpc.Cv {
     /// <summary>Field number for the "threshold" field.</summary>
     public const int ThresholdFieldNumber = 3;
     private double threshold_;
+    /// <summary>
+    /// 匹配阈值（0.0-1.0），低于此值视为未找到
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public double Threshold {
@@ -1562,6 +1631,9 @@ namespace Swg.Grpc.Cv {
 
   }
 
+  /// <summary>
+  /// 从一组候选模板中查找最先/最优匹配的请求。
+  /// </summary>
   public sealed partial class FindOneOfTemplatesRequest : pb::IMessage<FindOneOfTemplatesRequest>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -1612,6 +1684,9 @@ namespace Swg.Grpc.Cv {
     /// <summary>Field number for the "roi" field.</summary>
     public const int RoiFieldNumber = 1;
     private global::Swg.Grpc.Cv.Roi roi_;
+    /// <summary>
+    /// 屏幕搜索区域
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public global::Swg.Grpc.Cv.Roi Roi {
@@ -1626,6 +1701,9 @@ namespace Swg.Grpc.Cv {
     private static readonly pb::FieldCodec<string> _repeated_templates_codec
         = pb::FieldCodec.ForString(18);
     private readonly pbc::RepeatedField<string> templates_ = new pbc::RepeatedField<string>();
+    /// <summary>
+    /// 候选模板图像列表（不可为空）
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public pbc::RepeatedField<string> Templates {
@@ -1635,6 +1713,9 @@ namespace Swg.Grpc.Cv {
     /// <summary>Field number for the "threshold" field.</summary>
     public const int ThresholdFieldNumber = 3;
     private double threshold_;
+    /// <summary>
+    /// 匹配阈值
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public double Threshold {
@@ -1647,6 +1728,9 @@ namespace Swg.Grpc.Cv {
     /// <summary>Field number for the "preference" field.</summary>
     public const int PreferenceFieldNumber = 4;
     private string preference_ = "";
+    /// <summary>
+    /// 匹配策略：FirstQualified（默认，返回首个超阈值的）或 BestScore（返回得分最高的）
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string Preference {
@@ -1860,6 +1944,9 @@ namespace Swg.Grpc.Cv {
 
   }
 
+  /// <summary>
+  /// 查找多个模板（每个至少匹配一次）的请求。
+  /// </summary>
   public sealed partial class FindAllTemplatesRequest : pb::IMessage<FindAllTemplatesRequest>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -1909,6 +1996,9 @@ namespace Swg.Grpc.Cv {
     /// <summary>Field number for the "roi" field.</summary>
     public const int RoiFieldNumber = 1;
     private global::Swg.Grpc.Cv.Roi roi_;
+    /// <summary>
+    /// 屏幕搜索区域
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public global::Swg.Grpc.Cv.Roi Roi {
@@ -1923,6 +2013,9 @@ namespace Swg.Grpc.Cv {
     private static readonly pb::FieldCodec<string> _repeated_templates_codec
         = pb::FieldCodec.ForString(18);
     private readonly pbc::RepeatedField<string> templates_ = new pbc::RepeatedField<string>();
+    /// <summary>
+    /// 模板图像列表
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public pbc::RepeatedField<string> Templates {
@@ -1932,6 +2025,9 @@ namespace Swg.Grpc.Cv {
     /// <summary>Field number for the "threshold" field.</summary>
     public const int ThresholdFieldNumber = 3;
     private double threshold_;
+    /// <summary>
+    /// 匹配阈值
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public double Threshold {
@@ -2121,6 +2217,9 @@ namespace Swg.Grpc.Cv {
 
   }
 
+  /// <summary>
+  /// 按 RGB 颜色查找像素的请求。
+  /// </summary>
   public sealed partial class FindPixelsRgbRequest : pb::IMessage<FindPixelsRgbRequest>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -2169,6 +2268,9 @@ namespace Swg.Grpc.Cv {
     /// <summary>Field number for the "roi" field.</summary>
     public const int RoiFieldNumber = 1;
     private global::Swg.Grpc.Cv.Roi roi_;
+    /// <summary>
+    /// 屏幕搜索区域
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public global::Swg.Grpc.Cv.Roi Roi {
@@ -2181,6 +2283,9 @@ namespace Swg.Grpc.Cv {
     /// <summary>Field number for the "rgb" field.</summary>
     public const int RgbFieldNumber = 2;
     private global::Swg.Grpc.Cv.Rgb rgb_;
+    /// <summary>
+    /// 目标 RGB 颜色
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public global::Swg.Grpc.Cv.Rgb Rgb {
@@ -2365,6 +2470,9 @@ namespace Swg.Grpc.Cv {
 
   }
 
+  /// <summary>
+  /// 按多组 RGB 颜色查找像素的请求。
+  /// </summary>
   public sealed partial class FindPixelsRgbMultipleRequest : pb::IMessage<FindPixelsRgbMultipleRequest>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -2413,6 +2521,9 @@ namespace Swg.Grpc.Cv {
     /// <summary>Field number for the "roi" field.</summary>
     public const int RoiFieldNumber = 1;
     private global::Swg.Grpc.Cv.Roi roi_;
+    /// <summary>
+    /// 屏幕搜索区域
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public global::Swg.Grpc.Cv.Roi Roi {
@@ -2427,6 +2538,9 @@ namespace Swg.Grpc.Cv {
     private static readonly pb::FieldCodec<global::Swg.Grpc.Cv.Rgb> _repeated_rgbColors_codec
         = pb::FieldCodec.ForMessage(18, global::Swg.Grpc.Cv.Rgb.Parser);
     private readonly pbc::RepeatedField<global::Swg.Grpc.Cv.Rgb> rgbColors_ = new pbc::RepeatedField<global::Swg.Grpc.Cv.Rgb>();
+    /// <summary>
+    /// 目标 RGB 颜色列表（不可为空）
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public pbc::RepeatedField<global::Swg.Grpc.Cv.Rgb> RgbColors {
@@ -2589,6 +2703,9 @@ namespace Swg.Grpc.Cv {
 
   }
 
+  /// <summary>
+  /// 按 HSV 颜色查找像素的请求。
+  /// </summary>
   public sealed partial class FindPixelsHsvRequest : pb::IMessage<FindPixelsHsvRequest>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -2637,6 +2754,9 @@ namespace Swg.Grpc.Cv {
     /// <summary>Field number for the "roi" field.</summary>
     public const int RoiFieldNumber = 1;
     private global::Swg.Grpc.Cv.Roi roi_;
+    /// <summary>
+    /// 屏幕搜索区域
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public global::Swg.Grpc.Cv.Roi Roi {
@@ -2649,6 +2769,9 @@ namespace Swg.Grpc.Cv {
     /// <summary>Field number for the "hsv" field.</summary>
     public const int HsvFieldNumber = 2;
     private global::Swg.Grpc.Cv.Hsv hsv_;
+    /// <summary>
+    /// 目标 HSV 颜色
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public global::Swg.Grpc.Cv.Hsv Hsv {
@@ -2833,6 +2956,9 @@ namespace Swg.Grpc.Cv {
 
   }
 
+  /// <summary>
+  /// 统计 RGB 像素数量的请求。
+  /// </summary>
   public sealed partial class CountPixelsRgbRequest : pb::IMessage<CountPixelsRgbRequest>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -2881,6 +3007,9 @@ namespace Swg.Grpc.Cv {
     /// <summary>Field number for the "roi" field.</summary>
     public const int RoiFieldNumber = 1;
     private global::Swg.Grpc.Cv.Roi roi_;
+    /// <summary>
+    /// 屏幕搜索区域
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public global::Swg.Grpc.Cv.Roi Roi {
@@ -2893,6 +3022,9 @@ namespace Swg.Grpc.Cv {
     /// <summary>Field number for the "rgb" field.</summary>
     public const int RgbFieldNumber = 2;
     private global::Swg.Grpc.Cv.Rgb rgb_;
+    /// <summary>
+    /// 目标 RGB 颜色
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public global::Swg.Grpc.Cv.Rgb Rgb {
@@ -3077,6 +3209,9 @@ namespace Swg.Grpc.Cv {
 
   }
 
+  /// <summary>
+  /// 获取指定坐标像素颜色的请求。
+  /// </summary>
   public sealed partial class GetPixelRgbRequest : pb::IMessage<GetPixelRgbRequest>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -3125,6 +3260,9 @@ namespace Swg.Grpc.Cv {
     /// <summary>Field number for the "x" field.</summary>
     public const int XFieldNumber = 1;
     private int x_;
+    /// <summary>
+    /// 像素 X 坐标（屏幕绝对坐标）
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int X {
@@ -3137,6 +3275,9 @@ namespace Swg.Grpc.Cv {
     /// <summary>Field number for the "y" field.</summary>
     public const int YFieldNumber = 2;
     private int y_;
+    /// <summary>
+    /// 像素 Y 坐标（屏幕绝对坐标）
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int Y {
@@ -3303,6 +3444,9 @@ namespace Swg.Grpc.Cv {
 
   }
 
+  /// <summary>
+  /// 检查窗口 ROI 一致性的请求。
+  /// </summary>
   public sealed partial class WindowRoiConsistencyRequest : pb::IMessage<WindowRoiConsistencyRequest>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -3350,6 +3494,9 @@ namespace Swg.Grpc.Cv {
     /// <summary>Field number for the "window_handle" field.</summary>
     public const int WindowHandleFieldNumber = 1;
     private string windowHandle_ = "";
+    /// <summary>
+    /// 窗口句柄（HWND），支持十进制或 0x 十六进制格式
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string WindowHandle {
@@ -3492,6 +3639,9 @@ namespace Swg.Grpc.Cv {
 
   }
 
+  /// <summary>
+  /// 截取全屏的请求。
+  /// </summary>
   public sealed partial class CaptureFullScreenRequest : pb::IMessage<CaptureFullScreenRequest>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -3539,6 +3689,9 @@ namespace Swg.Grpc.Cv {
     /// <summary>Field number for the "options" field.</summary>
     public const int OptionsFieldNumber = 1;
     private global::Swg.Grpc.Cv.ScreenshotOptions options_;
+    /// <summary>
+    /// 截图选项（可选，为空使用默认值）
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public global::Swg.Grpc.Cv.ScreenshotOptions Options {
@@ -3690,6 +3843,9 @@ namespace Swg.Grpc.Cv {
 
   }
 
+  /// <summary>
+  /// 截取指定区域的请求。
+  /// </summary>
   public sealed partial class CaptureRegionRequest : pb::IMessage<CaptureRegionRequest>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -3738,6 +3894,9 @@ namespace Swg.Grpc.Cv {
     /// <summary>Field number for the "roi" field.</summary>
     public const int RoiFieldNumber = 1;
     private global::Swg.Grpc.Cv.Roi roi_;
+    /// <summary>
+    /// 截取区域
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public global::Swg.Grpc.Cv.Roi Roi {
@@ -3750,6 +3909,9 @@ namespace Swg.Grpc.Cv {
     /// <summary>Field number for the "options" field.</summary>
     public const int OptionsFieldNumber = 2;
     private global::Swg.Grpc.Cv.ScreenshotOptions options_;
+    /// <summary>
+    /// 截图选项
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public global::Swg.Grpc.Cv.ScreenshotOptions Options {
@@ -3934,6 +4096,9 @@ namespace Swg.Grpc.Cv {
 
   }
 
+  /// <summary>
+  /// 单模板匹配结果。
+  /// </summary>
   public sealed partial class FindSingleTemplateResponse : pb::IMessage<FindSingleTemplateResponse>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -3986,6 +4151,9 @@ namespace Swg.Grpc.Cv {
     /// <summary>Field number for the "found" field.</summary>
     public const int FoundFieldNumber = 1;
     private bool found_;
+    /// <summary>
+    /// 是否找到匹配
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool Found {
@@ -3998,6 +4166,9 @@ namespace Swg.Grpc.Cv {
     /// <summary>Field number for the "score" field.</summary>
     public const int ScoreFieldNumber = 2;
     private double score_;
+    /// <summary>
+    /// 匹配得分（0.0-1.0，越高越相似）
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public double Score {
@@ -4010,6 +4181,9 @@ namespace Swg.Grpc.Cv {
     /// <summary>Field number for the "left" field.</summary>
     public const int LeftFieldNumber = 3;
     private int left_;
+    /// <summary>
+    /// 匹配区域左上角 X 坐标
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int Left {
@@ -4022,6 +4196,9 @@ namespace Swg.Grpc.Cv {
     /// <summary>Field number for the "top" field.</summary>
     public const int TopFieldNumber = 4;
     private int top_;
+    /// <summary>
+    /// 匹配区域左上角 Y 坐标
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int Top {
@@ -4034,6 +4211,9 @@ namespace Swg.Grpc.Cv {
     /// <summary>Field number for the "width" field.</summary>
     public const int WidthFieldNumber = 5;
     private int width_;
+    /// <summary>
+    /// 匹配区域宽度
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int Width {
@@ -4046,6 +4226,9 @@ namespace Swg.Grpc.Cv {
     /// <summary>Field number for the "height" field.</summary>
     public const int HeightFieldNumber = 6;
     private int height_;
+    /// <summary>
+    /// 匹配区域高度
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int Height {
@@ -4308,6 +4491,9 @@ namespace Swg.Grpc.Cv {
 
   }
 
+  /// <summary>
+  /// 多候选模板匹配结果。
+  /// </summary>
   public sealed partial class FindOneOfTemplatesResponse : pb::IMessage<FindOneOfTemplatesResponse>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -4361,6 +4547,9 @@ namespace Swg.Grpc.Cv {
     /// <summary>Field number for the "found" field.</summary>
     public const int FoundFieldNumber = 1;
     private bool found_;
+    /// <summary>
+    /// 是否找到匹配
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool Found {
@@ -4373,6 +4562,9 @@ namespace Swg.Grpc.Cv {
     /// <summary>Field number for the "template_index" field.</summary>
     public const int TemplateIndexFieldNumber = 2;
     private int templateIndex_;
+    /// <summary>
+    /// 匹配到的模板在列表中的索引
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int TemplateIndex {
@@ -4385,6 +4577,9 @@ namespace Swg.Grpc.Cv {
     /// <summary>Field number for the "score" field.</summary>
     public const int ScoreFieldNumber = 3;
     private double score_;
+    /// <summary>
+    /// 匹配得分
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public double Score {
@@ -4397,6 +4592,9 @@ namespace Swg.Grpc.Cv {
     /// <summary>Field number for the "left" field.</summary>
     public const int LeftFieldNumber = 4;
     private int left_;
+    /// <summary>
+    /// 匹配区域左上角 X 坐标
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int Left {
@@ -4409,6 +4607,9 @@ namespace Swg.Grpc.Cv {
     /// <summary>Field number for the "top" field.</summary>
     public const int TopFieldNumber = 5;
     private int top_;
+    /// <summary>
+    /// 匹配区域左上角 Y 坐标
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int Top {
@@ -4421,6 +4622,9 @@ namespace Swg.Grpc.Cv {
     /// <summary>Field number for the "width" field.</summary>
     public const int WidthFieldNumber = 6;
     private int width_;
+    /// <summary>
+    /// 匹配区域宽度
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int Width {
@@ -4433,6 +4637,9 @@ namespace Swg.Grpc.Cv {
     /// <summary>Field number for the "height" field.</summary>
     public const int HeightFieldNumber = 7;
     private int height_;
+    /// <summary>
+    /// 匹配区域高度
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int Height {
@@ -4719,6 +4926,9 @@ namespace Swg.Grpc.Cv {
 
   }
 
+  /// <summary>
+  /// 单个模板匹配项。
+  /// </summary>
   public sealed partial class TemplateMatchItem : pb::IMessage<TemplateMatchItem>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -4772,6 +4982,9 @@ namespace Swg.Grpc.Cv {
     /// <summary>Field number for the "template_index" field.</summary>
     public const int TemplateIndexFieldNumber = 1;
     private int templateIndex_;
+    /// <summary>
+    /// 模板在列表中的索引
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int TemplateIndex {
@@ -4784,6 +4997,9 @@ namespace Swg.Grpc.Cv {
     /// <summary>Field number for the "found" field.</summary>
     public const int FoundFieldNumber = 2;
     private bool found_;
+    /// <summary>
+    /// 是否匹配成功
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool Found {
@@ -4796,6 +5012,9 @@ namespace Swg.Grpc.Cv {
     /// <summary>Field number for the "score" field.</summary>
     public const int ScoreFieldNumber = 3;
     private double score_;
+    /// <summary>
+    /// 匹配得分
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public double Score {
@@ -4808,6 +5027,9 @@ namespace Swg.Grpc.Cv {
     /// <summary>Field number for the "left" field.</summary>
     public const int LeftFieldNumber = 4;
     private int left_;
+    /// <summary>
+    /// 匹配区域左上角 X 坐标
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int Left {
@@ -4820,6 +5042,9 @@ namespace Swg.Grpc.Cv {
     /// <summary>Field number for the "top" field.</summary>
     public const int TopFieldNumber = 5;
     private int top_;
+    /// <summary>
+    /// 匹配区域左上角 Y 坐标
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int Top {
@@ -4832,6 +5057,9 @@ namespace Swg.Grpc.Cv {
     /// <summary>Field number for the "width" field.</summary>
     public const int WidthFieldNumber = 6;
     private int width_;
+    /// <summary>
+    /// 匹配区域宽度
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int Width {
@@ -4844,6 +5072,9 @@ namespace Swg.Grpc.Cv {
     /// <summary>Field number for the "height" field.</summary>
     public const int HeightFieldNumber = 7;
     private int height_;
+    /// <summary>
+    /// 匹配区域高度
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int Height {
@@ -5130,6 +5361,9 @@ namespace Swg.Grpc.Cv {
 
   }
 
+  /// <summary>
+  /// 多模板匹配结果。
+  /// </summary>
   public sealed partial class FindAllTemplatesResponse : pb::IMessage<FindAllTemplatesResponse>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -5178,6 +5412,9 @@ namespace Swg.Grpc.Cv {
     /// <summary>Field number for the "all_found" field.</summary>
     public const int AllFoundFieldNumber = 1;
     private bool allFound_;
+    /// <summary>
+    /// 是否所有模板均匹配成功
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool AllFound {
@@ -5192,6 +5429,9 @@ namespace Swg.Grpc.Cv {
     private static readonly pb::FieldCodec<global::Swg.Grpc.Cv.TemplateMatchItem> _repeated_items_codec
         = pb::FieldCodec.ForMessage(18, global::Swg.Grpc.Cv.TemplateMatchItem.Parser);
     private readonly pbc::RepeatedField<global::Swg.Grpc.Cv.TemplateMatchItem> items_ = new pbc::RepeatedField<global::Swg.Grpc.Cv.TemplateMatchItem>();
+    /// <summary>
+    /// 每个模板的匹配结果
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public pbc::RepeatedField<global::Swg.Grpc.Cv.TemplateMatchItem> Items {
@@ -5345,6 +5585,9 @@ namespace Swg.Grpc.Cv {
 
   }
 
+  /// <summary>
+  /// 屏幕坐标点。
+  /// </summary>
   public sealed partial class ScreenPoint : pb::IMessage<ScreenPoint>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -5393,6 +5636,9 @@ namespace Swg.Grpc.Cv {
     /// <summary>Field number for the "x" field.</summary>
     public const int XFieldNumber = 1;
     private int x_;
+    /// <summary>
+    /// X 坐标
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int X {
@@ -5405,6 +5651,9 @@ namespace Swg.Grpc.Cv {
     /// <summary>Field number for the "y" field.</summary>
     public const int YFieldNumber = 2;
     private int y_;
+    /// <summary>
+    /// Y 坐标
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int Y {
@@ -5571,6 +5820,9 @@ namespace Swg.Grpc.Cv {
 
   }
 
+  /// <summary>
+  /// 像素查找结果（坐标列表）。
+  /// </summary>
   public sealed partial class ScreenPointsResponse : pb::IMessage<ScreenPointsResponse>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -5620,6 +5872,9 @@ namespace Swg.Grpc.Cv {
     private static readonly pb::FieldCodec<global::Swg.Grpc.Cv.ScreenPoint> _repeated_points_codec
         = pb::FieldCodec.ForMessage(10, global::Swg.Grpc.Cv.ScreenPoint.Parser);
     private readonly pbc::RepeatedField<global::Swg.Grpc.Cv.ScreenPoint> points_ = new pbc::RepeatedField<global::Swg.Grpc.Cv.ScreenPoint>();
+    /// <summary>
+    /// 匹配像素的绝对屏幕坐标列表
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public pbc::RepeatedField<global::Swg.Grpc.Cv.ScreenPoint> Points {
@@ -5749,6 +6004,9 @@ namespace Swg.Grpc.Cv {
 
   }
 
+  /// <summary>
+  /// RGB 像素计数结果。
+  /// </summary>
   public sealed partial class CountPixelsRgbResponse : pb::IMessage<CountPixelsRgbResponse>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -5796,6 +6054,9 @@ namespace Swg.Grpc.Cv {
     /// <summary>Field number for the "count" field.</summary>
     public const int CountFieldNumber = 1;
     private int count_;
+    /// <summary>
+    /// 匹配像素数量
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int Count {
@@ -5938,6 +6199,9 @@ namespace Swg.Grpc.Cv {
 
   }
 
+  /// <summary>
+  /// 获取像素颜色结果。
+  /// </summary>
   public sealed partial class PixelRgbResponse : pb::IMessage<PixelRgbResponse>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -5988,6 +6252,9 @@ namespace Swg.Grpc.Cv {
     /// <summary>Field number for the "success" field.</summary>
     public const int SuccessFieldNumber = 1;
     private bool success_;
+    /// <summary>
+    /// 是否成功获取（坐标越界时为 false）
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool Success {
@@ -6000,6 +6267,9 @@ namespace Swg.Grpc.Cv {
     /// <summary>Field number for the "r" field.</summary>
     public const int RFieldNumber = 2;
     private int r_;
+    /// <summary>
+    /// 红色分量
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int R {
@@ -6012,6 +6282,9 @@ namespace Swg.Grpc.Cv {
     /// <summary>Field number for the "g" field.</summary>
     public const int GFieldNumber = 3;
     private int g_;
+    /// <summary>
+    /// 绿色分量
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int G {
@@ -6024,6 +6297,9 @@ namespace Swg.Grpc.Cv {
     /// <summary>Field number for the "b" field.</summary>
     public const int BFieldNumber = 4;
     private int b_;
+    /// <summary>
+    /// 蓝色分量
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int B {
@@ -6238,6 +6514,9 @@ namespace Swg.Grpc.Cv {
 
   }
 
+  /// <summary>
+  /// 窗口 ROI 一致性检测结果。
+  /// </summary>
   public sealed partial class WindowRoiConsistencyResponse : pb::IMessage<WindowRoiConsistencyResponse>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -6290,6 +6569,9 @@ namespace Swg.Grpc.Cv {
     /// <summary>Field number for the "success" field.</summary>
     public const int SuccessFieldNumber = 1;
     private bool success_;
+    /// <summary>
+    /// 检测是否成功执行
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool Success {
@@ -6302,6 +6584,9 @@ namespace Swg.Grpc.Cv {
     /// <summary>Field number for the "roi" field.</summary>
     public const int RoiFieldNumber = 2;
     private global::Swg.Grpc.Cv.Roi roi_;
+    /// <summary>
+    /// 窗口的 ROI 信息
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public global::Swg.Grpc.Cv.Roi Roi {
@@ -6314,6 +6599,9 @@ namespace Swg.Grpc.Cv {
     /// <summary>Field number for the "captured_width" field.</summary>
     public const int CapturedWidthFieldNumber = 3;
     private int capturedWidth_;
+    /// <summary>
+    /// 实际截取的像素宽度
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int CapturedWidth {
@@ -6326,6 +6614,9 @@ namespace Swg.Grpc.Cv {
     /// <summary>Field number for the "captured_height" field.</summary>
     public const int CapturedHeightFieldNumber = 4;
     private int capturedHeight_;
+    /// <summary>
+    /// 实际截取的像素高度
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int CapturedHeight {
@@ -6338,6 +6629,9 @@ namespace Swg.Grpc.Cv {
     /// <summary>Field number for the "window_dpi" field.</summary>
     public const int WindowDpiFieldNumber = 5;
     private uint windowDpi_;
+    /// <summary>
+    /// 窗口 DPI 值
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public uint WindowDpi {
@@ -6350,6 +6644,9 @@ namespace Swg.Grpc.Cv {
     /// <summary>Field number for the "is_pixel_size_matched" field.</summary>
     public const int IsPixelSizeMatchedFieldNumber = 6;
     private bool isPixelSizeMatched_;
+    /// <summary>
+    /// 像素尺寸是否匹配
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool IsPixelSizeMatched {
@@ -6621,6 +6918,9 @@ namespace Swg.Grpc.Cv {
 
   }
 
+  /// <summary>
+  /// 文本载荷响应（Base64 编码或文件路径）。
+  /// </summary>
   public sealed partial class CvTextPayloadResponse : pb::IMessage<CvTextPayloadResponse>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -6668,6 +6968,9 @@ namespace Swg.Grpc.Cv {
     /// <summary>Field number for the "output" field.</summary>
     public const int OutputFieldNumber = 1;
     private string output_ = "";
+    /// <summary>
+    /// 输出内容：Base64 编码字符串或保存的文件路径
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string Output {

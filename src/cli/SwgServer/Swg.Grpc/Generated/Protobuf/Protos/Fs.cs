@@ -121,6 +121,9 @@ namespace Swg.Grpc.Fs {
 
   }
   #region Messages
+  /// <summary>
+  /// 读取文本文件请求。
+  /// </summary>
   public sealed partial class ReadTextRequest : pb::IMessage<ReadTextRequest>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -169,6 +172,9 @@ namespace Swg.Grpc.Fs {
     /// <summary>Field number for the "path" field.</summary>
     public const int PathFieldNumber = 1;
     private string path_ = "";
+    /// <summary>
+    /// 文件路径
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string Path {
@@ -181,6 +187,9 @@ namespace Swg.Grpc.Fs {
     /// <summary>Field number for the "encoding" field.</summary>
     public const int EncodingFieldNumber = 2;
     private string encoding_ = "";
+    /// <summary>
+    /// 文本编码名称（如 utf-8、gb2312），为空使用默认编码
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string Encoding {
@@ -347,6 +356,9 @@ namespace Swg.Grpc.Fs {
 
   }
 
+  /// <summary>
+  /// 读取文本文件响应。
+  /// </summary>
   public sealed partial class ReadTextResponse : pb::IMessage<ReadTextResponse>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -394,6 +406,9 @@ namespace Swg.Grpc.Fs {
     /// <summary>Field number for the "text" field.</summary>
     public const int TextFieldNumber = 1;
     private string text_ = "";
+    /// <summary>
+    /// 文件文本内容
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string Text {
@@ -536,6 +551,9 @@ namespace Swg.Grpc.Fs {
 
   }
 
+  /// <summary>
+  /// 写入文本文件请求（覆盖已有内容）。
+  /// </summary>
   public sealed partial class WriteTextRequest : pb::IMessage<WriteTextRequest>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -585,6 +603,9 @@ namespace Swg.Grpc.Fs {
     /// <summary>Field number for the "path" field.</summary>
     public const int PathFieldNumber = 1;
     private string path_ = "";
+    /// <summary>
+    /// 文件路径
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string Path {
@@ -597,6 +618,9 @@ namespace Swg.Grpc.Fs {
     /// <summary>Field number for the "text" field.</summary>
     public const int TextFieldNumber = 2;
     private string text_ = "";
+    /// <summary>
+    /// 要写入的文本内容
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string Text {
@@ -609,6 +633,9 @@ namespace Swg.Grpc.Fs {
     /// <summary>Field number for the "encoding" field.</summary>
     public const int EncodingFieldNumber = 3;
     private string encoding_ = "";
+    /// <summary>
+    /// 文本编码名称
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string Encoding {
@@ -799,6 +826,9 @@ namespace Swg.Grpc.Fs {
 
   }
 
+  /// <summary>
+  /// 写入文本文件响应。
+  /// </summary>
   public sealed partial class WriteTextResponse : pb::IMessage<WriteTextResponse>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -846,6 +876,9 @@ namespace Swg.Grpc.Fs {
     /// <summary>Field number for the "success" field.</summary>
     public const int SuccessFieldNumber = 1;
     private bool success_;
+    /// <summary>
+    /// 是否写入成功
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool Success {
@@ -988,6 +1021,9 @@ namespace Swg.Grpc.Fs {
 
   }
 
+  /// <summary>
+  /// 追加文本到文件请求。
+  /// </summary>
   public sealed partial class AppendTextRequest : pb::IMessage<AppendTextRequest>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -1037,6 +1073,9 @@ namespace Swg.Grpc.Fs {
     /// <summary>Field number for the "path" field.</summary>
     public const int PathFieldNumber = 1;
     private string path_ = "";
+    /// <summary>
+    /// 文件路径
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string Path {
@@ -1049,6 +1088,9 @@ namespace Swg.Grpc.Fs {
     /// <summary>Field number for the "text" field.</summary>
     public const int TextFieldNumber = 2;
     private string text_ = "";
+    /// <summary>
+    /// 要追加的文本内容
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string Text {
@@ -1061,6 +1103,9 @@ namespace Swg.Grpc.Fs {
     /// <summary>Field number for the "encoding" field.</summary>
     public const int EncodingFieldNumber = 3;
     private string encoding_ = "";
+    /// <summary>
+    /// 文本编码名称
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string Encoding {
@@ -1251,6 +1296,9 @@ namespace Swg.Grpc.Fs {
 
   }
 
+  /// <summary>
+  /// 追加文本响应。
+  /// </summary>
   public sealed partial class AppendTextResponse : pb::IMessage<AppendTextResponse>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -1298,6 +1346,9 @@ namespace Swg.Grpc.Fs {
     /// <summary>Field number for the "success" field.</summary>
     public const int SuccessFieldNumber = 1;
     private bool success_;
+    /// <summary>
+    /// 是否追加成功
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool Success {
@@ -1440,6 +1491,9 @@ namespace Swg.Grpc.Fs {
 
   }
 
+  /// <summary>
+  /// 复制文件请求。
+  /// </summary>
   public sealed partial class CopyFileRequest : pb::IMessage<CopyFileRequest>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -1489,6 +1543,9 @@ namespace Swg.Grpc.Fs {
     /// <summary>Field number for the "source_path" field.</summary>
     public const int SourcePathFieldNumber = 1;
     private string sourcePath_ = "";
+    /// <summary>
+    /// 源文件路径
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string SourcePath {
@@ -1501,6 +1558,9 @@ namespace Swg.Grpc.Fs {
     /// <summary>Field number for the "target_path" field.</summary>
     public const int TargetPathFieldNumber = 2;
     private string targetPath_ = "";
+    /// <summary>
+    /// 目标文件路径
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string TargetPath {
@@ -1513,6 +1573,9 @@ namespace Swg.Grpc.Fs {
     /// <summary>Field number for the "overwrite" field.</summary>
     public const int OverwriteFieldNumber = 3;
     private bool overwrite_;
+    /// <summary>
+    /// 是否覆盖已存在的目标文件
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool Overwrite {
@@ -1703,6 +1766,9 @@ namespace Swg.Grpc.Fs {
 
   }
 
+  /// <summary>
+  /// 复制文件响应。
+  /// </summary>
   public sealed partial class CopyFileResponse : pb::IMessage<CopyFileResponse>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -1750,6 +1816,9 @@ namespace Swg.Grpc.Fs {
     /// <summary>Field number for the "success" field.</summary>
     public const int SuccessFieldNumber = 1;
     private bool success_;
+    /// <summary>
+    /// 是否复制成功
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool Success {
@@ -1892,6 +1961,9 @@ namespace Swg.Grpc.Fs {
 
   }
 
+  /// <summary>
+  /// 移动文件请求。
+  /// </summary>
   public sealed partial class MoveFileRequest : pb::IMessage<MoveFileRequest>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -1941,6 +2013,9 @@ namespace Swg.Grpc.Fs {
     /// <summary>Field number for the "source_path" field.</summary>
     public const int SourcePathFieldNumber = 1;
     private string sourcePath_ = "";
+    /// <summary>
+    /// 源文件路径
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string SourcePath {
@@ -1953,6 +2028,9 @@ namespace Swg.Grpc.Fs {
     /// <summary>Field number for the "target_path" field.</summary>
     public const int TargetPathFieldNumber = 2;
     private string targetPath_ = "";
+    /// <summary>
+    /// 目标文件路径
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string TargetPath {
@@ -1965,6 +2043,9 @@ namespace Swg.Grpc.Fs {
     /// <summary>Field number for the "overwrite" field.</summary>
     public const int OverwriteFieldNumber = 3;
     private bool overwrite_;
+    /// <summary>
+    /// 是否覆盖已存在的目标文件
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool Overwrite {
@@ -2155,6 +2236,9 @@ namespace Swg.Grpc.Fs {
 
   }
 
+  /// <summary>
+  /// 移动文件响应。
+  /// </summary>
   public sealed partial class MoveFileResponse : pb::IMessage<MoveFileResponse>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -2202,6 +2286,9 @@ namespace Swg.Grpc.Fs {
     /// <summary>Field number for the "success" field.</summary>
     public const int SuccessFieldNumber = 1;
     private bool success_;
+    /// <summary>
+    /// 是否移动成功
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool Success {
@@ -2344,6 +2431,9 @@ namespace Swg.Grpc.Fs {
 
   }
 
+  /// <summary>
+  /// 删除文件请求。
+  /// </summary>
   public sealed partial class DeleteFileRequest : pb::IMessage<DeleteFileRequest>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -2391,6 +2481,9 @@ namespace Swg.Grpc.Fs {
     /// <summary>Field number for the "path" field.</summary>
     public const int PathFieldNumber = 1;
     private string path_ = "";
+    /// <summary>
+    /// 要删除的文件路径
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string Path {
@@ -2533,6 +2626,9 @@ namespace Swg.Grpc.Fs {
 
   }
 
+  /// <summary>
+  /// 删除文件响应。
+  /// </summary>
   public sealed partial class DeleteFileResponse : pb::IMessage<DeleteFileResponse>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -2580,6 +2676,9 @@ namespace Swg.Grpc.Fs {
     /// <summary>Field number for the "success" field.</summary>
     public const int SuccessFieldNumber = 1;
     private bool success_;
+    /// <summary>
+    /// 是否删除成功
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool Success {
@@ -2722,6 +2821,9 @@ namespace Swg.Grpc.Fs {
 
   }
 
+  /// <summary>
+  /// 检查路径是否存在请求。
+  /// </summary>
   public sealed partial class ExistsRequest : pb::IMessage<ExistsRequest>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -2769,6 +2871,9 @@ namespace Swg.Grpc.Fs {
     /// <summary>Field number for the "path" field.</summary>
     public const int PathFieldNumber = 1;
     private string path_ = "";
+    /// <summary>
+    /// 要检查的路径
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string Path {
@@ -2911,6 +3016,9 @@ namespace Swg.Grpc.Fs {
 
   }
 
+  /// <summary>
+  /// 检查路径是否存在响应。
+  /// </summary>
   public sealed partial class ExistsResponse : pb::IMessage<ExistsResponse>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -2958,6 +3066,9 @@ namespace Swg.Grpc.Fs {
     /// <summary>Field number for the "exists" field.</summary>
     public const int ExistsFieldNumber = 1;
     private bool exists_;
+    /// <summary>
+    /// 路径是否存在
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool Exists {
@@ -3100,6 +3211,9 @@ namespace Swg.Grpc.Fs {
 
   }
 
+  /// <summary>
+  /// 获取文件/目录信息请求。
+  /// </summary>
   public sealed partial class GetItemInfoRequest : pb::IMessage<GetItemInfoRequest>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -3147,6 +3261,9 @@ namespace Swg.Grpc.Fs {
     /// <summary>Field number for the "path" field.</summary>
     public const int PathFieldNumber = 1;
     private string path_ = "";
+    /// <summary>
+    /// 目标路径
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string Path {
@@ -3289,6 +3406,9 @@ namespace Swg.Grpc.Fs {
 
   }
 
+  /// <summary>
+  /// 文件/目录详细信息。
+  /// </summary>
   public sealed partial class GetItemInfoResponse : pb::IMessage<GetItemInfoResponse>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -3344,6 +3464,9 @@ namespace Swg.Grpc.Fs {
     /// <summary>Field number for the "name" field.</summary>
     public const int NameFieldNumber = 1;
     private string name_ = "";
+    /// <summary>
+    /// 文件/目录名称
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string Name {
@@ -3356,6 +3479,9 @@ namespace Swg.Grpc.Fs {
     /// <summary>Field number for the "full_path" field.</summary>
     public const int FullPathFieldNumber = 2;
     private string fullPath_ = "";
+    /// <summary>
+    /// 完整路径
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string FullPath {
@@ -3368,6 +3494,9 @@ namespace Swg.Grpc.Fs {
     /// <summary>Field number for the "is_directory" field.</summary>
     public const int IsDirectoryFieldNumber = 3;
     private bool isDirectory_;
+    /// <summary>
+    /// 是否为目录
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool IsDirectory {
@@ -3380,6 +3509,9 @@ namespace Swg.Grpc.Fs {
     /// <summary>Field number for the "size_bytes" field.</summary>
     public const int SizeBytesFieldNumber = 4;
     private long sizeBytes_;
+    /// <summary>
+    /// 文件大小字节数（has_size_bytes 为 true 时有效，目录无此字段）
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public long SizeBytes {
@@ -3392,6 +3524,9 @@ namespace Swg.Grpc.Fs {
     /// <summary>Field number for the "has_size_bytes" field.</summary>
     public const int HasSizeBytesFieldNumber = 5;
     private bool hasSizeBytes_;
+    /// <summary>
+    /// 标记是否包含文件大小
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool HasSizeBytes {
@@ -3404,6 +3539,9 @@ namespace Swg.Grpc.Fs {
     /// <summary>Field number for the "creation_time_utc" field.</summary>
     public const int CreationTimeUtcFieldNumber = 6;
     private global::Google.Protobuf.WellKnownTypes.Timestamp creationTimeUtc_;
+    /// <summary>
+    /// 创建时间（UTC）
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public global::Google.Protobuf.WellKnownTypes.Timestamp CreationTimeUtc {
@@ -3416,6 +3554,9 @@ namespace Swg.Grpc.Fs {
     /// <summary>Field number for the "last_write_time_utc" field.</summary>
     public const int LastWriteTimeUtcFieldNumber = 7;
     private global::Google.Protobuf.WellKnownTypes.Timestamp lastWriteTimeUtc_;
+    /// <summary>
+    /// 最后修改时间（UTC）
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public global::Google.Protobuf.WellKnownTypes.Timestamp LastWriteTimeUtc {
@@ -3428,6 +3569,9 @@ namespace Swg.Grpc.Fs {
     /// <summary>Field number for the "last_access_time_utc" field.</summary>
     public const int LastAccessTimeUtcFieldNumber = 8;
     private global::Google.Protobuf.WellKnownTypes.Timestamp lastAccessTimeUtc_;
+    /// <summary>
+    /// 最后访问时间（UTC）
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public global::Google.Protobuf.WellKnownTypes.Timestamp LastAccessTimeUtc {
@@ -3440,6 +3584,9 @@ namespace Swg.Grpc.Fs {
     /// <summary>Field number for the "attributes" field.</summary>
     public const int AttributesFieldNumber = 9;
     private string attributes_ = "";
+    /// <summary>
+    /// 文件属性字符串
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string Attributes {
@@ -3801,6 +3948,9 @@ namespace Swg.Grpc.Fs {
 
   }
 
+  /// <summary>
+  /// 创建目录请求（递归创建）。
+  /// </summary>
   public sealed partial class CreateDirectoryRequest : pb::IMessage<CreateDirectoryRequest>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -3848,6 +3998,9 @@ namespace Swg.Grpc.Fs {
     /// <summary>Field number for the "path" field.</summary>
     public const int PathFieldNumber = 1;
     private string path_ = "";
+    /// <summary>
+    /// 要创建的目录路径
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string Path {
@@ -3990,6 +4143,9 @@ namespace Swg.Grpc.Fs {
 
   }
 
+  /// <summary>
+  /// 创建目录响应。
+  /// </summary>
   public sealed partial class CreateDirectoryResponse : pb::IMessage<CreateDirectoryResponse>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -4037,6 +4193,9 @@ namespace Swg.Grpc.Fs {
     /// <summary>Field number for the "success" field.</summary>
     public const int SuccessFieldNumber = 1;
     private bool success_;
+    /// <summary>
+    /// 是否创建成功
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool Success {
@@ -4179,6 +4338,9 @@ namespace Swg.Grpc.Fs {
 
   }
 
+  /// <summary>
+  /// 删除目录请求（递归删除）。
+  /// </summary>
   public sealed partial class DeleteDirectoryRequest : pb::IMessage<DeleteDirectoryRequest>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -4226,6 +4388,9 @@ namespace Swg.Grpc.Fs {
     /// <summary>Field number for the "path" field.</summary>
     public const int PathFieldNumber = 1;
     private string path_ = "";
+    /// <summary>
+    /// 要删除的目录路径
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string Path {
@@ -4368,6 +4533,9 @@ namespace Swg.Grpc.Fs {
 
   }
 
+  /// <summary>
+  /// 删除目录响应。
+  /// </summary>
   public sealed partial class DeleteDirectoryResponse : pb::IMessage<DeleteDirectoryResponse>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -4415,6 +4583,9 @@ namespace Swg.Grpc.Fs {
     /// <summary>Field number for the "success" field.</summary>
     public const int SuccessFieldNumber = 1;
     private bool success_;
+    /// <summary>
+    /// 是否删除成功
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool Success {
@@ -4557,6 +4728,9 @@ namespace Swg.Grpc.Fs {
 
   }
 
+  /// <summary>
+  /// 列出目录内容请求。
+  /// </summary>
   public sealed partial class ListDirectoryRequest : pb::IMessage<ListDirectoryRequest>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -4605,6 +4779,9 @@ namespace Swg.Grpc.Fs {
     /// <summary>Field number for the "path" field.</summary>
     public const int PathFieldNumber = 1;
     private string path_ = "";
+    /// <summary>
+    /// 目录路径
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string Path {
@@ -4617,6 +4794,9 @@ namespace Swg.Grpc.Fs {
     /// <summary>Field number for the "pattern" field.</summary>
     public const int PatternFieldNumber = 2;
     private string pattern_ = "";
+    /// <summary>
+    /// 搜索模式（如 *.txt），为空则返回所有
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string Pattern {
@@ -4783,6 +4963,9 @@ namespace Swg.Grpc.Fs {
 
   }
 
+  /// <summary>
+  /// 列出目录内容响应。
+  /// </summary>
   public sealed partial class ListDirectoryResponse : pb::IMessage<ListDirectoryResponse>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -4832,6 +5015,9 @@ namespace Swg.Grpc.Fs {
     private static readonly pb::FieldCodec<string> _repeated_names_codec
         = pb::FieldCodec.ForString(10);
     private readonly pbc::RepeatedField<string> names_ = new pbc::RepeatedField<string>();
+    /// <summary>
+    /// 文件和目录名称列表
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public pbc::RepeatedField<string> Names {
@@ -4961,6 +5147,9 @@ namespace Swg.Grpc.Fs {
 
   }
 
+  /// <summary>
+  /// 移动目录请求。
+  /// </summary>
   public sealed partial class MoveDirectoryRequest : pb::IMessage<MoveDirectoryRequest>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -5010,6 +5199,9 @@ namespace Swg.Grpc.Fs {
     /// <summary>Field number for the "source_path" field.</summary>
     public const int SourcePathFieldNumber = 1;
     private string sourcePath_ = "";
+    /// <summary>
+    /// 源目录路径
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string SourcePath {
@@ -5022,6 +5214,9 @@ namespace Swg.Grpc.Fs {
     /// <summary>Field number for the "target_path" field.</summary>
     public const int TargetPathFieldNumber = 2;
     private string targetPath_ = "";
+    /// <summary>
+    /// 目标目录路径
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string TargetPath {
@@ -5034,6 +5229,9 @@ namespace Swg.Grpc.Fs {
     /// <summary>Field number for the "overwrite" field.</summary>
     public const int OverwriteFieldNumber = 3;
     private bool overwrite_;
+    /// <summary>
+    /// 是否覆盖已存在的目标目录
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool Overwrite {
@@ -5224,6 +5422,9 @@ namespace Swg.Grpc.Fs {
 
   }
 
+  /// <summary>
+  /// 移动目录响应。
+  /// </summary>
   public sealed partial class MoveDirectoryResponse : pb::IMessage<MoveDirectoryResponse>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -5271,6 +5472,9 @@ namespace Swg.Grpc.Fs {
     /// <summary>Field number for the "success" field.</summary>
     public const int SuccessFieldNumber = 1;
     private bool success_;
+    /// <summary>
+    /// 是否移动成功
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool Success {
@@ -5413,6 +5617,9 @@ namespace Swg.Grpc.Fs {
 
   }
 
+  /// <summary>
+  /// 递归搜索文件请求。
+  /// </summary>
   public sealed partial class SearchFilesRequest : pb::IMessage<SearchFilesRequest>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -5461,6 +5668,9 @@ namespace Swg.Grpc.Fs {
     /// <summary>Field number for the "root_path" field.</summary>
     public const int RootPathFieldNumber = 1;
     private string rootPath_ = "";
+    /// <summary>
+    /// 搜索根目录
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string RootPath {
@@ -5473,6 +5683,9 @@ namespace Swg.Grpc.Fs {
     /// <summary>Field number for the "pattern" field.</summary>
     public const int PatternFieldNumber = 2;
     private string pattern_ = "";
+    /// <summary>
+    /// 搜索模式（如 *.txt），为空则匹配所有文件
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string Pattern {
@@ -5639,6 +5852,9 @@ namespace Swg.Grpc.Fs {
 
   }
 
+  /// <summary>
+  /// 搜索文件响应。
+  /// </summary>
   public sealed partial class SearchFilesResponse : pb::IMessage<SearchFilesResponse>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -5688,6 +5904,9 @@ namespace Swg.Grpc.Fs {
     private static readonly pb::FieldCodec<string> _repeated_paths_codec
         = pb::FieldCodec.ForString(10);
     private readonly pbc::RepeatedField<string> paths_ = new pbc::RepeatedField<string>();
+    /// <summary>
+    /// 匹配文件的完整路径列表
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public pbc::RepeatedField<string> Paths {
@@ -5817,6 +6036,9 @@ namespace Swg.Grpc.Fs {
 
   }
 
+  /// <summary>
+  /// 查找可执行文件快捷方式请求。
+  /// </summary>
   public sealed partial class FindExeShortcutsRequest : pb::IMessage<FindExeShortcutsRequest>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -5864,6 +6086,9 @@ namespace Swg.Grpc.Fs {
     /// <summary>Field number for the "exe_name" field.</summary>
     public const int ExeNameFieldNumber = 1;
     private string exeName_ = "";
+    /// <summary>
+    /// 可执行文件名（如 chrome.exe）
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string ExeName {
@@ -6006,6 +6231,9 @@ namespace Swg.Grpc.Fs {
 
   }
 
+  /// <summary>
+  /// 查找快捷方式响应。
+  /// </summary>
   public sealed partial class FindExeShortcutsResponse : pb::IMessage<FindExeShortcutsResponse>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -6055,6 +6283,9 @@ namespace Swg.Grpc.Fs {
     private static readonly pb::FieldCodec<string> _repeated_targetPaths_codec
         = pb::FieldCodec.ForString(10);
     private readonly pbc::RepeatedField<string> targetPaths_ = new pbc::RepeatedField<string>();
+    /// <summary>
+    /// 找到的快捷方式目标路径列表
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public pbc::RepeatedField<string> TargetPaths {

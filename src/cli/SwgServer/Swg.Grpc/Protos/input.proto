@@ -1,3 +1,16 @@
+// Copyright ScriptWinGUI. All rights reserved.
+//
+// ──────────────────────────────────────────────────────────────────────────────
+// 输入模拟服务 Proto 定义
+//
+// 提供键盘输入模拟（文本输入、按键操作、组合键）、鼠标操作（移动、点击、拖拽、滚动）
+// 以及光标位置查询等功能。
+//
+// 包名：swg.input
+// C# 命名空间：Swg.Grpc.Input
+// 服务名：InputService
+// ──────────────────────────────────────────────────────────────────────────────
+
 syntax = "proto3";
 
 import "google/protobuf/empty.proto";
@@ -6,147 +19,247 @@ package swg.input;
 
 option csharp_namespace = "Swg.Grpc.Input";
 
+// 通用操作结果响应。
 message InputOkResponse {
+  // 操作是否成功
   bool ok = 1;
 }
 
+// 鼠标光标位置响应。
 message InputMouseGetPositionResponse {
+  // 光标 X 坐标
   int32 x = 1;
+  // 光标 Y 坐标
   int32 y = 2;
 }
 
+// 鼠标移动到指定位置请求。
 message InputMouseMoveToRequest {
+  // 目标 X 坐标
   int32 x = 1;
+  // 目标 Y 坐标
   int32 y = 2;
 }
 
+// 鼠标偏移移动请求。
 message InputMouseMoveByRequest {
+  // X 方向偏移量（正值向右）
   int32 delta_x = 1;
+  // Y 方向偏移量（正值向下）
   int32 delta_y = 2;
 }
 
+// 鼠标点击请求。
 message InputMouseClickRequest {
+  // 是否指定 X 坐标
   bool has_x = 1;
+  // 点击 X 坐标
   int32 x = 2;
+  // 是否指定 Y 坐标
   bool has_y = 3;
+  // 点击 Y 坐标
   int32 y = 4;
+  // 鼠标按钮名称：Left / Right / Middle
   string button = 5;
+  // 点击次数（1=单击，2=双击）
   int32 click_count = 6;
 }
 
+// 鼠标按下请求。
 message InputMouseDownRequest {
+  // 是否指定 X 坐标
   bool has_x = 1;
+  // 按下位置 X 坐标
   int32 x = 2;
+  // 是否指定 Y 坐标
   bool has_y = 3;
+  // 按下位置 Y 坐标
   int32 y = 4;
+  // 鼠标按钮名称
   string button = 5;
+  // 修饰键列表（如 Ctrl、Shift、Alt）
   repeated string modifiers = 6;
 }
 
+// 鼠标释放请求。
 message InputMouseUpRequest {
+  // 鼠标按钮名称
   string button = 1;
+  // 修饰键列表
   repeated string modifiers = 2;
 }
 
+// 鼠标拖拽到目标坐标请求。
 message InputMouseDragToRequest {
+  // 拖拽起始 X 坐标
   int32 start_x = 1;
+  // 拖拽起始 Y 坐标
   int32 start_y = 2;
+  // 拖拽目标 X 坐标
   int32 end_x = 3;
+  // 拖拽目标 Y 坐标
   int32 end_y = 4;
+  // 鼠标按钮名称
   string button = 5;
+  // 修饰键列表
   repeated string modifiers = 6;
 }
 
+// 鼠标拖拽指定距离请求。
 message InputMouseDragByDistanceRequest {
+  // 拖拽起始 X 坐标
   int32 start_x = 1;
+  // 拖拽起始 Y 坐标
   int32 start_y = 2;
+  // X 方向拖拽距离
   int32 distance_x = 3;
+  // Y 方向拖拽距离
   int32 distance_y = 4;
+  // 鼠标按钮名称
   string button = 5;
+  // 修饰键列表
   repeated string modifiers = 6;
 }
 
+// 鼠标垂直滚轮请求。
 message InputMouseScrollRequest {
+  // 滚动位置 X 坐标
   int32 x = 1;
+  // 滚动位置 Y 坐标
   int32 y = 2;
+  // 滚轮行数（正值向上滚，负值向下滚）
   int32 wheel_lines = 3;
 }
 
+// 鼠标水平滚轮请求。
 message InputMouseHorizontalScrollRequest {
+  // 滚动位置 X 坐标
   int32 x = 1;
+  // 滚动位置 Y 坐标
   int32 y = 2;
+  // 水平滚轮行数（正值向右，负值向左）
   int32 wheel_lines = 3;
 }
 
+// 鼠标移动动画配置响应。
 message InputMouseMoveSettingsResponse {
+  // 每毫秒移动的像素数
   double move_pixels_per_millisecond = 1;
+  // 每步移动的像素数
   double move_pixels_per_step = 2;
 }
 
+// 鼠标移动动画配置更新请求。
 message InputMouseMoveSettingsRequest {
+  // 是否更新 move_pixels_per_millisecond
   bool has_move_pixels_per_millisecond = 1;
+  // 每毫秒移动的像素数
   double move_pixels_per_millisecond = 2;
+  // 是否更新 move_pixels_per_step
   bool has_move_pixels_per_step = 3;
+  // 每步移动的像素数
   double move_pixels_per_step = 4;
 }
 
+// 键盘输入文本请求。
 message InputKeyboardTypeTextRequest {
+  // 要输入的文本
   string text = 1;
 }
 
+// 键盘输入单个字符请求。
 message InputKeyboardTypeCharRequest {
+  // 恰好为 1 个字符
   string character = 1;
 }
 
+// 键盘依次按键请求。
 message InputKeyboardTypeKeysRequest {
+  // 按键名称列表（如 ["Ctrl", "C"]）
   repeated string keys = 1;
 }
 
+// 键盘同时按键请求（组合键）。
 message InputKeyboardTypeSimultaneouslyRequest {
+  // 组合键名称列表
   repeated string keys = 1;
 }
 
+// 键盘单按键请求。
 message InputKeyboardTypeKeyRequest {
+  // 按键名称（如 Enter、Escape）
   string key = 1;
 }
 
+// 键盘按下请求（不释放）。
 message InputKeyboardPressRequest {
+  // 按键名称
   string key = 1;
 }
 
+// 键盘释放请求。
 message InputKeyboardReleaseRequest {
+  // 按键名称
   string key = 1;
 }
 
+// 键盘按键序列请求（支持修饰符表示法，如 "Ctrl+C"）。
 message InputKeyboardTypeSequenceRequest {
+  // 按键序列字符串
   string sequence = 1;
 }
 
+// 等待请求。
 message InputWaitRequest {
+  // 等待时间（毫秒），必须 >= 0
   int32 milliseconds = 1;
 }
 
+// 输入模拟 gRPC 服务。
+// 所有输入操作均通过 Windows 全局输入门控序列化执行。
 service InputService {
+  // 模拟键盘输入完整文本字符串。
   rpc TypeText(InputKeyboardTypeTextRequest) returns (InputOkResponse);
+  // 模拟键盘输入单个字符。
   rpc TypeChar(InputKeyboardTypeCharRequest) returns (InputOkResponse);
+  // 模拟键盘依次按下并释放一组按键。
   rpc TypeKeys(InputKeyboardTypeKeysRequest) returns (InputOkResponse);
+  // 模拟键盘同时按下一组按键（组合键）。
   rpc TypeSimultaneously(InputKeyboardTypeSimultaneouslyRequest) returns (InputOkResponse);
+  // 模拟键盘输入单个按键（按下并释放）。
   rpc TypeKey(InputKeyboardTypeKeyRequest) returns (InputOkResponse);
+  // 模拟键盘按下某个按键（不释放）。
   rpc Press(InputKeyboardPressRequest) returns (InputOkResponse);
+  // 模拟键盘释放某个按键。
   rpc Release(InputKeyboardReleaseRequest) returns (InputOkResponse);
+  // 模拟键盘输入按键序列。
   rpc TypeSequence(InputKeyboardTypeSequenceRequest) returns (InputOkResponse);
+  // 获取当前鼠标光标位置。
   rpc GetCursorPosition(google.protobuf.Empty) returns (InputMouseGetPositionResponse);
+  // 立即设置鼠标光标位置（瞬移）。
   rpc SetCursorPosition(InputMouseMoveToRequest) returns (InputOkResponse);
+  // 平滑移动鼠标光标到指定位置（带动画）。
   rpc MoveTo(InputMouseMoveToRequest) returns (InputOkResponse);
+  // 将鼠标光标移动指定偏移量（带动画）。
   rpc MoveBy(InputMouseMoveByRequest) returns (InputOkResponse);
+  // 获取当前鼠标移动动画配置。
   rpc GetMoveSettings(google.protobuf.Empty) returns (InputMouseMoveSettingsResponse);
+  // 更新鼠标移动动画配置。
   rpc SetMoveSettings(InputMouseMoveSettingsRequest) returns (InputOkResponse);
+  // 执行鼠标点击操作。
   rpc Click(InputMouseClickRequest) returns (InputOkResponse);
+  // 按下鼠标按钮（不释放）。
   rpc Down(InputMouseDownRequest) returns (InputOkResponse);
+  // 释放已按下的鼠标按钮。
   rpc Up(InputMouseUpRequest) returns (InputOkResponse);
+  // 执行鼠标拖拽到目标坐标。
   rpc DragTo(InputMouseDragToRequest) returns (InputOkResponse);
+  // 执行鼠标拖拽指定距离。
   rpc DragBy(InputMouseDragByDistanceRequest) returns (InputOkResponse);
+  // 执行鼠标垂直滚轮操作。
   rpc Scroll(InputMouseScrollRequest) returns (InputOkResponse);
+  // 执行鼠标水平滚轮操作。
   rpc HorizontalScroll(InputMouseHorizontalScrollRequest) returns (InputOkResponse);
+  // 阻塞等待指定毫秒数。
   rpc Wait(InputWaitRequest) returns (InputOkResponse);
 }

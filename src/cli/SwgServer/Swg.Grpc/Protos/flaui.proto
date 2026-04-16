@@ -1,157 +1,279 @@
+// Copyright ScriptWinGUI. All rights reserved.
+//
+// ──────────────────────────────────────────────────────────────────────────────
+// FlaUI UI 自动化服务 Proto 定义
+//
+// 提供基于 FlaUI 框架的 Windows UI 自动化能力，包括会话管理、
+// 元素查找/遍历、鼠标点击模拟、焦点控制等功能。
+//
+// 包名：swg.flaui
+// C# 命名空间：Swg.Grpc.Flaui
+// 服务名：AutomationService
+// ──────────────────────────────────────────────────────────────────────────────
+
 syntax = "proto3";
 
 package swg.flaui;
 
 option csharp_namespace = "Swg.Grpc.Flaui";
 
+// 通用操作结果响应。
 message FlaUiOkResponse {
+  // 操作是否成功
   bool ok = 1;
 }
 
+// 仅包含会话 ID 的请求。
 message SessionIdRequest {
+  // 由 CreateSession 返回的会话唯一标识
   string session_id = 1;
 }
 
+// 包含会话 ID 和元素 ID 的请求。
 message SessionElementRequest {
+  // 会话 ID
   string session_id = 1;
+  // 目标 UI 元素 ID
   string element_id = 2;
 }
 
+// 创建自动化会话的请求。
 message SessionCreateRequest {
+  // 自动化框架类型（如 UIA3、UIA2），为空使用默认
   string automation_type = 1;
+  // 目标可执行文件路径（可选）
   string executable_path = 2;
+  // 启动参数（可选）
   string arguments = 3;
+  // 进程未运行时是否自动启动
   bool launch_if_not_running = 4;
+  // 同名多实例时的进程索引（0 起始，可选）
   int32 process_index = 5;
 }
 
+// 创建会话的响应。
 message SessionCreateResponse {
+  // 会话唯一标识，后续所有操作需使用此 ID
   string session_id = 1;
+  // 关联的进程 ID
   int32 process_id = 2;
+  // 实际使用的自动化框架类型
   string automation_type = 3;
 }
 
+// 优雅关闭应用程序的请求。
 message SessionCloseApplicationRequest {
+  // 会话 ID
   string session_id = 1;
+  // 优雅关闭失败时是否强制终止进程
   bool kill_if_close_fails = 2;
 }
 
+// 关闭应用程序的响应。
 message FlaUiCloseApplicationResponse {
+  // 操作是否成功执行
   bool ok = 1;
+  // 应用程序是否已被关闭（优雅关闭失败且未启用 Kill 时为 false）
   bool closed = 2;
 }
 
+// 等待超时配置。
 message WaitTimeoutPayload {
+  // 是否显式设置超时时间
   bool has_timeout_ms = 1;
+  // 超时时间（毫秒）
   int32 timeout_ms = 2;
 }
 
+// 带超时的会话等待请求。
 message SessionWaitRequest {
+  // 会话 ID
   string session_id = 1;
+  // 超时配置（可选）
   WaitTimeoutPayload timeout = 2;
 }
 
+// 等待空闲状态的响应。
 message FlaUiWaitBusyResponse {
+  // 操作是否成功执行
   bool ok = 1;
+  // 是否在超时前进入空闲状态
   bool result = 2;
 }
 
+// 等待窗口句柄的响应。
 message FlaUiWaitHandleResponse {
+  // 操作是否成功执行
   bool ok = 1;
+  // 是否在超时前获取到主窗口句柄
   bool result = 2;
 }
 
+// 元素查找条件。
 message FindElementPayload {
+  // 查找根节点类型（如 MainWindow、Desktop 等）
   string root_kind = 1;
+  // 查找根节点元素 ID（与 root_kind 配合使用）
   string root_element_id = 2;
+  // 查找范围（如 Children、Descendants 等）
   string scope = 3;
+  // 按 AutomationId 查找
   string automation_id = 4;
+  // 按名称查找
   string name = 5;
+  // 按类名查找
   string class_name = 6;
+  // 按控件类型查找（如 Button、Edit 等）
   string control_type = 7;
+  // XPath 表达式查找
   string xpath = 8;
+  // 是否显式设置主窗口等待超时
   bool has_main_window_wait_timeout_ms = 9;
+  // 主窗口等待超时（毫秒）
   int32 main_window_wait_timeout_ms = 10;
 }
 
+// XPath 查找条件。
 message FindByXPathPayload {
+  // 查找根节点类型
   string root_kind = 1;
+  // 查找根节点元素 ID
   string root_element_id = 2;
+  // XPath 表达式
   string xpath = 3;
+  // 是否显式设置主窗口等待超时
   bool has_main_window_wait_timeout_ms = 4;
+  // 主窗口等待超时（毫秒）
   int32 main_window_wait_timeout_ms = 5;
 }
 
+// 带查找条件的会话元素请求。
 message SessionFindElementRequest {
+  // 会话 ID
   string session_id = 1;
+  // 查找条件
   FindElementPayload find = 2;
 }
 
+// 带 XPath 查找条件的会话请求。
 message SessionFindByXPathRequest {
+  // 会话 ID
   string session_id = 1;
+  // XPath 查找条件
   FindByXPathPayload find = 2;
 }
 
+// 矩形区域。
 message RectDto {
+  // 左上角 X 坐标
   int32 x = 1;
+  // 左上角 Y 坐标
   int32 y = 2;
+  // 宽度
   int32 width = 3;
+  // 高度
   int32 height = 4;
 }
 
+// UI 元素详细信息。
 message ElementInfoResponse {
+  // 元素唯一标识
   string element_id = 1;
+  // 元素名称
   string name = 2;
+  // 自动化 ID
   string automation_id = 3;
+  // 类名
   string class_name = 4;
+  // 控件类型（如 Button、Edit 等）
   string control_type = 5;
+  // UI 框架类型
   string framework_type = 6;
+  // 是否启用
   bool is_enabled = 7;
+  // 是否在屏幕外
   bool is_offscreen = 8;
+  // 是否可用
   bool is_available = 9;
+  // 元素边界矩形
   RectDto bounds = 10;
 }
 
+// 元素引用响应。
 message ElementRefResponse {
+  // 元素唯一标识
   string element_id = 1;
 }
 
+// 元素引用列表响应。
 message ElementRefListResponse {
+  // 元素引用列表
   repeated ElementRefResponse items = 1;
 }
 
+// 点击选项。
 message ClickPayload {
+  // 是否显式设置移动鼠标选项
   bool has_move_mouse = 1;
+  // 是否先移动鼠标到元素位置再点击
   bool move_mouse = 2;
 }
 
+// 元素点击请求。
 message SessionElementClickRequest {
+  // 会话 ID
   string session_id = 1;
+  // 目标元素 ID
   string element_id = 2;
+  // 是否包含点击选项
   bool has_click = 3;
+  // 点击选项
   ClickPayload click = 4;
 }
 
+// FlaUI UI 自动化 gRPC 服务。
+// 所有操作均在会话上下文中执行。
 service AutomationService {
+  // 创建自动化会话，关联到目标应用程序进程。
   rpc CreateSession(SessionCreateRequest) returns (SessionCreateResponse);
+  // 删除指定会话，释放自动化资源（不关闭应用程序）。
   rpc DeleteSession(SessionIdRequest) returns (FlaUiOkResponse);
+  // 优雅关闭会话关联的应用程序。
   rpc CloseApplication(SessionCloseApplicationRequest) returns (FlaUiCloseApplicationResponse);
+  // 强制终止会话关联的应用程序进程。
   rpc KillApplication(SessionIdRequest) returns (FlaUiOkResponse);
+  // 等待应用程序进入空闲状态。
   rpc WaitWhileBusy(SessionWaitRequest) returns (FlaUiWaitBusyResponse);
+  // 等待应用程序主窗口句柄可用。
   rpc WaitMainHandle(SessionWaitRequest) returns (FlaUiWaitHandleResponse);
+  // 获取应用程序主窗口元素引用。
   rpc GetMainWindow(SessionWaitRequest) returns (ElementRefResponse);
+  // 获取应用程序所有顶级窗口元素引用。
   rpc GetTopLevelWindows(SessionIdRequest) returns (ElementRefListResponse);
+  // 获取指定 UI 元素的详细信息。
   rpc GetElementInfo(SessionElementRequest) returns (ElementInfoResponse);
+  // 根据条件查找第一个匹配的 UI 元素。
   rpc FindElement(SessionFindElementRequest) returns (ElementRefResponse);
+  // 根据条件查找所有匹配的 UI 元素。
   rpc FindAllElements(SessionFindElementRequest) returns (ElementRefListResponse);
+  // 使用 XPath 查找第一个匹配的 UI 元素。
   rpc FindElementByXPath(SessionFindByXPathRequest) returns (ElementRefResponse);
+  // 使用 XPath 查找所有匹配的 UI 元素。
   rpc FindAllElementsByXPath(SessionFindByXPathRequest) returns (ElementRefListResponse);
+  // 获取指定 UI 元素的所有直接子元素。
   rpc GetChildren(SessionElementRequest) returns (ElementRefListResponse);
+  // 将输入焦点设置到指定 UI 元素。
   rpc Focus(SessionElementRequest) returns (FlaUiOkResponse);
+  // 使用 Win32 SetFocus 设置焦点到指定 UI 元素。
   rpc FocusNative(SessionElementRequest) returns (FlaUiOkResponse);
+  // 将指定元素所在窗口设为前台窗口。
   rpc SetElementForeground(SessionElementRequest) returns (FlaUiOkResponse);
+  // 对指定 UI 元素执行鼠标左键单击。
   rpc Click(SessionElementClickRequest) returns (FlaUiOkResponse);
+  // 对指定 UI 元素执行鼠标左键双击。
   rpc DoubleClick(SessionElementClickRequest) returns (FlaUiOkResponse);
+  // 对指定 UI 元素执行鼠标右键单击。
   rpc RightClick(SessionElementClickRequest) returns (FlaUiOkResponse);
+  // 对指定 UI 元素执行鼠标右键双击。
   rpc RightDoubleClick(SessionElementClickRequest) returns (FlaUiOkResponse);
 }

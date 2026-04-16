@@ -189,6 +189,9 @@ namespace Swg.Grpc.Win32 {
 
   }
   #region Messages
+  /// <summary>
+  /// 通用操作结果响应。
+  /// </summary>
   public sealed partial class OkResponse : pb::IMessage<OkResponse>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -236,6 +239,9 @@ namespace Swg.Grpc.Win32 {
     /// <summary>Field number for the "ok" field.</summary>
     public const int OkFieldNumber = 1;
     private bool ok_;
+    /// <summary>
+    /// 操作是否成功
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool Ok {
@@ -378,6 +384,9 @@ namespace Swg.Grpc.Win32 {
 
   }
 
+  /// <summary>
+  /// 窗口矩形区域。
+  /// </summary>
   public sealed partial class WindowRectDto : pb::IMessage<WindowRectDto>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -430,6 +439,9 @@ namespace Swg.Grpc.Win32 {
     /// <summary>Field number for the "left" field.</summary>
     public const int LeftFieldNumber = 1;
     private int left_;
+    /// <summary>
+    /// 左边界
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int Left {
@@ -442,6 +454,9 @@ namespace Swg.Grpc.Win32 {
     /// <summary>Field number for the "top" field.</summary>
     public const int TopFieldNumber = 2;
     private int top_;
+    /// <summary>
+    /// 上边界
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int Top {
@@ -454,6 +469,9 @@ namespace Swg.Grpc.Win32 {
     /// <summary>Field number for the "right" field.</summary>
     public const int RightFieldNumber = 3;
     private int right_;
+    /// <summary>
+    /// 右边界
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int Right {
@@ -466,6 +484,9 @@ namespace Swg.Grpc.Win32 {
     /// <summary>Field number for the "bottom" field.</summary>
     public const int BottomFieldNumber = 4;
     private int bottom_;
+    /// <summary>
+    /// 下边界
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int Bottom {
@@ -478,6 +499,9 @@ namespace Swg.Grpc.Win32 {
     /// <summary>Field number for the "width" field.</summary>
     public const int WidthFieldNumber = 5;
     private int width_;
+    /// <summary>
+    /// 宽度
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int Width {
@@ -490,6 +514,9 @@ namespace Swg.Grpc.Win32 {
     /// <summary>Field number for the "height" field.</summary>
     public const int HeightFieldNumber = 6;
     private int height_;
+    /// <summary>
+    /// 高度
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int Height {
@@ -752,6 +779,9 @@ namespace Swg.Grpc.Win32 {
 
   }
 
+  /// <summary>
+  /// 窗口句柄响应。
+  /// </summary>
   public sealed partial class WindowHandleResponse : pb::IMessage<WindowHandleResponse>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -799,6 +829,9 @@ namespace Swg.Grpc.Win32 {
     /// <summary>Field number for the "window_handle" field.</summary>
     public const int WindowHandleFieldNumber = 1;
     private string windowHandle_ = "";
+    /// <summary>
+    /// 窗口句柄字符串（十进制数值）
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string WindowHandle {
@@ -941,6 +974,9 @@ namespace Swg.Grpc.Win32 {
 
   }
 
+  /// <summary>
+  /// 窗口详细信息响应。
+  /// </summary>
   public sealed partial class WindowInfoResponse : pb::IMessage<WindowInfoResponse>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -992,6 +1028,9 @@ namespace Swg.Grpc.Win32 {
     /// <summary>Field number for the "window_handle" field.</summary>
     public const int WindowHandleFieldNumber = 1;
     private string windowHandle_ = "";
+    /// <summary>
+    /// 窗口句柄
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string WindowHandle {
@@ -1004,6 +1043,9 @@ namespace Swg.Grpc.Win32 {
     /// <summary>Field number for the "title" field.</summary>
     public const int TitleFieldNumber = 2;
     private string title_ = "";
+    /// <summary>
+    /// 窗口标题
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string Title {
@@ -1016,6 +1058,9 @@ namespace Swg.Grpc.Win32 {
     /// <summary>Field number for the "class_name" field.</summary>
     public const int ClassNameFieldNumber = 3;
     private string className_ = "";
+    /// <summary>
+    /// 窗口类名
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string ClassName {
@@ -1028,6 +1073,9 @@ namespace Swg.Grpc.Win32 {
     /// <summary>Field number for the "process_id" field.</summary>
     public const int ProcessIdFieldNumber = 4;
     private uint processId_;
+    /// <summary>
+    /// 所属进程 ID
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public uint ProcessId {
@@ -1040,6 +1088,9 @@ namespace Swg.Grpc.Win32 {
     /// <summary>Field number for the "rect" field.</summary>
     public const int RectFieldNumber = 5;
     private global::Swg.Grpc.Win32.WindowRectDto rect_;
+    /// <summary>
+    /// 窗口矩形区域
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public global::Swg.Grpc.Win32.WindowRectDto Rect {
@@ -1287,6 +1338,9 @@ namespace Swg.Grpc.Win32 {
 
   }
 
+  /// <summary>
+  /// 查找窗口请求。
+  /// </summary>
   public sealed partial class FindWindowRequest : pb::IMessage<FindWindowRequest>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -1338,6 +1392,9 @@ namespace Swg.Grpc.Win32 {
     /// <summary>Field number for the "title_contains" field.</summary>
     public const int TitleContainsFieldNumber = 1;
     private string titleContains_ = "";
+    /// <summary>
+    /// 窗口标题包含的文本（与 class_name_equals 至少一个必填）
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string TitleContains {
@@ -1350,6 +1407,9 @@ namespace Swg.Grpc.Win32 {
     /// <summary>Field number for the "class_name_equals" field.</summary>
     public const int ClassNameEqualsFieldNumber = 2;
     private string classNameEquals_ = "";
+    /// <summary>
+    /// 窗口类名精确匹配
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string ClassNameEquals {
@@ -1362,6 +1422,9 @@ namespace Swg.Grpc.Win32 {
     /// <summary>Field number for the "process_id" field.</summary>
     public const int ProcessIdFieldNumber = 3;
     private uint processId_;
+    /// <summary>
+    /// 进程 ID 过滤（has_process_id 为 true 时有效）
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public uint ProcessId {
@@ -1374,6 +1437,9 @@ namespace Swg.Grpc.Win32 {
     /// <summary>Field number for the "has_process_id" field.</summary>
     public const int HasProcessIdFieldNumber = 4;
     private bool hasProcessId_;
+    /// <summary>
+    /// 标记是否指定进程 ID
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool HasProcessId {
@@ -1386,6 +1452,9 @@ namespace Swg.Grpc.Win32 {
     /// <summary>Field number for the "visible_only" field.</summary>
     public const int VisibleOnlyFieldNumber = 5;
     private bool visibleOnly_;
+    /// <summary>
+    /// 是否只查找可见窗口
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool VisibleOnly {
@@ -1624,6 +1693,9 @@ namespace Swg.Grpc.Win32 {
 
   }
 
+  /// <summary>
+  /// 查找子窗口请求。
+  /// </summary>
   public sealed partial class FindChildWindowRequest : pb::IMessage<FindChildWindowRequest>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -1674,6 +1746,9 @@ namespace Swg.Grpc.Win32 {
     /// <summary>Field number for the "parent_window_handle" field.</summary>
     public const int ParentWindowHandleFieldNumber = 1;
     private string parentWindowHandle_ = "";
+    /// <summary>
+    /// 父窗口句柄
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string ParentWindowHandle {
@@ -1686,6 +1761,9 @@ namespace Swg.Grpc.Win32 {
     /// <summary>Field number for the "title_contains" field.</summary>
     public const int TitleContainsFieldNumber = 2;
     private string titleContains_ = "";
+    /// <summary>
+    /// 子窗口标题包含的文本
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string TitleContains {
@@ -1698,6 +1776,9 @@ namespace Swg.Grpc.Win32 {
     /// <summary>Field number for the "class_name_equals" field.</summary>
     public const int ClassNameEqualsFieldNumber = 3;
     private string classNameEquals_ = "";
+    /// <summary>
+    /// 子窗口类名精确匹配
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string ClassNameEquals {
@@ -1710,6 +1791,9 @@ namespace Swg.Grpc.Win32 {
     /// <summary>Field number for the "visible_only" field.</summary>
     public const int VisibleOnlyFieldNumber = 4;
     private bool visibleOnly_;
+    /// <summary>
+    /// 是否只查找可见子窗口
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool VisibleOnly {
@@ -1924,6 +2008,9 @@ namespace Swg.Grpc.Win32 {
 
   }
 
+  /// <summary>
+  /// 窗口信息查询请求。
+  /// </summary>
   public sealed partial class WindowInfoRequest : pb::IMessage<WindowInfoRequest>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -1971,6 +2058,9 @@ namespace Swg.Grpc.Win32 {
     /// <summary>Field number for the "window_handle" field.</summary>
     public const int WindowHandleFieldNumber = 1;
     private string windowHandle_ = "";
+    /// <summary>
+    /// 目标窗口句柄
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string WindowHandle {
@@ -2113,6 +2203,9 @@ namespace Swg.Grpc.Win32 {
 
   }
 
+  /// <summary>
+  /// 枚举子窗口请求。
+  /// </summary>
   public sealed partial class EnumChildWindowsRequest : pb::IMessage<EnumChildWindowsRequest>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -2160,6 +2253,9 @@ namespace Swg.Grpc.Win32 {
     /// <summary>Field number for the "parent_window_handle" field.</summary>
     public const int ParentWindowHandleFieldNumber = 1;
     private string parentWindowHandle_ = "";
+    /// <summary>
+    /// 父窗口句柄
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string ParentWindowHandle {
@@ -2302,6 +2398,9 @@ namespace Swg.Grpc.Win32 {
 
   }
 
+  /// <summary>
+  /// 子窗口句柄列表响应。
+  /// </summary>
   public sealed partial class ChildWindowHandlesResponse : pb::IMessage<ChildWindowHandlesResponse>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -2351,6 +2450,9 @@ namespace Swg.Grpc.Win32 {
     private static readonly pb::FieldCodec<string> _repeated_windowHandles_codec
         = pb::FieldCodec.ForString(10);
     private readonly pbc::RepeatedField<string> windowHandles_ = new pbc::RepeatedField<string>();
+    /// <summary>
+    /// 子窗口句柄列表
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public pbc::RepeatedField<string> WindowHandles {
@@ -2480,6 +2582,9 @@ namespace Swg.Grpc.Win32 {
 
   }
 
+  /// <summary>
+  /// 设置前台窗口请求。
+  /// </summary>
   public sealed partial class ForegroundWindowRequest : pb::IMessage<ForegroundWindowRequest>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -2527,6 +2632,9 @@ namespace Swg.Grpc.Win32 {
     /// <summary>Field number for the "window_handle" field.</summary>
     public const int WindowHandleFieldNumber = 1;
     private string windowHandle_ = "";
+    /// <summary>
+    /// 目标窗口句柄
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string WindowHandle {
@@ -2669,6 +2777,9 @@ namespace Swg.Grpc.Win32 {
 
   }
 
+  /// <summary>
+  /// 设置窗口位置和大小请求。
+  /// </summary>
   public sealed partial class WindowPositionResizeRequest : pb::IMessage<WindowPositionResizeRequest>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -2720,6 +2831,9 @@ namespace Swg.Grpc.Win32 {
     /// <summary>Field number for the "window_handle" field.</summary>
     public const int WindowHandleFieldNumber = 1;
     private string windowHandle_ = "";
+    /// <summary>
+    /// 目标窗口句柄
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string WindowHandle {
@@ -2732,6 +2846,9 @@ namespace Swg.Grpc.Win32 {
     /// <summary>Field number for the "left" field.</summary>
     public const int LeftFieldNumber = 2;
     private int left_;
+    /// <summary>
+    /// 窗口左上角 X 坐标
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int Left {
@@ -2744,6 +2861,9 @@ namespace Swg.Grpc.Win32 {
     /// <summary>Field number for the "top" field.</summary>
     public const int TopFieldNumber = 3;
     private int top_;
+    /// <summary>
+    /// 窗口左上角 Y 坐标
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int Top {
@@ -2756,6 +2876,9 @@ namespace Swg.Grpc.Win32 {
     /// <summary>Field number for the "width" field.</summary>
     public const int WidthFieldNumber = 4;
     private int width_;
+    /// <summary>
+    /// 窗口宽度
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int Width {
@@ -2768,6 +2891,9 @@ namespace Swg.Grpc.Win32 {
     /// <summary>Field number for the "height" field.</summary>
     public const int HeightFieldNumber = 5;
     private int height_;
+    /// <summary>
+    /// 窗口高度
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int Height {
@@ -3006,6 +3132,9 @@ namespace Swg.Grpc.Win32 {
 
   }
 
+  /// <summary>
+  /// 设置窗口状态请求。
+  /// </summary>
   public sealed partial class WindowStateRequest : pb::IMessage<WindowStateRequest>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -3054,6 +3183,9 @@ namespace Swg.Grpc.Win32 {
     /// <summary>Field number for the "window_handle" field.</summary>
     public const int WindowHandleFieldNumber = 1;
     private string windowHandle_ = "";
+    /// <summary>
+    /// 目标窗口句柄
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string WindowHandle {
@@ -3066,6 +3198,9 @@ namespace Swg.Grpc.Win32 {
     /// <summary>Field number for the "state" field.</summary>
     public const int StateFieldNumber = 2;
     private string state_ = "";
+    /// <summary>
+    /// 窗口状态（如 Maximize、Minimize、Restore）
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string State {
@@ -3232,6 +3367,9 @@ namespace Swg.Grpc.Win32 {
 
   }
 
+  /// <summary>
+  /// 关闭窗口请求。
+  /// </summary>
   public sealed partial class CloseWindowRequest : pb::IMessage<CloseWindowRequest>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -3279,6 +3417,9 @@ namespace Swg.Grpc.Win32 {
     /// <summary>Field number for the "window_handle" field.</summary>
     public const int WindowHandleFieldNumber = 1;
     private string windowHandle_ = "";
+    /// <summary>
+    /// 目标窗口句柄
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string WindowHandle {
@@ -3421,6 +3562,9 @@ namespace Swg.Grpc.Win32 {
 
   }
 
+  /// <summary>
+  /// 获取窗口进程 ID 请求。
+  /// </summary>
   public sealed partial class WindowProcessIdRequest : pb::IMessage<WindowProcessIdRequest>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -3468,6 +3612,9 @@ namespace Swg.Grpc.Win32 {
     /// <summary>Field number for the "window_handle" field.</summary>
     public const int WindowHandleFieldNumber = 1;
     private string windowHandle_ = "";
+    /// <summary>
+    /// 目标窗口句柄
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string WindowHandle {
@@ -3610,6 +3757,9 @@ namespace Swg.Grpc.Win32 {
 
   }
 
+  /// <summary>
+  /// 窗口进程 ID 响应。
+  /// </summary>
   public sealed partial class WindowProcessIdResponse : pb::IMessage<WindowProcessIdResponse>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -3657,6 +3807,9 @@ namespace Swg.Grpc.Win32 {
     /// <summary>Field number for the "process_id" field.</summary>
     public const int ProcessIdFieldNumber = 1;
     private uint processId_;
+    /// <summary>
+    /// 进程 ID
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public uint ProcessId {
@@ -3799,6 +3952,9 @@ namespace Swg.Grpc.Win32 {
 
   }
 
+  /// <summary>
+  /// 启动进程请求。
+  /// </summary>
   public sealed partial class ProcessStartRequest : pb::IMessage<ProcessStartRequest>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -3847,6 +4003,9 @@ namespace Swg.Grpc.Win32 {
     /// <summary>Field number for the "executable_path" field.</summary>
     public const int ExecutablePathFieldNumber = 1;
     private string executablePath_ = "";
+    /// <summary>
+    /// 可执行文件路径
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string ExecutablePath {
@@ -3859,6 +4018,9 @@ namespace Swg.Grpc.Win32 {
     /// <summary>Field number for the "arguments" field.</summary>
     public const int ArgumentsFieldNumber = 2;
     private string arguments_ = "";
+    /// <summary>
+    /// 启动参数
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string Arguments {
@@ -4025,6 +4187,9 @@ namespace Swg.Grpc.Win32 {
 
   }
 
+  /// <summary>
+  /// 启动进程响应。
+  /// </summary>
   public sealed partial class ProcessStartResponse : pb::IMessage<ProcessStartResponse>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -4072,6 +4237,9 @@ namespace Swg.Grpc.Win32 {
     /// <summary>Field number for the "process_id" field.</summary>
     public const int ProcessIdFieldNumber = 1;
     private uint processId_;
+    /// <summary>
+    /// 新进程 ID
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public uint ProcessId {
@@ -4214,6 +4382,9 @@ namespace Swg.Grpc.Win32 {
 
   }
 
+  /// <summary>
+  /// 终止进程请求。
+  /// </summary>
   public sealed partial class ProcessKillRequest : pb::IMessage<ProcessKillRequest>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -4261,6 +4432,9 @@ namespace Swg.Grpc.Win32 {
     /// <summary>Field number for the "process_id" field.</summary>
     public const int ProcessIdFieldNumber = 1;
     private uint processId_;
+    /// <summary>
+    /// 要终止的进程 ID
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public uint ProcessId {
@@ -4403,6 +4577,9 @@ namespace Swg.Grpc.Win32 {
 
   }
 
+  /// <summary>
+  /// 当前进程 ID 响应。
+  /// </summary>
   public sealed partial class ProcessCurrentIdResponse : pb::IMessage<ProcessCurrentIdResponse>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -4450,6 +4627,9 @@ namespace Swg.Grpc.Win32 {
     /// <summary>Field number for the "process_id" field.</summary>
     public const int ProcessIdFieldNumber = 1;
     private uint processId_;
+    /// <summary>
+    /// 当前进程 ID
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public uint ProcessId {
@@ -4592,6 +4772,9 @@ namespace Swg.Grpc.Win32 {
 
   }
 
+  /// <summary>
+  /// 检查进程是否存在请求。
+  /// </summary>
   public sealed partial class ProcessExistsRequest : pb::IMessage<ProcessExistsRequest>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -4639,6 +4822,9 @@ namespace Swg.Grpc.Win32 {
     /// <summary>Field number for the "process_id" field.</summary>
     public const int ProcessIdFieldNumber = 1;
     private uint processId_;
+    /// <summary>
+    /// 进程 ID
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public uint ProcessId {
@@ -4781,6 +4967,9 @@ namespace Swg.Grpc.Win32 {
 
   }
 
+  /// <summary>
+  /// 进程是否存在响应。
+  /// </summary>
   public sealed partial class ProcessExistsResponse : pb::IMessage<ProcessExistsResponse>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -4828,6 +5017,9 @@ namespace Swg.Grpc.Win32 {
     /// <summary>Field number for the "exists" field.</summary>
     public const int ExistsFieldNumber = 1;
     private bool exists_;
+    /// <summary>
+    /// 进程是否存在
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool Exists {
@@ -4970,6 +5162,9 @@ namespace Swg.Grpc.Win32 {
 
   }
 
+  /// <summary>
+  /// 等待进程退出请求。
+  /// </summary>
   public sealed partial class ProcessWaitExitRequest : pb::IMessage<ProcessWaitExitRequest>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -5019,6 +5214,9 @@ namespace Swg.Grpc.Win32 {
     /// <summary>Field number for the "process_id" field.</summary>
     public const int ProcessIdFieldNumber = 1;
     private uint processId_;
+    /// <summary>
+    /// 进程 ID
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public uint ProcessId {
@@ -5031,6 +5229,9 @@ namespace Swg.Grpc.Win32 {
     /// <summary>Field number for the "timeout_ms" field.</summary>
     public const int TimeoutMsFieldNumber = 2;
     private int timeoutMs_;
+    /// <summary>
+    /// 超时时间（毫秒，has_timeout_ms 为 true 时有效）
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int TimeoutMs {
@@ -5043,6 +5244,9 @@ namespace Swg.Grpc.Win32 {
     /// <summary>Field number for the "has_timeout_ms" field.</summary>
     public const int HasTimeoutMsFieldNumber = 3;
     private bool hasTimeoutMs_;
+    /// <summary>
+    /// 标记是否指定超时时间
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool HasTimeoutMs {
@@ -5233,6 +5437,9 @@ namespace Swg.Grpc.Win32 {
 
   }
 
+  /// <summary>
+  /// 等待进程退出响应。
+  /// </summary>
   public sealed partial class ProcessWaitExitResponse : pb::IMessage<ProcessWaitExitResponse>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -5280,6 +5487,9 @@ namespace Swg.Grpc.Win32 {
     /// <summary>Field number for the "exited" field.</summary>
     public const int ExitedFieldNumber = 1;
     private bool exited_;
+    /// <summary>
+    /// 进程是否在超时前退出
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool Exited {
@@ -5422,6 +5632,9 @@ namespace Swg.Grpc.Win32 {
 
   }
 
+  /// <summary>
+  /// 剪贴板文本响应。
+  /// </summary>
   public sealed partial class ClipboardTextResponse : pb::IMessage<ClipboardTextResponse>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -5469,6 +5682,9 @@ namespace Swg.Grpc.Win32 {
     /// <summary>Field number for the "text" field.</summary>
     public const int TextFieldNumber = 1;
     private string text_ = "";
+    /// <summary>
+    /// 剪贴板文本内容
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string Text {
@@ -5611,6 +5827,9 @@ namespace Swg.Grpc.Win32 {
 
   }
 
+  /// <summary>
+  /// 设置剪贴板文本请求。
+  /// </summary>
   public sealed partial class ClipboardTextSetRequest : pb::IMessage<ClipboardTextSetRequest>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -5658,6 +5877,9 @@ namespace Swg.Grpc.Win32 {
     /// <summary>Field number for the "text" field.</summary>
     public const int TextFieldNumber = 1;
     private string text_ = "";
+    /// <summary>
+    /// 要设置的文本
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string Text {
@@ -5800,6 +6022,9 @@ namespace Swg.Grpc.Win32 {
 
   }
 
+  /// <summary>
+  /// 清空剪贴板响应。
+  /// </summary>
   public sealed partial class ClipboardClearResponse : pb::IMessage<ClipboardClearResponse>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -5847,6 +6072,9 @@ namespace Swg.Grpc.Win32 {
     /// <summary>Field number for the "ok" field.</summary>
     public const int OkFieldNumber = 1;
     private bool ok_;
+    /// <summary>
+    /// 是否清空成功
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool Ok {
@@ -5989,6 +6217,9 @@ namespace Swg.Grpc.Win32 {
 
   }
 
+  /// <summary>
+  /// 主显示器分辨率响应。
+  /// </summary>
   public sealed partial class MainScreenResponse : pb::IMessage<MainScreenResponse>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -6037,6 +6268,9 @@ namespace Swg.Grpc.Win32 {
     /// <summary>Field number for the "width" field.</summary>
     public const int WidthFieldNumber = 1;
     private int width_;
+    /// <summary>
+    /// 屏幕宽度（像素）
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int Width {
@@ -6049,6 +6283,9 @@ namespace Swg.Grpc.Win32 {
     /// <summary>Field number for the "height" field.</summary>
     public const int HeightFieldNumber = 2;
     private int height_;
+    /// <summary>
+    /// 屏幕高度（像素）
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int Height {
@@ -6215,6 +6452,9 @@ namespace Swg.Grpc.Win32 {
 
   }
 
+  /// <summary>
+  /// 虚拟屏幕响应。
+  /// </summary>
   public sealed partial class VirtualScreenResponse : pb::IMessage<VirtualScreenResponse>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -6265,6 +6505,9 @@ namespace Swg.Grpc.Win32 {
     /// <summary>Field number for the "x" field.</summary>
     public const int XFieldNumber = 1;
     private int x_;
+    /// <summary>
+    /// 虚拟屏幕左上角 X 坐标
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int X {
@@ -6277,6 +6520,9 @@ namespace Swg.Grpc.Win32 {
     /// <summary>Field number for the "y" field.</summary>
     public const int YFieldNumber = 2;
     private int y_;
+    /// <summary>
+    /// 虚拟屏幕左上角 Y 坐标
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int Y {
@@ -6289,6 +6535,9 @@ namespace Swg.Grpc.Win32 {
     /// <summary>Field number for the "width" field.</summary>
     public const int WidthFieldNumber = 3;
     private int width_;
+    /// <summary>
+    /// 虚拟屏幕宽度
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int Width {
@@ -6301,6 +6550,9 @@ namespace Swg.Grpc.Win32 {
     /// <summary>Field number for the "height" field.</summary>
     public const int HeightFieldNumber = 4;
     private int height_;
+    /// <summary>
+    /// 虚拟屏幕高度
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int Height {
@@ -6515,6 +6767,9 @@ namespace Swg.Grpc.Win32 {
 
   }
 
+  /// <summary>
+  /// 系统 DPI 响应。
+  /// </summary>
   public sealed partial class SystemDpiResponse : pb::IMessage<SystemDpiResponse>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -6563,6 +6818,9 @@ namespace Swg.Grpc.Win32 {
     /// <summary>Field number for the "dpi_x" field.</summary>
     public const int DpiXFieldNumber = 1;
     private int dpiX_;
+    /// <summary>
+    /// 水平 DPI
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int DpiX {
@@ -6575,6 +6833,9 @@ namespace Swg.Grpc.Win32 {
     /// <summary>Field number for the "dpi_y" field.</summary>
     public const int DpiYFieldNumber = 2;
     private int dpiY_;
+    /// <summary>
+    /// 垂直 DPI
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int DpiY {
@@ -6741,6 +7002,9 @@ namespace Swg.Grpc.Win32 {
 
   }
 
+  /// <summary>
+  /// 光标位置响应。
+  /// </summary>
   public sealed partial class CursorPositionResponse : pb::IMessage<CursorPositionResponse>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -6789,6 +7053,9 @@ namespace Swg.Grpc.Win32 {
     /// <summary>Field number for the "x" field.</summary>
     public const int XFieldNumber = 1;
     private int x_;
+    /// <summary>
+    /// X 坐标
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int X {
@@ -6801,6 +7068,9 @@ namespace Swg.Grpc.Win32 {
     /// <summary>Field number for the "y" field.</summary>
     public const int YFieldNumber = 2;
     private int y_;
+    /// <summary>
+    /// Y 坐标
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int Y {
@@ -6967,6 +7237,9 @@ namespace Swg.Grpc.Win32 {
 
   }
 
+  /// <summary>
+  /// 前台窗口详细信息响应。
+  /// </summary>
   public sealed partial class ForegroundWindowInfoResponse : pb::IMessage<ForegroundWindowInfoResponse>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -7014,6 +7287,9 @@ namespace Swg.Grpc.Win32 {
     /// <summary>Field number for the "window" field.</summary>
     public const int WindowFieldNumber = 1;
     private global::Swg.Grpc.Win32.WindowInfoResponse window_;
+    /// <summary>
+    /// 前台窗口信息
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public global::Swg.Grpc.Win32.WindowInfoResponse Window {
@@ -7165,6 +7441,9 @@ namespace Swg.Grpc.Win32 {
 
   }
 
+  /// <summary>
+  /// 指定坐标窗口查询请求。
+  /// </summary>
   public sealed partial class WindowFromPointRequest : pb::IMessage<WindowFromPointRequest>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -7213,6 +7492,9 @@ namespace Swg.Grpc.Win32 {
     /// <summary>Field number for the "x" field.</summary>
     public const int XFieldNumber = 1;
     private int x_;
+    /// <summary>
+    /// 屏幕 X 坐标
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int X {
@@ -7225,6 +7507,9 @@ namespace Swg.Grpc.Win32 {
     /// <summary>Field number for the "y" field.</summary>
     public const int YFieldNumber = 2;
     private int y_;
+    /// <summary>
+    /// 屏幕 Y 坐标
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int Y {
@@ -7391,6 +7676,9 @@ namespace Swg.Grpc.Win32 {
 
   }
 
+  /// <summary>
+  /// 指定坐标窗口句柄响应。
+  /// </summary>
   public sealed partial class WindowHandleAtPointResponse : pb::IMessage<WindowHandleAtPointResponse>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -7438,6 +7726,9 @@ namespace Swg.Grpc.Win32 {
     /// <summary>Field number for the "window_handle" field.</summary>
     public const int WindowHandleFieldNumber = 1;
     private string windowHandle_ = "";
+    /// <summary>
+    /// 该坐标处的窗口句柄
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string WindowHandle {
@@ -7580,6 +7871,9 @@ namespace Swg.Grpc.Win32 {
 
   }
 
+  /// <summary>
+  /// Win32 消息请求（SendMessage / PostMessage 共用）。
+  /// </summary>
   public sealed partial class WindowMessageRequest : pb::IMessage<WindowMessageRequest>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -7630,6 +7924,9 @@ namespace Swg.Grpc.Win32 {
     /// <summary>Field number for the "window_handle" field.</summary>
     public const int WindowHandleFieldNumber = 1;
     private string windowHandle_ = "";
+    /// <summary>
+    /// 目标窗口句柄
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string WindowHandle {
@@ -7642,6 +7939,9 @@ namespace Swg.Grpc.Win32 {
     /// <summary>Field number for the "msg" field.</summary>
     public const int MsgFieldNumber = 2;
     private uint msg_;
+    /// <summary>
+    /// 消息 ID
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public uint Msg {
@@ -7654,6 +7954,9 @@ namespace Swg.Grpc.Win32 {
     /// <summary>Field number for the "w_param" field.</summary>
     public const int WParamFieldNumber = 3;
     private string wParam_ = "";
+    /// <summary>
+    /// WParam 值（字符串形式的数值）
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string WParam {
@@ -7666,6 +7969,9 @@ namespace Swg.Grpc.Win32 {
     /// <summary>Field number for the "l_param" field.</summary>
     public const int LParamFieldNumber = 4;
     private string lParam_ = "";
+    /// <summary>
+    /// LParam 值（字符串形式的数值）
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string LParam {
@@ -7880,6 +8186,9 @@ namespace Swg.Grpc.Win32 {
 
   }
 
+  /// <summary>
+  /// SendMessage 结果响应。
+  /// </summary>
   public sealed partial class WindowMessageSendResponse : pb::IMessage<WindowMessageSendResponse>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -7927,6 +8236,9 @@ namespace Swg.Grpc.Win32 {
     /// <summary>Field number for the "result" field.</summary>
     public const int ResultFieldNumber = 1;
     private long result_;
+    /// <summary>
+    /// 消息处理结果
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public long Result {
@@ -8069,6 +8381,9 @@ namespace Swg.Grpc.Win32 {
 
   }
 
+  /// <summary>
+  /// PostMessage 结果响应。
+  /// </summary>
   public sealed partial class WindowMessagePostResponse : pb::IMessage<WindowMessagePostResponse>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -8116,6 +8431,9 @@ namespace Swg.Grpc.Win32 {
     /// <summary>Field number for the "ok" field.</summary>
     public const int OkFieldNumber = 1;
     private bool ok_;
+    /// <summary>
+    /// 是否投递成功
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool Ok {
@@ -8258,6 +8576,9 @@ namespace Swg.Grpc.Win32 {
 
   }
 
+  /// <summary>
+  /// SendKeys 请求。
+  /// </summary>
   public sealed partial class WindowKeysSendRequest : pb::IMessage<WindowKeysSendRequest>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -8306,6 +8627,9 @@ namespace Swg.Grpc.Win32 {
     /// <summary>Field number for the "window_handle" field.</summary>
     public const int WindowHandleFieldNumber = 1;
     private string windowHandle_ = "";
+    /// <summary>
+    /// 目标窗口句柄
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string WindowHandle {
@@ -8320,6 +8644,9 @@ namespace Swg.Grpc.Win32 {
     private static readonly pb::FieldCodec<string> _repeated_keys_codec
         = pb::FieldCodec.ForString(18);
     private readonly pbc::RepeatedField<string> keys_ = new pbc::RepeatedField<string>();
+    /// <summary>
+    /// 按键名称列表
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public pbc::RepeatedField<string> Keys {
@@ -8473,6 +8800,9 @@ namespace Swg.Grpc.Win32 {
 
   }
 
+  /// <summary>
+  /// SendKeys 结果响应。
+  /// </summary>
   public sealed partial class WindowKeysSendResponse : pb::IMessage<WindowKeysSendResponse>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -8520,6 +8850,9 @@ namespace Swg.Grpc.Win32 {
     /// <summary>Field number for the "ok" field.</summary>
     public const int OkFieldNumber = 1;
     private bool ok_;
+    /// <summary>
+    /// 是否发送成功
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool Ok {
@@ -8662,6 +8995,9 @@ namespace Swg.Grpc.Win32 {
 
   }
 
+  /// <summary>
+  /// 获取控件文本请求。
+  /// </summary>
   public sealed partial class ControlTextGetRequest : pb::IMessage<ControlTextGetRequest>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -8711,6 +9047,9 @@ namespace Swg.Grpc.Win32 {
     /// <summary>Field number for the "control_handle" field.</summary>
     public const int ControlHandleFieldNumber = 1;
     private string controlHandle_ = "";
+    /// <summary>
+    /// 控件句柄
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string ControlHandle {
@@ -8723,6 +9062,9 @@ namespace Swg.Grpc.Win32 {
     /// <summary>Field number for the "max_length" field.</summary>
     public const int MaxLengthFieldNumber = 2;
     private int maxLength_;
+    /// <summary>
+    /// 最大获取长度（has_max_length 为 true 时有效）
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int MaxLength {
@@ -8735,6 +9077,9 @@ namespace Swg.Grpc.Win32 {
     /// <summary>Field number for the "has_max_length" field.</summary>
     public const int HasMaxLengthFieldNumber = 3;
     private bool hasMaxLength_;
+    /// <summary>
+    /// 标记是否指定最大长度
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool HasMaxLength {
@@ -8925,6 +9270,9 @@ namespace Swg.Grpc.Win32 {
 
   }
 
+  /// <summary>
+  /// 控件文本响应。
+  /// </summary>
   public sealed partial class ControlTextGetResponse : pb::IMessage<ControlTextGetResponse>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -8972,6 +9320,9 @@ namespace Swg.Grpc.Win32 {
     /// <summary>Field number for the "text" field.</summary>
     public const int TextFieldNumber = 1;
     private string text_ = "";
+    /// <summary>
+    /// 控件文本内容
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string Text {
@@ -9114,6 +9465,9 @@ namespace Swg.Grpc.Win32 {
 
   }
 
+  /// <summary>
+  /// WM_COMMAND 消息发送请求。
+  /// </summary>
   public sealed partial class WmCommandSendRequest : pb::IMessage<WmCommandSendRequest>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -9164,6 +9518,9 @@ namespace Swg.Grpc.Win32 {
     /// <summary>Field number for the "target_window_handle" field.</summary>
     public const int TargetWindowHandleFieldNumber = 1;
     private string targetWindowHandle_ = "";
+    /// <summary>
+    /// 目标窗口句柄
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string TargetWindowHandle {
@@ -9176,6 +9533,9 @@ namespace Swg.Grpc.Win32 {
     /// <summary>Field number for the "command_id" field.</summary>
     public const int CommandIdFieldNumber = 2;
     private uint commandId_;
+    /// <summary>
+    /// 命令 ID
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public uint CommandId {
@@ -9188,6 +9548,9 @@ namespace Swg.Grpc.Win32 {
     /// <summary>Field number for the "notification_code" field.</summary>
     public const int NotificationCodeFieldNumber = 3;
     private uint notificationCode_;
+    /// <summary>
+    /// 通知代码
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public uint NotificationCode {
@@ -9200,6 +9563,9 @@ namespace Swg.Grpc.Win32 {
     /// <summary>Field number for the "sender_handle" field.</summary>
     public const int SenderHandleFieldNumber = 4;
     private string senderHandle_ = "";
+    /// <summary>
+    /// 发送者控件句柄
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string SenderHandle {
@@ -9414,6 +9780,9 @@ namespace Swg.Grpc.Win32 {
 
   }
 
+  /// <summary>
+  /// WM_COMMAND 结果响应。
+  /// </summary>
   public sealed partial class WmCommandSendResponse : pb::IMessage<WmCommandSendResponse>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -9461,6 +9830,9 @@ namespace Swg.Grpc.Win32 {
     /// <summary>Field number for the "result" field.</summary>
     public const int ResultFieldNumber = 1;
     private long result_;
+    /// <summary>
+    /// 消息处理结果
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public long Result {

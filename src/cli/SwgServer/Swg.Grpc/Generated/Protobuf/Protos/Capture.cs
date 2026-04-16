@@ -97,6 +97,11 @@ namespace Swg.Grpc.Capture {
 
   }
   #region Messages
+  /// <summary>
+  /// 创建监听窗口的请求参数。
+  /// 监听窗口会启动本地代理服务器，拦截匹配规则的 HTTP/HTTPS 流量，
+  /// 并将数据持久化到 SQLite 数据库；同时可选启用通知捕获和 ETW 探针。
+  /// </summary>
   public sealed partial class CaptureCreateListenWindowRequest : pb::IMessage<CaptureCreateListenWindowRequest>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -171,6 +176,9 @@ namespace Swg.Grpc.Capture {
     /// <summary>Field number for the "storage_directory" field.</summary>
     public const int StorageDirectoryFieldNumber = 1;
     private string storageDirectory_ = "";
+    /// <summary>
+    /// SQLite 数据库存储目录，为空则使用默认临时目录
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string StorageDirectory {
@@ -183,6 +191,9 @@ namespace Swg.Grpc.Capture {
     /// <summary>Field number for the "proxy_listen_port" field.</summary>
     public const int ProxyListenPortFieldNumber = 2;
     private int proxyListenPort_;
+    /// <summary>
+    /// 代理监听端口，0 或不填则自动分配
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int ProxyListenPort {
@@ -195,6 +206,9 @@ namespace Swg.Grpc.Capture {
     /// <summary>Field number for the "max_body_bytes_per_part" field.</summary>
     public const int MaxBodyBytesPerPartFieldNumber = 3;
     private int maxBodyBytesPerPart_;
+    /// <summary>
+    /// 单个请求/响应体的最大字节数
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int MaxBodyBytesPerPart {
@@ -207,6 +221,9 @@ namespace Swg.Grpc.Capture {
     /// <summary>Field number for the "flush_interval_ms" field.</summary>
     public const int FlushIntervalMsFieldNumber = 4;
     private int flushIntervalMs_;
+    /// <summary>
+    /// 批量写入数据库的刷新间隔（毫秒）
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int FlushIntervalMs {
@@ -219,6 +236,9 @@ namespace Swg.Grpc.Capture {
     /// <summary>Field number for the "flush_batch_max_rows" field.</summary>
     public const int FlushBatchMaxRowsFieldNumber = 5;
     private int flushBatchMaxRows_;
+    /// <summary>
+    /// 单批次最大行数
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int FlushBatchMaxRows {
@@ -231,6 +251,9 @@ namespace Swg.Grpc.Capture {
     /// <summary>Field number for the "flush_batch_max_bytes" field.</summary>
     public const int FlushBatchMaxBytesFieldNumber = 6;
     private long flushBatchMaxBytes_;
+    /// <summary>
+    /// 单批次最大字节数
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public long FlushBatchMaxBytes {
@@ -243,6 +266,9 @@ namespace Swg.Grpc.Capture {
     /// <summary>Field number for the "traffic_allow_all" field.</summary>
     public const int TrafficAllowAllFieldNumber = 7;
     private bool trafficAllowAll_;
+    /// <summary>
+    /// 是否允许捕获所有流量（不过滤）
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool TrafficAllowAll {
@@ -257,6 +283,9 @@ namespace Swg.Grpc.Capture {
     private static readonly pb::FieldCodec<string> _repeated_trafficHostContains_codec
         = pb::FieldCodec.ForString(66);
     private readonly pbc::RepeatedField<string> trafficHostContains_ = new pbc::RepeatedField<string>();
+    /// <summary>
+    /// 流量过滤规则 - 主机名包含关键词列表
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public pbc::RepeatedField<string> TrafficHostContains {
@@ -268,6 +297,9 @@ namespace Swg.Grpc.Capture {
     private static readonly pb::FieldCodec<string> _repeated_trafficPathPrefixes_codec
         = pb::FieldCodec.ForString(74);
     private readonly pbc::RepeatedField<string> trafficPathPrefixes_ = new pbc::RepeatedField<string>();
+    /// <summary>
+    /// 流量过滤规则 - 路径前缀列表
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public pbc::RepeatedField<string> TrafficPathPrefixes {
@@ -277,6 +309,9 @@ namespace Swg.Grpc.Capture {
     /// <summary>Field number for the "mitm_user_trust_root" field.</summary>
     public const int MitmUserTrustRootFieldNumber = 10;
     private bool mitmUserTrustRoot_;
+    /// <summary>
+    /// 是否在当前用户存储安装 MITM 根证书
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool MitmUserTrustRoot {
@@ -289,6 +324,9 @@ namespace Swg.Grpc.Capture {
     /// <summary>Field number for the "mitm_machine_trust_root" field.</summary>
     public const int MitmMachineTrustRootFieldNumber = 11;
     private bool mitmMachineTrustRoot_;
+    /// <summary>
+    /// 是否在计算机存储安装 MITM 根证书
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool MitmMachineTrustRoot {
@@ -301,6 +339,9 @@ namespace Swg.Grpc.Capture {
     /// <summary>Field number for the "mitm_trust_root_as_administrator" field.</summary>
     public const int MitmTrustRootAsAdministratorFieldNumber = 12;
     private bool mitmTrustRootAsAdministrator_;
+    /// <summary>
+    /// 是否以管理员权限安装根证书
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool MitmTrustRootAsAdministrator {
@@ -313,6 +354,9 @@ namespace Swg.Grpc.Capture {
     /// <summary>Field number for the "enable_notifications" field.</summary>
     public const int EnableNotificationsFieldNumber = 13;
     private bool enableNotifications_;
+    /// <summary>
+    /// 是否启用 Windows 通知捕获
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool EnableNotifications {
@@ -325,6 +369,9 @@ namespace Swg.Grpc.Capture {
     /// <summary>Field number for the "notification_debounce_ms" field.</summary>
     public const int NotificationDebounceMsFieldNumber = 14;
     private int notificationDebounceMs_;
+    /// <summary>
+    /// 通知事件去抖间隔（毫秒）
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int NotificationDebounceMs {
@@ -339,6 +386,9 @@ namespace Swg.Grpc.Capture {
     private static readonly pb::FieldCodec<string> _repeated_notificationProcessNameContains_codec
         = pb::FieldCodec.ForString(122);
     private readonly pbc::RepeatedField<string> notificationProcessNameContains_ = new pbc::RepeatedField<string>();
+    /// <summary>
+    /// 通知过滤 - 进程名包含关键词
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public pbc::RepeatedField<string> NotificationProcessNameContains {
@@ -348,6 +398,9 @@ namespace Swg.Grpc.Capture {
     /// <summary>Field number for the "notification_title_contains" field.</summary>
     public const int NotificationTitleContainsFieldNumber = 16;
     private string notificationTitleContains_ = "";
+    /// <summary>
+    /// 通知过滤 - 标题包含关键词
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string NotificationTitleContains {
@@ -362,6 +415,9 @@ namespace Swg.Grpc.Capture {
     private static readonly pb::FieldCodec<string> _repeated_hookWindowEventTypes_codec
         = pb::FieldCodec.ForString(138);
     private readonly pbc::RepeatedField<string> hookWindowEventTypes_ = new pbc::RepeatedField<string>();
+    /// <summary>
+    /// 窗口事件钩子类型列表（如 LOCATION_CHANGE、NAME_CHANGE 等）
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public pbc::RepeatedField<string> HookWindowEventTypes {
@@ -371,6 +427,9 @@ namespace Swg.Grpc.Capture {
     /// <summary>Field number for the "enable_etw_probe" field.</summary>
     public const int EnableEtwProbeFieldNumber = 18;
     private bool enableEtwProbe_;
+    /// <summary>
+    /// 是否启用 ETW 探针
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool EnableEtwProbe {
@@ -385,6 +444,9 @@ namespace Swg.Grpc.Capture {
     private static readonly pb::FieldCodec<string> _repeated_etwProviderNames_codec
         = pb::FieldCodec.ForString(154);
     private readonly pbc::RepeatedField<string> etwProviderNames_ = new pbc::RepeatedField<string>();
+    /// <summary>
+    /// ETW 音频轨提供者名称列表
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public pbc::RepeatedField<string> EtwProviderNames {
@@ -396,6 +458,9 @@ namespace Swg.Grpc.Capture {
     private static readonly pb::FieldCodec<string> _repeated_etwWindowProviderNames_codec
         = pb::FieldCodec.ForString(162);
     private readonly pbc::RepeatedField<string> etwWindowProviderNames_ = new pbc::RepeatedField<string>();
+    /// <summary>
+    /// ETW 窗口轨提供者名称列表（须与 etw_window_event_types 同时提供）
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public pbc::RepeatedField<string> EtwWindowProviderNames {
@@ -407,6 +472,9 @@ namespace Swg.Grpc.Capture {
     private static readonly pb::FieldCodec<string> _repeated_etwWindowEventTypes_codec
         = pb::FieldCodec.ForString(170);
     private readonly pbc::RepeatedField<string> etwWindowEventTypes_ = new pbc::RepeatedField<string>();
+    /// <summary>
+    /// ETW 窗口事件类型列表（须与 etw_window_provider_names 同时提供）
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public pbc::RepeatedField<string> EtwWindowEventTypes {
@@ -416,6 +484,9 @@ namespace Swg.Grpc.Capture {
     /// <summary>Field number for the "etw_match_any_keyword" field.</summary>
     public const int EtwMatchAnyKeywordFieldNumber = 22;
     private ulong etwMatchAnyKeyword_;
+    /// <summary>
+    /// ETW 关键字掩码（仅 has_etw_match_any_keyword 为 true 时有效）
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public ulong EtwMatchAnyKeyword {
@@ -428,6 +499,9 @@ namespace Swg.Grpc.Capture {
     /// <summary>Field number for the "has_etw_match_any_keyword" field.</summary>
     public const int HasEtwMatchAnyKeywordFieldNumber = 23;
     private bool hasEtwMatchAnyKeyword_;
+    /// <summary>
+    /// 标记是否显式设置 etw_match_any_keyword
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool HasEtwMatchAnyKeyword {
@@ -440,6 +514,9 @@ namespace Swg.Grpc.Capture {
     /// <summary>Field number for the "etw_level" field.</summary>
     public const int EtwLevelFieldNumber = 24;
     private uint etwLevel_;
+    /// <summary>
+    /// ETW 事件级别（仅 has_etw_level 为 true 时有效）
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public uint EtwLevel {
@@ -452,6 +529,9 @@ namespace Swg.Grpc.Capture {
     /// <summary>Field number for the "has_etw_level" field.</summary>
     public const int HasEtwLevelFieldNumber = 25;
     private bool hasEtwLevel_;
+    /// <summary>
+    /// 标记是否显式设置 etw_level
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool HasEtwLevel {
@@ -464,6 +544,9 @@ namespace Swg.Grpc.Capture {
     /// <summary>Field number for the "etw_queue_capacity" field.</summary>
     public const int EtwQueueCapacityFieldNumber = 26;
     private int etwQueueCapacity_;
+    /// <summary>
+    /// ETW 音频轨队列容量
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int EtwQueueCapacity {
@@ -476,6 +559,9 @@ namespace Swg.Grpc.Capture {
     /// <summary>Field number for the "etw_window_queue_capacity" field.</summary>
     public const int EtwWindowQueueCapacityFieldNumber = 27;
     private int etwWindowQueueCapacity_;
+    /// <summary>
+    /// ETW 窗口轨队列容量
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int EtwWindowQueueCapacity {
@@ -488,6 +574,9 @@ namespace Swg.Grpc.Capture {
     /// <summary>Field number for the "traffic_stats_interval_ms" field.</summary>
     public const int TrafficStatsIntervalMsFieldNumber = 28;
     private int trafficStatsIntervalMs_;
+    /// <summary>
+    /// 流量统计上报间隔（毫秒）
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int TrafficStatsIntervalMs {
@@ -1208,6 +1297,9 @@ namespace Swg.Grpc.Capture {
 
   }
 
+  /// <summary>
+  /// 创建监听窗口的响应。
+  /// </summary>
   public sealed partial class CaptureCreateListenWindowResponse : pb::IMessage<CaptureCreateListenWindowResponse>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -1257,6 +1349,9 @@ namespace Swg.Grpc.Capture {
     /// <summary>Field number for the "listen_window_id" field.</summary>
     public const int ListenWindowIdFieldNumber = 1;
     private string listenWindowId_ = "";
+    /// <summary>
+    /// 监听窗口的唯一标识（GUID 格式），后续操作需使用此 ID
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string ListenWindowId {
@@ -1269,6 +1364,9 @@ namespace Swg.Grpc.Capture {
     /// <summary>Field number for the "sqlite_path" field.</summary>
     public const int SqlitePathFieldNumber = 2;
     private string sqlitePath_ = "";
+    /// <summary>
+    /// SQLite 数据库文件完整路径
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string SqlitePath {
@@ -1281,6 +1379,9 @@ namespace Swg.Grpc.Capture {
     /// <summary>Field number for the "proxy_listen_port" field.</summary>
     public const int ProxyListenPortFieldNumber = 3;
     private int proxyListenPort_;
+    /// <summary>
+    /// 代理实际监听的端口号
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int ProxyListenPort {
@@ -1471,6 +1572,9 @@ namespace Swg.Grpc.Capture {
 
   }
 
+  /// <summary>
+  /// 停止监听窗口的请求参数。
+  /// </summary>
   public sealed partial class CaptureStopListenWindowRequest : pb::IMessage<CaptureStopListenWindowRequest>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -1518,6 +1622,9 @@ namespace Swg.Grpc.Capture {
     /// <summary>Field number for the "listen_window_id" field.</summary>
     public const int ListenWindowIdFieldNumber = 1;
     private string listenWindowId_ = "";
+    /// <summary>
+    /// 由 CreateListenWindow 返回的监听窗口 ID
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string ListenWindowId {
@@ -1660,6 +1767,9 @@ namespace Swg.Grpc.Capture {
 
   }
 
+  /// <summary>
+  /// 停止监听窗口的响应。
+  /// </summary>
   public sealed partial class CaptureStopListenWindowResponse : pb::IMessage<CaptureStopListenWindowResponse>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -1708,6 +1818,9 @@ namespace Swg.Grpc.Capture {
     /// <summary>Field number for the "stopped" field.</summary>
     public const int StoppedFieldNumber = 1;
     private bool stopped_;
+    /// <summary>
+    /// 是否成功停止（若 ID 不存在则为 false）
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool Stopped {
@@ -1720,6 +1833,9 @@ namespace Swg.Grpc.Capture {
     /// <summary>Field number for the "sqlite_path" field.</summary>
     public const int SqlitePathFieldNumber = 2;
     private string sqlitePath_ = "";
+    /// <summary>
+    /// 已关闭窗口对应的 SQLite 数据库路径，未停止时为空字符串
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string SqlitePath {
@@ -1886,6 +2002,9 @@ namespace Swg.Grpc.Capture {
 
   }
 
+  /// <summary>
+  /// 分页查询历史记录的请求参数。
+  /// </summary>
   public sealed partial class CaptureHistoryQueryRequest : pb::IMessage<CaptureHistoryQueryRequest>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -1936,6 +2055,9 @@ namespace Swg.Grpc.Capture {
     /// <summary>Field number for the "listen_window_id" field.</summary>
     public const int ListenWindowIdFieldNumber = 1;
     private string listenWindowId_ = "";
+    /// <summary>
+    /// 监听窗口 ID
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string ListenWindowId {
@@ -1948,6 +2070,9 @@ namespace Swg.Grpc.Capture {
     /// <summary>Field number for the "limit" field.</summary>
     public const int LimitFieldNumber = 2;
     private int limit_;
+    /// <summary>
+    /// 单页最大返回条数
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int Limit {
@@ -1960,6 +2085,9 @@ namespace Swg.Grpc.Capture {
     /// <summary>Field number for the "offset" field.</summary>
     public const int OffsetFieldNumber = 3;
     private int offset_;
+    /// <summary>
+    /// 偏移量
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int Offset {
@@ -1972,6 +2100,9 @@ namespace Swg.Grpc.Capture {
     /// <summary>Field number for the "before_captured_at_utc" field.</summary>
     public const int BeforeCapturedAtUtcFieldNumber = 4;
     private string beforeCapturedAtUtc_ = "";
+    /// <summary>
+    /// ISO 8601 时间戳，仅返回此时间之前捕获的记录（可选）
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string BeforeCapturedAtUtc {
@@ -2186,6 +2317,9 @@ namespace Swg.Grpc.Capture {
 
   }
 
+  /// <summary>
+  /// 单条 HTTP 交换记录。
+  /// </summary>
   public sealed partial class CaptureHttpExchangeItem : pb::IMessage<CaptureHttpExchangeItem>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -2249,6 +2383,9 @@ namespace Swg.Grpc.Capture {
     /// <summary>Field number for the "id" field.</summary>
     public const int IdFieldNumber = 1;
     private long id_;
+    /// <summary>
+    /// 记录唯一 ID
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public long Id {
@@ -2261,6 +2398,9 @@ namespace Swg.Grpc.Capture {
     /// <summary>Field number for the "captured_at" field.</summary>
     public const int CapturedAtFieldNumber = 2;
     private string capturedAt_ = "";
+    /// <summary>
+    /// 捕获时间（ISO 8601 格式）
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string CapturedAt {
@@ -2273,6 +2413,9 @@ namespace Swg.Grpc.Capture {
     /// <summary>Field number for the "method" field.</summary>
     public const int MethodFieldNumber = 3;
     private string method_ = "";
+    /// <summary>
+    /// HTTP 方法（GET/POST 等）
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string Method {
@@ -2285,6 +2428,9 @@ namespace Swg.Grpc.Capture {
     /// <summary>Field number for the "scheme" field.</summary>
     public const int SchemeFieldNumber = 4;
     private string scheme_ = "";
+    /// <summary>
+    /// 协议（http/https）
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string Scheme {
@@ -2297,6 +2443,9 @@ namespace Swg.Grpc.Capture {
     /// <summary>Field number for the "host" field.</summary>
     public const int HostFieldNumber = 5;
     private string host_ = "";
+    /// <summary>
+    /// 目标主机名
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string Host {
@@ -2309,6 +2458,9 @@ namespace Swg.Grpc.Capture {
     /// <summary>Field number for the "port" field.</summary>
     public const int PortFieldNumber = 6;
     private int port_;
+    /// <summary>
+    /// 目标端口
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int Port {
@@ -2321,6 +2473,9 @@ namespace Swg.Grpc.Capture {
     /// <summary>Field number for the "path" field.</summary>
     public const int PathFieldNumber = 7;
     private string path_ = "";
+    /// <summary>
+    /// 请求路径
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string Path {
@@ -2333,6 +2488,9 @@ namespace Swg.Grpc.Capture {
     /// <summary>Field number for the "query_text" field.</summary>
     public const int QueryTextFieldNumber = 8;
     private string queryText_ = "";
+    /// <summary>
+    /// 查询字符串
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string QueryText {
@@ -2345,6 +2503,9 @@ namespace Swg.Grpc.Capture {
     /// <summary>Field number for the "url_display" field.</summary>
     public const int UrlDisplayFieldNumber = 9;
     private string urlDisplay_ = "";
+    /// <summary>
+    /// 用于展示的完整 URL
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string UrlDisplay {
@@ -2357,6 +2518,9 @@ namespace Swg.Grpc.Capture {
     /// <summary>Field number for the "response_status" field.</summary>
     public const int ResponseStatusFieldNumber = 10;
     private int responseStatus_;
+    /// <summary>
+    /// HTTP 响应状态码（has_response_status 为 true 时有效）
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int ResponseStatus {
@@ -2369,6 +2533,9 @@ namespace Swg.Grpc.Capture {
     /// <summary>Field number for the "has_response_status" field.</summary>
     public const int HasResponseStatusFieldNumber = 11;
     private bool hasResponseStatus_;
+    /// <summary>
+    /// 标记是否包含响应状态码
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool HasResponseStatus {
@@ -2381,6 +2548,9 @@ namespace Swg.Grpc.Capture {
     /// <summary>Field number for the "duration_ms" field.</summary>
     public const int DurationMsFieldNumber = 12;
     private int durationMs_;
+    /// <summary>
+    /// 请求耗时毫秒数（has_duration_ms 为 true 时有效）
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int DurationMs {
@@ -2393,6 +2563,9 @@ namespace Swg.Grpc.Capture {
     /// <summary>Field number for the "has_duration_ms" field.</summary>
     public const int HasDurationMsFieldNumber = 13;
     private bool hasDurationMs_;
+    /// <summary>
+    /// 标记是否包含耗时信息
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool HasDurationMs {
@@ -2405,6 +2578,9 @@ namespace Swg.Grpc.Capture {
     /// <summary>Field number for the "error_text" field.</summary>
     public const int ErrorTextFieldNumber = 14;
     private string errorText_ = "";
+    /// <summary>
+    /// 错误信息（无错误时为空）
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string ErrorText {
@@ -2417,6 +2593,9 @@ namespace Swg.Grpc.Capture {
     /// <summary>Field number for the "client_process_id" field.</summary>
     public const int ClientProcessIdFieldNumber = 15;
     private uint clientProcessId_;
+    /// <summary>
+    /// 发起请求的客户端进程 ID（has_client_process_id 为 true 时有效）
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public uint ClientProcessId {
@@ -2429,6 +2608,9 @@ namespace Swg.Grpc.Capture {
     /// <summary>Field number for the "has_client_process_id" field.</summary>
     public const int HasClientProcessIdFieldNumber = 16;
     private bool hasClientProcessId_;
+    /// <summary>
+    /// 标记是否包含客户端进程 ID
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool HasClientProcessId {
@@ -2441,6 +2623,9 @@ namespace Swg.Grpc.Capture {
     /// <summary>Field number for the "client_process_name" field.</summary>
     public const int ClientProcessNameFieldNumber = 17;
     private string clientProcessName_ = "";
+    /// <summary>
+    /// 发起请求的客户端进程名称
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string ClientProcessName {
@@ -2967,6 +3152,9 @@ namespace Swg.Grpc.Capture {
 
   }
 
+  /// <summary>
+  /// 历史记录查询响应。
+  /// </summary>
   public sealed partial class CaptureHistoryQueryResponse : pb::IMessage<CaptureHistoryQueryResponse>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -3016,6 +3204,9 @@ namespace Swg.Grpc.Capture {
     private static readonly pb::FieldCodec<global::Swg.Grpc.Capture.CaptureHttpExchangeItem> _repeated_items_codec
         = pb::FieldCodec.ForMessage(10, global::Swg.Grpc.Capture.CaptureHttpExchangeItem.Parser);
     private readonly pbc::RepeatedField<global::Swg.Grpc.Capture.CaptureHttpExchangeItem> items_ = new pbc::RepeatedField<global::Swg.Grpc.Capture.CaptureHttpExchangeItem>();
+    /// <summary>
+    /// HTTP 交换记录列表
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public pbc::RepeatedField<global::Swg.Grpc.Capture.CaptureHttpExchangeItem> Items {
@@ -3145,6 +3336,9 @@ namespace Swg.Grpc.Capture {
 
   }
 
+  /// <summary>
+  /// Windows 通知事件（服务端流推送）。
+  /// </summary>
   public sealed partial class CaptureNotificationEvent : pb::IMessage<CaptureNotificationEvent>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -3192,6 +3386,9 @@ namespace Swg.Grpc.Capture {
     /// <summary>Field number for the "json_payload" field.</summary>
     public const int JsonPayloadFieldNumber = 1;
     private string jsonPayload_ = "";
+    /// <summary>
+    /// JSON 格式的通知事件载荷
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string JsonPayload {
@@ -3334,6 +3531,9 @@ namespace Swg.Grpc.Capture {
 
   }
 
+  /// <summary>
+  /// 流量数据块（服务端流推送）。
+  /// </summary>
   public sealed partial class TrafficChunk : pb::IMessage<TrafficChunk>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -3381,6 +3581,9 @@ namespace Swg.Grpc.Capture {
     /// <summary>Field number for the "json_payload" field.</summary>
     public const int JsonPayloadFieldNumber = 1;
     private string jsonPayload_ = "";
+    /// <summary>
+    /// JSON 格式的流量事件载荷
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string JsonPayload {

@@ -92,6 +92,9 @@ namespace Swg.Grpc.Ocr {
 
   }
   #region Messages
+  /// <summary>
+  /// 屏幕矩形区域（绝对坐标）。
+  /// </summary>
   public sealed partial class Roi : pb::IMessage<Roi>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -142,6 +145,9 @@ namespace Swg.Grpc.Ocr {
     /// <summary>Field number for the "left" field.</summary>
     public const int LeftFieldNumber = 1;
     private int left_;
+    /// <summary>
+    /// 左上角 X 坐标
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int Left {
@@ -154,6 +160,9 @@ namespace Swg.Grpc.Ocr {
     /// <summary>Field number for the "top" field.</summary>
     public const int TopFieldNumber = 2;
     private int top_;
+    /// <summary>
+    /// 左上角 Y 坐标
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int Top {
@@ -166,6 +175,9 @@ namespace Swg.Grpc.Ocr {
     /// <summary>Field number for the "width" field.</summary>
     public const int WidthFieldNumber = 3;
     private int width_;
+    /// <summary>
+    /// 区域宽度（必须为正值）
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int Width {
@@ -178,6 +190,9 @@ namespace Swg.Grpc.Ocr {
     /// <summary>Field number for the "height" field.</summary>
     public const int HeightFieldNumber = 4;
     private int height_;
+    /// <summary>
+    /// 区域高度（必须为正值）
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int Height {
@@ -392,6 +407,9 @@ namespace Swg.Grpc.Ocr {
 
   }
 
+  /// <summary>
+  /// 屏幕 OCR 文字识别请求。
+  /// </summary>
   public sealed partial class OcrScreenStringsRequest : pb::IMessage<OcrScreenStringsRequest>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -442,6 +460,9 @@ namespace Swg.Grpc.Ocr {
     /// <summary>Field number for the "roi" field.</summary>
     public const int RoiFieldNumber = 1;
     private global::Swg.Grpc.Ocr.Roi roi_;
+    /// <summary>
+    /// 屏幕识别区域
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public global::Swg.Grpc.Ocr.Roi Roi {
@@ -454,6 +475,9 @@ namespace Swg.Grpc.Ocr {
     /// <summary>Field number for the "engine" field.</summary>
     public const int EngineFieldNumber = 2;
     private string engine_ = "";
+    /// <summary>
+    /// 识别引擎：PaddleSharp（默认）或 Tesseract
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string Engine {
@@ -466,6 +490,9 @@ namespace Swg.Grpc.Ocr {
     /// <summary>Field number for the "language" field.</summary>
     public const int LanguageFieldNumber = 3;
     private string language_ = "";
+    /// <summary>
+    /// 识别语言：Chinese（默认）或 English
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string Language {
@@ -478,6 +505,9 @@ namespace Swg.Grpc.Ocr {
     /// <summary>Field number for the "paddle_chinese_model" field.</summary>
     public const int PaddleChineseModelFieldNumber = 4;
     private string paddleChineseModel_ = "";
+    /// <summary>
+    /// PaddleSharp 中文模型版本：ChineseV3（默认）/ ChineseV4 / ChineseV5（或简写 V3/V4/V5）
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string PaddleChineseModel {
@@ -701,6 +731,9 @@ namespace Swg.Grpc.Ocr {
 
   }
 
+  /// <summary>
+  /// 屏幕 OCR 带文本匹配的识别请求。
+  /// </summary>
   public sealed partial class OcrScreenMatchRequest : pb::IMessage<OcrScreenMatchRequest>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -752,6 +785,9 @@ namespace Swg.Grpc.Ocr {
     /// <summary>Field number for the "roi" field.</summary>
     public const int RoiFieldNumber = 1;
     private global::Swg.Grpc.Ocr.Roi roi_;
+    /// <summary>
+    /// 屏幕识别区域
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public global::Swg.Grpc.Ocr.Roi Roi {
@@ -764,6 +800,9 @@ namespace Swg.Grpc.Ocr {
     /// <summary>Field number for the "match_text" field.</summary>
     public const int MatchTextFieldNumber = 2;
     private string matchText_ = "";
+    /// <summary>
+    /// 要匹配的文本（不能为空字符串，服务端不 Trim）
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string MatchText {
@@ -776,6 +815,9 @@ namespace Swg.Grpc.Ocr {
     /// <summary>Field number for the "engine" field.</summary>
     public const int EngineFieldNumber = 3;
     private string engine_ = "";
+    /// <summary>
+    /// 识别引擎
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string Engine {
@@ -788,6 +830,9 @@ namespace Swg.Grpc.Ocr {
     /// <summary>Field number for the "language" field.</summary>
     public const int LanguageFieldNumber = 4;
     private string language_ = "";
+    /// <summary>
+    /// 识别语言
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string Language {
@@ -800,6 +845,9 @@ namespace Swg.Grpc.Ocr {
     /// <summary>Field number for the "paddle_chinese_model" field.</summary>
     public const int PaddleChineseModelFieldNumber = 5;
     private string paddleChineseModel_ = "";
+    /// <summary>
+    /// PaddleSharp 中文模型版本
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string PaddleChineseModel {
@@ -1047,6 +1095,9 @@ namespace Swg.Grpc.Ocr {
 
   }
 
+  /// <summary>
+  /// 屏幕 OCR 表格识别请求（仅支持 PaddleSharp 引擎）。
+  /// </summary>
   public sealed partial class OcrScreenTableRequest : pb::IMessage<OcrScreenTableRequest>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -1097,6 +1148,9 @@ namespace Swg.Grpc.Ocr {
     /// <summary>Field number for the "roi" field.</summary>
     public const int RoiFieldNumber = 1;
     private global::Swg.Grpc.Ocr.Roi roi_;
+    /// <summary>
+    /// 屏幕识别区域
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public global::Swg.Grpc.Ocr.Roi Roi {
@@ -1109,6 +1163,9 @@ namespace Swg.Grpc.Ocr {
     /// <summary>Field number for the "engine" field.</summary>
     public const int EngineFieldNumber = 2;
     private string engine_ = "";
+    /// <summary>
+    /// 识别引擎（必须为 PaddleSharp）
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string Engine {
@@ -1121,6 +1178,9 @@ namespace Swg.Grpc.Ocr {
     /// <summary>Field number for the "language" field.</summary>
     public const int LanguageFieldNumber = 3;
     private string language_ = "";
+    /// <summary>
+    /// 识别语言
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string Language {
@@ -1133,6 +1193,9 @@ namespace Swg.Grpc.Ocr {
     /// <summary>Field number for the "paddle_chinese_model" field.</summary>
     public const int PaddleChineseModelFieldNumber = 4;
     private string paddleChineseModel_ = "";
+    /// <summary>
+    /// PaddleSharp 中文模型版本
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string PaddleChineseModel {
@@ -1356,6 +1419,9 @@ namespace Swg.Grpc.Ocr {
 
   }
 
+  /// <summary>
+  /// 图像文件 OCR 文字识别请求。
+  /// </summary>
   public sealed partial class OcrImageStringsRequest : pb::IMessage<OcrImageStringsRequest>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -1406,6 +1472,9 @@ namespace Swg.Grpc.Ocr {
     /// <summary>Field number for the "image" field.</summary>
     public const int ImageFieldNumber = 1;
     private string image_ = "";
+    /// <summary>
+    /// 图像路径或 Base64 / Data URL 编码
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string Image {
@@ -1418,6 +1487,9 @@ namespace Swg.Grpc.Ocr {
     /// <summary>Field number for the "engine" field.</summary>
     public const int EngineFieldNumber = 2;
     private string engine_ = "";
+    /// <summary>
+    /// 识别引擎
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string Engine {
@@ -1430,6 +1502,9 @@ namespace Swg.Grpc.Ocr {
     /// <summary>Field number for the "language" field.</summary>
     public const int LanguageFieldNumber = 3;
     private string language_ = "";
+    /// <summary>
+    /// 识别语言
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string Language {
@@ -1442,6 +1517,9 @@ namespace Swg.Grpc.Ocr {
     /// <summary>Field number for the "paddle_chinese_model" field.</summary>
     public const int PaddleChineseModelFieldNumber = 4;
     private string paddleChineseModel_ = "";
+    /// <summary>
+    /// PaddleSharp 中文模型版本
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string PaddleChineseModel {
@@ -1656,6 +1734,9 @@ namespace Swg.Grpc.Ocr {
 
   }
 
+  /// <summary>
+  /// 图像文件 OCR 表格识别请求（仅支持 PaddleSharp 引擎）。
+  /// </summary>
   public sealed partial class OcrImageTableRequest : pb::IMessage<OcrImageTableRequest>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -1706,6 +1787,9 @@ namespace Swg.Grpc.Ocr {
     /// <summary>Field number for the "image" field.</summary>
     public const int ImageFieldNumber = 1;
     private string image_ = "";
+    /// <summary>
+    /// 图像路径或 Base64 / Data URL 编码
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string Image {
@@ -1718,6 +1802,9 @@ namespace Swg.Grpc.Ocr {
     /// <summary>Field number for the "engine" field.</summary>
     public const int EngineFieldNumber = 2;
     private string engine_ = "";
+    /// <summary>
+    /// 识别引擎（必须为 PaddleSharp）
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string Engine {
@@ -1730,6 +1817,9 @@ namespace Swg.Grpc.Ocr {
     /// <summary>Field number for the "language" field.</summary>
     public const int LanguageFieldNumber = 3;
     private string language_ = "";
+    /// <summary>
+    /// 识别语言
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string Language {
@@ -1742,6 +1832,9 @@ namespace Swg.Grpc.Ocr {
     /// <summary>Field number for the "paddle_chinese_model" field.</summary>
     public const int PaddleChineseModelFieldNumber = 4;
     private string paddleChineseModel_ = "";
+    /// <summary>
+    /// PaddleSharp 中文模型版本
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string PaddleChineseModel {
@@ -1956,6 +2049,9 @@ namespace Swg.Grpc.Ocr {
 
   }
 
+  /// <summary>
+  /// 屏幕 QuickTable 快速表格检测请求。
+  /// </summary>
   public sealed partial class OcrScreenQuickTableRequest : pb::IMessage<OcrScreenQuickTableRequest>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -2008,6 +2104,9 @@ namespace Swg.Grpc.Ocr {
     /// <summary>Field number for the "roi" field.</summary>
     public const int RoiFieldNumber = 1;
     private global::Swg.Grpc.Ocr.Roi roi_;
+    /// <summary>
+    /// 屏幕识别区域
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public global::Swg.Grpc.Ocr.Roi Roi {
@@ -2020,6 +2119,9 @@ namespace Swg.Grpc.Ocr {
     /// <summary>Field number for the "language" field.</summary>
     public const int LanguageFieldNumber = 2;
     private string language_ = "";
+    /// <summary>
+    /// 识别语言：Chinese（默认）或 English
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string Language {
@@ -2032,6 +2134,9 @@ namespace Swg.Grpc.Ocr {
     /// <summary>Field number for the "debug" field.</summary>
     public const int DebugFieldNumber = 3;
     private bool debug_;
+    /// <summary>
+    /// 是否启用调试输出
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool Debug {
@@ -2044,6 +2149,9 @@ namespace Swg.Grpc.Ocr {
     /// <summary>Field number for the "save_cell_debug_images" field.</summary>
     public const int SaveCellDebugImagesFieldNumber = 4;
     private bool saveCellDebugImages_;
+    /// <summary>
+    /// 是否保存单元格调试图像
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool SaveCellDebugImages {
@@ -2056,6 +2164,9 @@ namespace Swg.Grpc.Ocr {
     /// <summary>Field number for the "debug_output_directory" field.</summary>
     public const int DebugOutputDirectoryFieldNumber = 5;
     private string debugOutputDirectory_ = "";
+    /// <summary>
+    /// 调试图像输出目录
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string DebugOutputDirectory {
@@ -2068,6 +2179,9 @@ namespace Swg.Grpc.Ocr {
     /// <summary>Field number for the "debug_image_base_name" field.</summary>
     public const int DebugImageBaseNameFieldNumber = 6;
     private string debugImageBaseName_ = "";
+    /// <summary>
+    /// 调试图像文件名前缀（默认 quicktable）
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string DebugImageBaseName {
@@ -2339,6 +2453,9 @@ namespace Swg.Grpc.Ocr {
 
   }
 
+  /// <summary>
+  /// 图像文件 QuickTable 快速表格检测请求。
+  /// </summary>
   public sealed partial class OcrImageQuickTableRequest : pb::IMessage<OcrImageQuickTableRequest>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -2391,6 +2508,9 @@ namespace Swg.Grpc.Ocr {
     /// <summary>Field number for the "image" field.</summary>
     public const int ImageFieldNumber = 1;
     private string image_ = "";
+    /// <summary>
+    /// 图像路径或 Base64 / Data URL 编码
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string Image {
@@ -2403,6 +2523,9 @@ namespace Swg.Grpc.Ocr {
     /// <summary>Field number for the "language" field.</summary>
     public const int LanguageFieldNumber = 2;
     private string language_ = "";
+    /// <summary>
+    /// 识别语言
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string Language {
@@ -2415,6 +2538,9 @@ namespace Swg.Grpc.Ocr {
     /// <summary>Field number for the "debug" field.</summary>
     public const int DebugFieldNumber = 3;
     private bool debug_;
+    /// <summary>
+    /// 是否启用调试输出
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool Debug {
@@ -2427,6 +2553,9 @@ namespace Swg.Grpc.Ocr {
     /// <summary>Field number for the "save_cell_debug_images" field.</summary>
     public const int SaveCellDebugImagesFieldNumber = 4;
     private bool saveCellDebugImages_;
+    /// <summary>
+    /// 是否保存单元格调试图像
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool SaveCellDebugImages {
@@ -2439,6 +2568,9 @@ namespace Swg.Grpc.Ocr {
     /// <summary>Field number for the "debug_output_directory" field.</summary>
     public const int DebugOutputDirectoryFieldNumber = 5;
     private string debugOutputDirectory_ = "";
+    /// <summary>
+    /// 调试图像输出目录
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string DebugOutputDirectory {
@@ -2451,6 +2583,9 @@ namespace Swg.Grpc.Ocr {
     /// <summary>Field number for the "debug_image_base_name" field.</summary>
     public const int DebugImageBaseNameFieldNumber = 6;
     private string debugImageBaseName_ = "";
+    /// <summary>
+    /// 调试图像文件名前缀
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string DebugImageBaseName {
@@ -2713,6 +2848,9 @@ namespace Swg.Grpc.Ocr {
 
   }
 
+  /// <summary>
+  /// OCR 识别到的文本行。
+  /// </summary>
   public sealed partial class OcrStringLineItem : pb::IMessage<OcrStringLineItem>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -2767,6 +2905,9 @@ namespace Swg.Grpc.Ocr {
     /// <summary>Field number for the "text" field.</summary>
     public const int TextFieldNumber = 1;
     private string text_ = "";
+    /// <summary>
+    /// 识别到的文本内容
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string Text {
@@ -2779,6 +2920,9 @@ namespace Swg.Grpc.Ocr {
     /// <summary>Field number for the "left" field.</summary>
     public const int LeftFieldNumber = 2;
     private int left_;
+    /// <summary>
+    /// 文本行区域左上角 X 坐标
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int Left {
@@ -2791,6 +2935,9 @@ namespace Swg.Grpc.Ocr {
     /// <summary>Field number for the "top" field.</summary>
     public const int TopFieldNumber = 3;
     private int top_;
+    /// <summary>
+    /// 文本行区域左上角 Y 坐标
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int Top {
@@ -2803,6 +2950,9 @@ namespace Swg.Grpc.Ocr {
     /// <summary>Field number for the "width" field.</summary>
     public const int WidthFieldNumber = 4;
     private int width_;
+    /// <summary>
+    /// 文本行区域宽度
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int Width {
@@ -2815,6 +2965,9 @@ namespace Swg.Grpc.Ocr {
     /// <summary>Field number for the "height" field.</summary>
     public const int HeightFieldNumber = 5;
     private int height_;
+    /// <summary>
+    /// 文本行区域高度
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int Height {
@@ -2827,6 +2980,9 @@ namespace Swg.Grpc.Ocr {
     /// <summary>Field number for the "center_x" field.</summary>
     public const int CenterXFieldNumber = 6;
     private double centerX_;
+    /// <summary>
+    /// 文本行中心点 X 坐标
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public double CenterX {
@@ -2839,6 +2995,9 @@ namespace Swg.Grpc.Ocr {
     /// <summary>Field number for the "center_y" field.</summary>
     public const int CenterYFieldNumber = 7;
     private double centerY_;
+    /// <summary>
+    /// 文本行中心点 Y 坐标
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public double CenterY {
@@ -2851,6 +3010,9 @@ namespace Swg.Grpc.Ocr {
     /// <summary>Field number for the "confidence" field.</summary>
     public const int ConfidenceFieldNumber = 8;
     private double confidence_;
+    /// <summary>
+    /// 识别置信度（0.0-1.0）
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public double Confidence {
@@ -3161,6 +3323,9 @@ namespace Swg.Grpc.Ocr {
 
   }
 
+  /// <summary>
+  /// OCR 文字识别结果。
+  /// </summary>
   public sealed partial class OcrStringsResponse : pb::IMessage<OcrStringsResponse>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -3210,6 +3375,9 @@ namespace Swg.Grpc.Ocr {
     private static readonly pb::FieldCodec<global::Swg.Grpc.Ocr.OcrStringLineItem> _repeated_items_codec
         = pb::FieldCodec.ForMessage(10, global::Swg.Grpc.Ocr.OcrStringLineItem.Parser);
     private readonly pbc::RepeatedField<global::Swg.Grpc.Ocr.OcrStringLineItem> items_ = new pbc::RepeatedField<global::Swg.Grpc.Ocr.OcrStringLineItem>();
+    /// <summary>
+    /// 识别到的文本行列表
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public pbc::RepeatedField<global::Swg.Grpc.Ocr.OcrStringLineItem> Items {
@@ -3339,6 +3507,9 @@ namespace Swg.Grpc.Ocr {
 
   }
 
+  /// <summary>
+  /// OCR 表格单元格。
+  /// </summary>
   public sealed partial class OcrTableCellItem : pb::IMessage<OcrTableCellItem>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -3392,6 +3563,9 @@ namespace Swg.Grpc.Ocr {
     /// <summary>Field number for the "text" field.</summary>
     public const int TextFieldNumber = 1;
     private string text_ = "";
+    /// <summary>
+    /// 单元格文本
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string Text {
@@ -3404,6 +3578,9 @@ namespace Swg.Grpc.Ocr {
     /// <summary>Field number for the "left" field.</summary>
     public const int LeftFieldNumber = 2;
     private int left_;
+    /// <summary>
+    /// 单元格区域左上角 X 坐标
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int Left {
@@ -3416,6 +3593,9 @@ namespace Swg.Grpc.Ocr {
     /// <summary>Field number for the "top" field.</summary>
     public const int TopFieldNumber = 3;
     private int top_;
+    /// <summary>
+    /// 单元格区域左上角 Y 坐标
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int Top {
@@ -3428,6 +3608,9 @@ namespace Swg.Grpc.Ocr {
     /// <summary>Field number for the "width" field.</summary>
     public const int WidthFieldNumber = 4;
     private int width_;
+    /// <summary>
+    /// 单元格区域宽度
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int Width {
@@ -3440,6 +3623,9 @@ namespace Swg.Grpc.Ocr {
     /// <summary>Field number for the "height" field.</summary>
     public const int HeightFieldNumber = 5;
     private int height_;
+    /// <summary>
+    /// 单元格区域高度
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int Height {
@@ -3452,6 +3638,9 @@ namespace Swg.Grpc.Ocr {
     /// <summary>Field number for the "row" field.</summary>
     public const int RowFieldNumber = 6;
     private int row_;
+    /// <summary>
+    /// 单元格行索引
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int Row {
@@ -3464,6 +3653,9 @@ namespace Swg.Grpc.Ocr {
     /// <summary>Field number for the "column" field.</summary>
     public const int ColumnFieldNumber = 7;
     private int column_;
+    /// <summary>
+    /// 单元格列索引
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int Column {
@@ -3750,6 +3942,9 @@ namespace Swg.Grpc.Ocr {
 
   }
 
+  /// <summary>
+  /// OCR 表格识别结果。
+  /// </summary>
   public sealed partial class OcrTableResponse : pb::IMessage<OcrTableResponse>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -3799,6 +3994,9 @@ namespace Swg.Grpc.Ocr {
     private static readonly pb::FieldCodec<global::Swg.Grpc.Ocr.OcrTableCellItem> _repeated_cells_codec
         = pb::FieldCodec.ForMessage(10, global::Swg.Grpc.Ocr.OcrTableCellItem.Parser);
     private readonly pbc::RepeatedField<global::Swg.Grpc.Ocr.OcrTableCellItem> cells_ = new pbc::RepeatedField<global::Swg.Grpc.Ocr.OcrTableCellItem>();
+    /// <summary>
+    /// 表格单元格列表
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public pbc::RepeatedField<global::Swg.Grpc.Ocr.OcrTableCellItem> Cells {
